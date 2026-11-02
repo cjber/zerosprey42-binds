@@ -21,12 +21,12 @@ No build step, no dependencies, no backend: plain HTML, CSS and JS, so any stati
 
 ## The board
 
-`assets/board.json` comes from the keyboard itself. `tools/read-pcb.py` reads the 42 switch footprints in
-`pcb/zerosprey42.kicad_pcb` (`beekeeb/zerosprey42`): centre, width and the 1.5u thumbs, which gives the
-V-shaped halves, the two inner columns that step down towards the thumbs, and the thumb fan with the
-wide key inboard. `tools/build-board.py` converts those millimetres into key units and the box the page
-draws. The firmware's Vial layout is not used for geometry: its thumb entries cascade a row each and its
-outer columns sit a key low, so it draws a board that does not exist.
+`assets/board.json` is built from the keyboard's own Vial layout, the same one Vial draws in its Keymap
+tab. `tools/vial-read.py` reads it off the board over raw HID into `assets/vial-definition.json`, and
+`tools/build-board.py` parses the KLE. Two rules make it come out right: `x` restarts on each row while
+`y` accumulates, and setting `rx`/`ry` moves the cursor to that pivot, which is what puts the six thumbs
+in a row under the inner columns. The layout keeps its 3.5 key gap between the halves because the wide
+thumb keys reach into it.
 
 The keyboard itself is selectable next to the level field. `assets/boards/index.json` lists the boards and
 `tools/import-qmk.py` regenerates the QMK ones (Corne 3x6 and 3x5, Sofle, Lily58, Planck) from QMK's own

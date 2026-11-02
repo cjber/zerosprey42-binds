@@ -16,8 +16,7 @@ bun tools/cli.ts validate --json   # board, class and profile consistency
 bun tools/cli.ts plan --class hunter --level 60 --json
 bun tools/cli.ts export --format wtf --out /tmp/binds.wtf
 bun tools/cli.ts profile --name "Barry Buckfast" --class hunter --level 60 --out assets/profiles/barry.json
-python3 tools/read-pcb.py         # 42 switch positions from the PCB into assets/physical-layout.json
-python3 tools/build-board.py      # rebuild assets/board.json
+python3 tools/build-board.py      # rebuild assets/board.json from the Vial definition
 python3 tools/import-qmk.py       # regenerate the selectable QMK boards in assets/boards/
 python3 tools/fetch-icons.py      # cache spell icons into assets/icons/
 ```
@@ -32,7 +31,7 @@ browser requirement for anything except the UI itself.
 - `app.js` is the browser shell only: it renders the board and calls `lib/planner.js`.
 - `tools/cli.ts` is the agent-facing entry point, importing the same module.
 - `assets/board.json` is the Zerosprey42 board: 42 keys with `legend`, `x`, `y`, `w` and `rot` in key
-  units, plus the box. `assets/physical-layout.json` is the PCB read; `assets/boards/index.json` lists the
+  units, plus the box, built from `assets/vial-definition.json`. `assets/boards/index.json` lists the
   selectable boards and `assets/boards/<id>.json` holds them.
 - `assets/classes/<class>.json` is the ability list: `name`, `level`, `kind`
   (`attack`/`buff`/`utility`/`pet`/`passive`), `icon`, plus an optional `macros` array.
