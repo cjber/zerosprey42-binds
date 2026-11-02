@@ -181,7 +181,10 @@ function renderBoard() {
     cap.style.width = `${key.w * UNIT - GAP}px`;
     cap.style.height = `${UNIT - GAP}px`;
     cap.style.setProperty("--rot", `${key.rot ?? 0}deg`);
-    if (key.rot) cap.style.transform = `rotate(${key.rot}deg)`;
+    if (key.rot) {
+      cap.style.transform = `rotate(${key.rot}deg)`;
+      if (key.ox !== undefined) cap.style.transformOrigin = `${key.ox * UNIT}px ${key.oy * UNIT}px`;
+    }
     // The keycap turns with the board, the writing on it does not: keep the label and icons upright.
     const body = document.createElement("div");
     body.className = "body";
@@ -523,8 +526,8 @@ function renderExport() {
 
 async function boot() {
   const [index, board, hunter] = await Promise.all([
-    fetch("assets/boards/index.json").then((r) => r.json()),
-    fetch("assets/board.json").then((r) => r.json()),
+    fetch("assets/boards/index.json", { cache: "no-store" }).then((r) => r.json()),
+    fetch("assets/board.json", { cache: "no-store" }).then((r) => r.json()),
     fetch("assets/classes/hunter.json").then((r) => r.json()).catch(() => null),
   ]);
   state.boards = index.boards;

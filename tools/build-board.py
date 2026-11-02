@@ -31,8 +31,9 @@ LEGENDS = {
     "6,3": "Enter", "6,4": "MO(2)", "6,5": "MO(3)",
 }
 
-# The two 1.5u thumb switches, from the PCB and the case.
-WIDE = {"6,2", "6,3"}
+# Vial draws all six thumbs at one key wide: the KLE carries no width for them, and the point here is
+# to match the layout Vial shows.
+WIDE = set()
 
 
 def main():
@@ -58,17 +59,21 @@ def main():
                 width = item.get("w", width)
                 height = item.get("h", height)
             else:
-                keys.append(
-                    {
-                        "matrix": item,
-                        "legend": LEGENDS[item],
-                        "x": round(x, 3),
-                        "y": round(y, 3),
-                        "w": 1.5 if item in WIDE else width,
-                        "h": height,
-                        "rot": rotation,
-                    }
-                )
+                key = {
+                    "matrix": item,
+                    "legend": LEGENDS[item],
+                    "x": round(x, 3),
+                    "y": round(y, 3),
+                    "w": 1.5 if item in WIDE else width,
+                    "h": height,
+                    "rot": rotation,
+                }
+                if rotation:
+                    # Vial turns a key about the layout's pivot, not about the key's own centre, so
+                    # keep the pivot relative to the key's top-left for the page to use.
+                    key["ox"] = round(rx - x, 3)
+                    key["oy"] = round(ry - y, 3)
+                keys.append(key)
                 x += width
                 width = height = 1.0
         y += 1.0
