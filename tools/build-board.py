@@ -73,6 +73,16 @@ def main():
     if len(keys) != 36:
         raise SystemExit(f"body has {len(keys)} keys, expected 36")
 
+    # The definition leaves a wide gap between the hands (3.5 keys); the board itself is a monoblock
+    # with about one key between them, so close it up and keep every other offset as reported.
+    left = [k for k in keys if k["x"] < 6]
+    right = [k for k in keys if k["x"] >= 6]
+    if left and right:
+        gap = min(k["x"] for k in right) - max(k["x"] + k["w"] for k in left)
+        shift = gap - 1.0
+        for key in right:
+            key["x"] = round(key["x"] - shift, 3)
+
     bottom = max(key["y"] for key in keys) + 1.0
     for matrix, legend, width, column, extra, rotation in THUMBS:
         keys.append(

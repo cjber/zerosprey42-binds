@@ -1,0 +1,6 @@
+# Cloudflare Workers with static assets: the bind planner is a plain static site.
+name = "zerosprey42-binds"
+compatibility_date = "2026-11-01"
+
+[assets]
+directory = "./dist"

@@ -5,3 +5,13 @@ node_modules/
 .sloppatrol/runs/
 .speedpatrol/runs/
 .bugpatrol/runs/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+
+dist/
+.wrangler/

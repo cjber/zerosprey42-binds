@@ -1,305 +1,347 @@
 {
  "name": "Zerosprey42",
- "units": "key units, 1u = 19.05mm",
+ "units": "key units, read from the keyboard's own Vial definition",
  "source": {
-  "board": "beekeeb/zerosprey42: 42 switches, 36 at 1u and 2 at 1.5u, six thumbs",
-  "firmware": "beekeeb/vial-qmk-zerosprey42: LAYOUT_split_3x6_3 order and legends",
-  "arrangement": "modelled: 3x6 per half, half-key stagger on the outer columns, six angled thumbs"
+  "definition": "assets/vial-definition.json, read over raw HID by tools/vial-read.py",
+  "legends": "the firmware's LAYOUT_split_3x6_3 keymap",
+  "thumbs": "placed under the inner columns; the definition's own thumb entries scatter"
  },
  "keys": [
   {
-   "legend": "Tab",
-   "x": 0,
-   "y": 0.5,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "Q",
-   "x": 1,
-   "y": 0.3,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "W",
-   "x": 2,
-   "y": 0.1,
-   "w": 1,
-   "rot": 0
-  },
-  {
+   "matrix": "1,1",
    "legend": "E",
-   "x": 3,
+   "x": 3.0,
    "y": 0.0,
-   "w": 1,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": "R",
-   "x": 4,
-   "y": 0.15,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "T",
-   "x": 5,
-   "y": 0.35,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "Y",
-   "x": 7.0,
-   "y": 0.35,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "U",
-   "x": 8.0,
-   "y": 0.15,
-   "w": 1,
-   "rot": 0
-  },
-  {
+   "matrix": "0,4",
    "legend": "I",
    "x": 9.0,
    "y": 0.0,
-   "w": 1,
+   "w": 1.0,
    "rot": 0
   },
   {
+   "matrix": "0,1",
+   "legend": "W",
+   "x": 2.0,
+   "y": 0.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "0,2",
+   "legend": "R",
+   "x": 4.0,
+   "y": 0.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "1,3",
+   "legend": "U",
+   "x": 8.0,
+   "y": 0.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "1,4",
    "legend": "O",
    "x": 10.0,
-   "y": 0.1,
-   "w": 1,
+   "y": 0.25,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": "P",
-   "x": 11.0,
-   "y": 0.3,
-   "w": 1,
+   "matrix": "1,2",
+   "legend": "T",
+   "x": 5.0,
+   "y": 0.35,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": "Bksp",
-   "x": 12.0,
-   "y": 0.5,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "Ctrl",
-   "x": 0,
-   "y": 1.5,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "A",
-   "x": 1,
-   "y": 1.3,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "S",
-   "x": 2,
-   "y": 1.1,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "D",
-   "x": 3,
-   "y": 1.0,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "F",
-   "x": 4,
-   "y": 1.15,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "G",
-   "x": 5,
-   "y": 1.35,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "H",
+   "matrix": "0,3",
+   "legend": "Y",
    "x": 7.0,
-   "y": 1.35,
-   "w": 1,
+   "y": 0.35,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": "J",
-   "x": 8.0,
-   "y": 1.15,
-   "w": 1,
+   "matrix": "0,0",
+   "legend": "Tab",
+   "x": 0.0,
+   "y": 1.0,
+   "w": 1.0,
    "rot": 0
   },
   {
+   "matrix": "1,0",
+   "legend": "Q",
+   "x": 1.0,
+   "y": 1.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "3,1",
+   "legend": "D",
+   "x": 3.0,
+   "y": 1.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "2,4",
    "legend": "K",
    "x": 9.0,
    "y": 1.0,
-   "w": 1,
+   "w": 1.0,
    "rot": 0
   },
   {
+   "matrix": "0,5",
+   "legend": "P",
+   "x": 11.0,
+   "y": 1.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "1,5",
+   "legend": "Bksp",
+   "x": 12.0,
+   "y": 1.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "2,1",
+   "legend": "S",
+   "x": 2.0,
+   "y": 1.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "2,2",
+   "legend": "F",
+   "x": 4.0,
+   "y": 1.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "3,3",
+   "legend": "J",
+   "x": 8.0,
+   "y": 1.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "3,4",
    "legend": "L",
    "x": 10.0,
-   "y": 1.1,
-   "w": 1,
+   "y": 1.25,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": ";",
-   "x": 11.0,
-   "y": 1.3,
-   "w": 1,
+   "matrix": "3,2",
+   "legend": "G",
+   "x": 5.0,
+   "y": 1.35,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": "'",
-   "x": 12.0,
-   "y": 1.5,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "Shift",
-   "x": 0,
-   "y": 2.5,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "Z",
-   "x": 1,
-   "y": 2.3,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "X",
-   "x": 2,
-   "y": 2.1,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "C",
-   "x": 3,
-   "y": 2.0,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "V",
-   "x": 4,
-   "y": 2.15,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "B",
-   "x": 5,
-   "y": 2.35,
-   "w": 1,
-   "rot": 0
-  },
-  {
-   "legend": "N",
+   "matrix": "2,3",
+   "legend": "H",
    "x": 7.0,
-   "y": 2.35,
-   "w": 1,
+   "y": 1.35,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": "M",
-   "x": 8.0,
-   "y": 2.15,
-   "w": 1,
+   "matrix": "2,0",
+   "legend": "Ctrl",
+   "x": 0.0,
+   "y": 2.0,
+   "w": 1.0,
    "rot": 0
   },
   {
+   "matrix": "3,0",
+   "legend": "A",
+   "x": 1.0,
+   "y": 2.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "5,1",
+   "legend": "C",
+   "x": 3.0,
+   "y": 2.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "4,4",
    "legend": ",",
    "x": 9.0,
    "y": 2.0,
-   "w": 1,
+   "w": 1.0,
    "rot": 0
   },
   {
+   "matrix": "2,5",
+   "legend": ";",
+   "x": 11.0,
+   "y": 2.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "3,5",
+   "legend": "'",
+   "x": 12.0,
+   "y": 2.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "4,1",
+   "legend": "X",
+   "x": 2.0,
+   "y": 2.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "4,2",
+   "legend": "V",
+   "x": 4.0,
+   "y": 2.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "5,3",
+   "legend": "M",
+   "x": 8.0,
+   "y": 2.25,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "5,4",
    "legend": ".",
    "x": 10.0,
-   "y": 2.1,
-   "w": 1,
+   "y": 2.25,
+   "w": 1.0,
    "rot": 0
   },
   {
+   "matrix": "5,2",
+   "legend": "B",
+   "x": 5.0,
+   "y": 2.35,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "4,3",
+   "legend": "N",
+   "x": 7.0,
+   "y": 2.35,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "4,0",
+   "legend": "Shift",
+   "x": 0.0,
+   "y": 3.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "5,0",
+   "legend": "Z",
+   "x": 1.0,
+   "y": 3.0,
+   "w": 1.0,
+   "rot": 0
+  },
+  {
+   "matrix": "4,5",
    "legend": "/",
    "x": 11.0,
-   "y": 2.3,
-   "w": 1,
+   "y": 3.0,
+   "w": 1.0,
    "rot": 0
   },
   {
+   "matrix": "5,5",
    "legend": "Shift",
    "x": 12.0,
-   "y": 2.5,
-   "w": 1,
+   "y": 3.0,
+   "w": 1.0,
    "rot": 0
   },
   {
-   "legend": "Super",
-   "x": 2.45,
-   "y": 3.1,
-   "w": 1.0,
-   "rot": 8
-  },
-  {
+   "matrix": "6,1",
    "legend": "Lower",
-   "x": 3.5,
-   "y": 3.24,
+   "x": 4.0,
+   "y": 4.1,
    "w": 1.0,
-   "rot": 2
+   "rot": 6
   },
   {
+   "matrix": "6,2",
    "legend": "Space",
-   "x": 4.55,
-   "y": 3.34,
+   "x": 4.75,
+   "y": 4.22,
    "w": 1.5,
-   "rot": -4
-  },
-  {
-   "legend": "Enter",
-   "x": 6.45,
-   "y": 3.34,
-   "w": 1.5,
-   "rot": 4
-  },
-  {
-   "legend": "Raise",
-   "x": 7.9,
-   "y": 3.24,
-   "w": 1.0,
    "rot": -2
   },
   {
-   "legend": "AltGr",
-   "x": 8.95,
-   "y": 3.1,
+   "matrix": "6,0",
+   "legend": "Super",
+   "x": 3.0,
+   "y": 4.0,
    "w": 1.0,
-   "rot": -8
+   "rot": 10
+  },
+  {
+   "matrix": "6,3",
+   "legend": "Enter",
+   "x": 9.25,
+   "y": 4.22,
+   "w": 1.5,
+   "rot": 2
+  },
+  {
+   "matrix": "6,4",
+   "legend": "Raise",
+   "x": 10.5,
+   "y": 4.1,
+   "w": 1.0,
+   "rot": -6
+  },
+  {
+   "matrix": "6,5",
+   "legend": "AltGr",
+   "x": 11.5,
+   "y": 4.0,
+   "w": 1.0,
+   "rot": -10
   }
  ]
 }

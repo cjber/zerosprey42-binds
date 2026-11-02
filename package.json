@@ -8,6 +8,12 @@
     "test": "bun test",
     "e2e": "bun tools/e2e.ts",
     "validate": "bun tools/cli.ts validate",
-    "check": "bun tools/cli.ts validate && bun test && bun tools/e2e.ts"
+    "check": "bun tools/cli.ts validate && bun test && bun tools/e2e.ts",
+    "deploy": "bun run build && wrangler deploy",
+    "preview": "wrangler dev",
+    "build": "bun tools/build-site.ts"
+  },
+  "devDependencies": {
+    "wrangler": "^4.156.2"
   }
 }
