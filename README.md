@@ -72,11 +72,16 @@ Spell icons are the client's own art names, fetched once into `assets/icons/` by
 
 ## Deploy
 
-It is a static folder, so Cloudflare Pages serves it directly:
+```sh
+bun run deploy                                   # builds dist/ and deploys the Worker
+python3 tools/attach-domain.py                   # binds.cjber.dev, in the zone's own account
+```
 
-1. Create a Pages project from this repository, output directory `/`, no build command.
-2. Add `binds.cjber.dev` as a custom domain on that project, and the CNAME that Pages shows.
-3. Every push to `main` redeploys.
+The Worker is named `zerosprey42-binds` and serves `dist/` as static assets. Cloudflare only attaches
+a custom domain when the hostname's zone is in the same account as the Worker, so `attach-domain.py`
+reads the zone's account from the API rather than assuming one: the live staging copy is under the
+Nebula account while `cjber.dev` is elsewhere, and the domain step has to run in whichever account
+holds the zone.
 
 ## Layout
 
