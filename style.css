@@ -66,6 +66,7 @@ h2 { margin: 0 0 4px; font-size: 13px; letter-spacing: 0.1em; text-transform: up
 
 main { padding-top: 22px; }
 .hint { color: var(--muted); font-size: 15px; margin: 14px 0 0; max-width: 70ch; }
+.scroll-note { display: none; color: var(--muted); font-size: 13px; margin: 8px 0 0; }
 code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var(--accent); }
 
 /* The board: absolute keys on a case, rotated where the thumbs are. */
@@ -78,6 +79,7 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
   padding: 26px;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
   box-shadow: inset 0 1px 0 #ffffff14, 0 30px 60px -40px #000;
 }
 .wow-panel { position: relative; }
@@ -248,6 +250,7 @@ pre {
 .io-load input { margin-left: 8px; }
 
 @media (max-width: 900px) {
+  .scroll-note { display: block; }
   .export-grid { grid-template-columns: 1fr; }
   .macro-form { grid-template-columns: 1fr; }
   .macro-form textarea, .macro-form button { grid-column: 1; }

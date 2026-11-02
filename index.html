@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121113" />
     <title>Zerosprey42 · WoW binds</title>
+    <link rel="preload" href="assets/wow/frizqt.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -30,6 +32,7 @@
           <div class="stage wow-panel">
             <div id="fit" class="fit"><div id="board" class="board"></div></div>
           </div>
+          <p class="scroll-note">On a narrow screen, swipe across the board to see every key.</p>
           <p class="hint">
             Pick a layer, then click a key to assign it. The five dots under each key show which layers
             have something on it, with the selected layer ringed. Alt is kept for mounts, food, potions
@@ -50,9 +53,9 @@
 
         <section id="tab-macros" hidden>
           <div class="macro-form">
-            <input id="macro-name" placeholder="Macro name" />
-            <input id="macro-icon" placeholder="Icon, e.g. ability_hunter_aimedshot" />
-            <textarea id="macro-body" rows="5" placeholder="#showtooltip&#10;/cast Aimed Shot"></textarea>
+            <input id="macro-name" aria-label="Macro name" autocomplete="off" placeholder="Macro name" />
+            <input id="macro-icon" aria-label="Macro icon" autocomplete="off" placeholder="Icon, e.g. ability_hunter_aimedshot" />
+            <textarea id="macro-body" aria-label="Macro body" rows="5" placeholder="#showtooltip&#10;/cast Aimed Shot"></textarea>
             <button id="macro-add" class="primary">Add macro</button>
           </div>
           <ul id="macro-list" class="macro-list"></ul>
