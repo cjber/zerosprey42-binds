@@ -143,6 +143,7 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
   display: flex; align-items: center; gap: 6px; text-align: left;
 }
 .palette button:hover { border-color: var(--primary); }
+.palette button:disabled { opacity: 0.35; cursor: not-allowed; border-color: var(--border-soft); }
 .palette button img { width: 18px; height: 18px; border-radius: 3px; }
 .palette .clear { border-color: var(--destructive); color: #f0b4b4; justify-content: center; }
 

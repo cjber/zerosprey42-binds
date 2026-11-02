@@ -248,7 +248,7 @@ function openPalette(event, legend, modId) {
 
   const abilities = state.classes[character.class]?.abilities ?? [];
   if (abilities.length) {
-    heading(plan ? `spells · this key drives ${BARS[plan.bar].label} ${plan.slot}` : "spells");
+    heading(plan ? `spells · this key drives ${BARS[plan.bar].label} ${plan.slot}` : "spells · no slot on this key");
     const grid = document.createElement("div");
     grid.className = "grid";
     for (const ability of abilities) {
@@ -263,8 +263,12 @@ function openPalette(event, legend, modId) {
       const text = document.createElement("span");
       text.textContent = ability.name;
       button.append(text);
+      if (!plan) {
+        button.disabled = true;
+        button.title = "This key has no bar slot: give it a command or a macro instead.";
+      }
       button.onclick = () => {
-        if (!plan) return alert("That key is a utility key: give it a command or a macro.");
+        if (!plan) return;
         character.slots[legend][modId] = {
           k: "bar", bar: plan.bar, slot: plan.slot, ability: ability.name, icon: ability.icon,
         };

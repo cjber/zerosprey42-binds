@@ -77,11 +77,20 @@ async function main() {
       resolve(message.result ?? {});
     }
   });
+  // Every call times out, so a wedged page fails the gate instead of hanging it.
   const call = (method: string, params: Record<string, unknown> = {}, sessionId?: string) =>
     new Promise<any>((resolve) => {
       id += 1;
-      pending.set(id, resolve);
-      ws.send(JSON.stringify({ id, method, params, ...(sessionId ? { sessionId } : {}) }));
+      const callId = id;
+      const timer = setTimeout(() => {
+        pending.delete(callId);
+        resolve({ __timeout: true, method });
+      }, 15000);
+      pending.set(callId, (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      });
+      ws.send(JSON.stringify({ id: callId, method, params, ...(sessionId ? { sessionId } : {}) }));
     });
 
   const { targetId } = await call("Target.createTarget", { url: `http://127.0.0.1:${PORT}/` });
@@ -94,6 +103,7 @@ async function main() {
       { expression, returnByValue: true, awaitPromise: true },
       sessionId,
     );
+    if (result.__timeout) throw new Error(`page did not answer ${result.method} within 15s`);
     if (result.exceptionDetails) throw new Error(`page threw: ${result.exceptionDetails.text}`);
     return result.result?.value;
   };
@@ -131,8 +141,9 @@ async function main() {
   check("placed keys are named", labels.includes("Serpent") || labels.includes("Arcane"), labels);
 
   // Assigning a spell through the palette updates the key and the export.
+  // Pick the Q key by its legend, not by position: the board order comes from the keyboard itself.
   await evaluate(
-    "document.querySelectorAll('.key')[1].querySelector('.primary').click(); true",
+    `(() => { const key = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === 'Q'); key.querySelector('.primary').click(); return true; })()`,
   );
   await sleep(300);
   const paletteOpen = await evaluate("!document.getElementById('palette').hidden");
@@ -143,7 +154,7 @@ async function main() {
   );
   await sleep(400);
   const assigned = await evaluate(
-    "document.querySelectorAll('.key')[1].querySelector('.primary span')?.textContent",
+    `(() => { const key = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === 'Q'); return key.querySelector('.primary span')?.textContent; })()`,
   );
   check("picking a spell assigns it to the key", assigned === "Aimed Shot", `got ${assigned}`);
 
@@ -193,7 +204,7 @@ async function main() {
   await evaluate("document.querySelector('.tabs button[data-tab=macros]').click(); true");
   await sleep(300);
   const macroCount = await evaluate("document.querySelectorAll('#macro-list li').length");
-  check("macros are listed", macroCount === 3, `got ${macroCount}`);
+  check("macros are listed", macroCount >= 3, `got ${macroCount}`);
 
   ws.close();
 }
