@@ -56,8 +56,8 @@ browser requirement for anything except the UI itself.
 
 All four agent-labs-dev products are configured here, and their checks are the gate above.
 
-- Mergepatrol: `.mergepatrol/mergepatrol.yml` plus the skill. The App is not installed on this repo, so
-  the queue does nothing until it is; until then PRs merge by hand.
+- Mergepatrol: `.mergepatrol/mergepatrol.yml` plus the skill, and the App is installed here. Label a PR
+  `mergepatrol` and the queue takes it; PR #1 went in that way.
 - Speedpatrol: `.speedpatrol/` times `gate.unit` and `gate.e2e`. Run `npx -y speedpatrol@latest run`.
 - Sloppatrol: `.sloppatrol/` uses the gate as its oracle. Run `npx -y sloppatrol@latest check`; it works
   from a clean checkout of `origin/main`, so commit before expecting it to pass.
