@@ -2,11 +2,7 @@
 name = "zerosprey42-binds"
 compatibility_date = "2026-11-01"
 
+# The custom domain is attached by tools/go-live.py in the account that owns cjber.dev. Leaving it
+# out of this file keeps `wrangler deploy` from trying to create DNS records that already exist.
 [assets]
 directory = "./dist"
-
-# A Worker only takes a custom domain whose zone is in the same account, so this lives with the
-# account that owns cjber.dev. `custom_domain = true` makes wrangler create the DNS record too.
-routes = [
-  { pattern = "binds.cjber.dev", custom_domain = true }
-]
