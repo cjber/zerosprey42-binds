@@ -32,18 +32,20 @@ ROW_LEGENDS = [
     ["Super", "Lower", "Space", "Enter", "Raise", "AltGr"],
 ]
 
-# Half a key of stagger on the outer columns, none in the middle: the shape of the real board.
-STAGGER = [0.5, 0.25, 0.0, 0.0, 0.25, 0.5]
-GAP = 1.0  # between the two halves
+# Column stagger, outer column to inner: the board rises towards the middle on both hands, so the
+# right half uses this reversed. Index 0 is the pinky, 5 the innermost column.
+STAGGER = [0.55, 0.35, 0.15, 0.0, 0.05, 0.2]
+GAP = 1.0  # one key between the halves
 
+# Thumbs sit under the inner columns, angled towards the middle, the outer one of each hand at 1.5u.
+# (half, thumb index, width, x, y, rotation)
 THUMBS = [
-    # (half, index, width, x offset inside the half, y, rotation)
-    ("left", 0, 1.5, 2.6, 3.35, 12),
-    ("left", 1, 1.0, 4.2, 3.55, 4),
-    ("left", 2, 1.0, 5.25, 3.75, -4),
-    ("right", 0, 1.0, 0.75, 3.75, 4),
-    ("right", 1, 1.0, 1.8, 3.55, -4),
-    ("right", 2, 1.5, 3.4, 3.35, -12),
+    ("left", 0, 1.5, 2.30, 3.30, 10),
+    ("left", 1, 1.0, 4.00, 3.50, 2),
+    ("left", 2, 1.0, 5.15, 3.62, -4),
+    ("right", 0, 1.0, 6.85, 3.62, 4),
+    ("right", 1, 1.0, 8.00, 3.50, -2),
+    ("right", 2, 1.5, 9.20, 3.30, -10),
 ]
 
 
@@ -53,17 +55,15 @@ def main():
     for row, legends in enumerate(ROW_LEGENDS[:3]):
         for column, legend in enumerate(legends):
             left = column < 6
-            x = column if left else column + GAP
-            y = row + STAGGER[column - 6 if not left else column]
+            inner = column if left else column - 6
+            x = inner if left else inner + 6 + GAP
+            # Mirror the stagger on the right hand: its inner column is index 5 of STAGGER.
+            y = row + (STAGGER[inner] if left else STAGGER[5 - inner])
             keys.append({"legend": legend, "x": round(x, 2), "y": round(y, 2), "w": 1, "rot": 0})
 
-    half_width = 6
-    for half, index, width, offset, y, rot in THUMBS:
-        x = offset if half == "left" else half_width + GAP + offset
-        keys.append(
-            {"legend": ROW_LEGENDS[3][index if half == "left" else index + 3], "x": round(x, 2),
-             "y": round(y, 2), "w": width, "rot": rot}
-        )
+    for half, index, width, x, y, rot in THUMBS:
+        legend = ROW_LEGENDS[3][index if half == "left" else index + 3]
+        keys.append({"legend": legend, "x": round(x, 2), "y": round(y, 2), "w": width, "rot": rot})
 
     if len(keys) != 42:
         raise SystemExit(f"built {len(keys)} keys, expected 42")
