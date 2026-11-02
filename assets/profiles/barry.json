@@ -40,6 +40,13 @@
             "slot": 1,
             "ability": "Distracting Shot",
             "icon": "spell_arcane_blast"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 9,
+            "ability": "Beast Lore",
+            "icon": "ability_tracking"
           }
         },
         "W": {
@@ -69,6 +76,13 @@
             "bar": 3,
             "slot": 2,
             "ability": "Eagle Eye",
+            "icon": "ability_tracking"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 10,
+            "ability": "Track Hidden",
             "icon": "ability_tracking"
           }
         },
@@ -100,6 +114,13 @@
             "slot": 3,
             "ability": "Eyes of the Beast",
             "icon": "ability_tracking"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 11,
+            "ability": "Track Elementals",
+            "icon": "ability_tracking"
           }
         },
         "R": {
@@ -130,6 +151,13 @@
             "slot": 4,
             "ability": "Scare Beast",
             "icon": "ability_tracking"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 12,
+            "ability": "Frost Trap",
+            "icon": "ability_tracking"
           }
         },
         "T": {
@@ -138,8 +166,20 @@
             "binding": "TARGETNEARESTENEMY",
             "label": "Target nearest"
           },
-          "shift": null,
-          "ctrl": null,
+          "shift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 5,
+            "ability": "Track Giants",
+            "icon": "ability_tracking"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 6,
+            "ability": "Track Dragonkin",
+            "icon": "ability_tracking"
+          },
           "alt": null
         },
         "Y": {
@@ -204,17 +244,40 @@
         },
         "F": {
           "bare": {
-            "k": "cmd",
-            "binding": "INTERACTTARGET",
-            "label": "Interact"
+            "k": "bar",
+            "bar": 1,
+            "slot": 8,
+            "ability": "Scorpid Sting",
+            "icon": "ability_hunter_quickshot"
           },
           "shift": {
-            "k": "cmd",
-            "binding": "TARGETFOCUS",
-            "label": "Target focus"
+            "k": "bar",
+            "bar": 2,
+            "slot": 4,
+            "ability": "Aspect of the Cheetah",
+            "icon": "spell_nature_ravenform"
           },
-          "ctrl": null,
-          "alt": null
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 12,
+            "ability": "Track Humanoids",
+            "icon": "ability_tracking"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 8,
+            "ability": "Freezing Trap",
+            "icon": "ability_tracking"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 4,
+            "ability": "Explosive Trap",
+            "icon": "ability_tracking"
+          }
         },
         "G": {
           "bare": {
@@ -304,6 +367,13 @@
             "slot": 5,
             "ability": "Immolation Trap",
             "icon": "ability_tracking"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 1,
+            "ability": "Feign Death",
+            "icon": "ability_tracking"
           }
         },
         "X": {
@@ -333,6 +403,13 @@
             "bar": 3,
             "slot": 6,
             "ability": "Track Undead",
+            "icon": "ability_tracking"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 2,
+            "ability": "Flare",
             "icon": "ability_tracking"
           }
         },
@@ -364,37 +441,20 @@
             "slot": 7,
             "ability": "Disengage",
             "icon": "ability_tracking"
+          },
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 3,
+            "ability": "Track Demons",
+            "icon": "ability_tracking"
           }
         },
         "V": {
-          "bare": {
-            "k": "bar",
-            "bar": 1,
-            "slot": 8,
-            "ability": "Scorpid Sting",
-            "icon": "ability_hunter_quickshot"
-          },
-          "shift": {
-            "k": "bar",
-            "bar": 2,
-            "slot": 4,
-            "ability": "Aspect of the Cheetah",
-            "icon": "spell_nature_ravenform"
-          },
-          "ctrl": {
-            "k": "bar",
-            "bar": 2,
-            "slot": 12,
-            "ability": "Track Humanoids",
-            "icon": "ability_tracking"
-          },
-          "alt": {
-            "k": "bar",
-            "bar": 3,
-            "slot": 8,
-            "ability": "Freezing Trap",
-            "icon": "ability_tracking"
-          }
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
         },
         "B": {
           "bare": {
@@ -475,6 +535,13 @@
           "shift": null,
           "ctrl": null,
           "alt": null
+        }
+      },
+      "extra": {
+        "bare:F9": {
+          "k": "cmd",
+          "binding": "INTERACTTARGET",
+          "label": "Interact"
         }
       }
     }

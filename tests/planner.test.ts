@@ -35,16 +35,19 @@ describe("slot plan", () => {
       expect(seen.has(id)).toBe(false);
       seen.add(id);
     }
-    expect(seen.size).toBe(32);
+    expect(seen.size).toBe(44);
   });
 
-  test("bare slots are bar 1, Shift finishes bar 1 and starts bar 2", () => {
+  test("each layer fills the next stretch of bars, Ctrl+Shift reaching bar 4", () => {
     expect(SLOT_PLAN["bare:Q"]).toEqual({ bar: 1, slot: 1 });
-    expect(SLOT_PLAN["bare:V"]).toEqual({ bar: 1, slot: 8 });
+    expect(SLOT_PLAN["bare:F"]).toEqual({ bar: 1, slot: 8 });
     expect(SLOT_PLAN["shift:Q"]).toEqual({ bar: 1, slot: 9 });
-    expect(SLOT_PLAN["shift:V"]).toEqual({ bar: 2, slot: 4 });
-    expect(SLOT_PLAN["ctrl:V"]).toEqual({ bar: 2, slot: 12 });
-    expect(SLOT_PLAN["alt:V"]).toEqual({ bar: 3, slot: 8 });
+    expect(SLOT_PLAN["shift:F"]).toEqual({ bar: 2, slot: 4 });
+    expect(SLOT_PLAN["ctrl:F"]).toEqual({ bar: 2, slot: 12 });
+    expect(SLOT_PLAN["alt:F"]).toEqual({ bar: 3, slot: 8 });
+    expect(SLOT_PLAN["ctrlshift:Q"]).toEqual({ bar: 3, slot: 9 });
+    expect(SLOT_PLAN["ctrlshift:F"]).toEqual({ bar: 4, slot: 4 });
+    expect(SLOT_PLAN["shift:T"]).toEqual({ bar: 4, slot: 5 });
   });
 });
 
@@ -86,13 +89,18 @@ describe("autoPlace", () => {
     expect(JSON.stringify(character.slots)).toBe(first);
   });
 
-  test("reports abilities it could not fit", () => {
-    const many = Array.from({ length: 40 }, (_, index) => ({
+  test("fits 40 abilities, and reports the ones past the last slot", () => {
+    const fits = Array.from({ length: 40 }, (_, index) => ({
       name: `Spell ${index}`, level: 1, kind: "attack", icon: "x",
     }));
     const character = newCharacter(board, "Barry Test", "hunter", 60);
-    const unplaced = autoPlace(character, many);
-    expect(unplaced.length).toBe(8);
+    expect(autoPlace(character, fits)).toEqual([]);
+
+    const tooMany = [...fits, ...Array.from({ length: 6 }, (_, index) => ({
+      name: `Extra ${index}`, level: 1, kind: "utility", icon: "x",
+    }))];
+    const second = newCharacter(board, "Barry Test", "hunter", 60);
+    expect(autoPlace(second, tooMany).length).toBe(2);
   });
 });
 

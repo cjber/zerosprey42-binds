@@ -46,6 +46,13 @@ A web page cannot write action bars or create macros. The export is for you or f
 addon to apply: `PickupSpell` and `PlaceAction` can place a spell on a bar out of combat, and `CreateMacro`
 can create a macro where the client allows it.
 
+## The hunter profile
+
+`assets/profiles/barry.json` is a level 60 hunter with every ability the client teaches on a key: 42 of
+them, across five layers on the eight grid keys plus four spare layers on the utility keys. Attacks fill
+the bare and Shift layers first, then pet actions, buffs and the situational spells, so the rotation is on
+the keys the hand already knows. F9 interacts, S walks forward, mouse 3 autoruns, as before.
+
 ## Tested
 
 `bun run check` is the gate: it validates the board, the class data and the profile, runs the unit tests,
