@@ -1,22 +1,102 @@
 {
   "class": "hunter",
-  "note": "Seed list. Levels follow classic hunter training; the full, authoritative list for this client is cjber/tweaks-forever Data/ClassSpells.lua (spell IDs, level and fee from the client and CMaNGOS), which still needs names attached before it can be imported here.",
+  "note": "Seed list. Levels follow classic hunter training; the authoritative list for this client is cjber/tweaks-forever Data/ClassSpells.lua (spell IDs, level and fee), which still needs names attached before it can be imported here.",
   "abilities": [
-    { "name": "Track Beasts", "level": 1, "kind": "utility" },
-    { "name": "Serpent Sting", "level": 4, "kind": "attack" },
-    { "name": "Aspect of the Monkey", "level": 4, "kind": "buff" },
-    { "name": "Arcane Shot", "level": 6, "kind": "attack" },
-    { "name": "Hunter's Mark", "level": 6, "kind": "utility" },
-    { "name": "Concussive Shot", "level": 8, "kind": "attack" },
-    { "name": "Raptor Strike", "level": 8, "kind": "attack" },
-    { "name": "Call Pet", "level": 10, "kind": "pet" },
-    { "name": "Dismiss Pet", "level": 10, "kind": "pet" },
-    { "name": "Feed Pet", "level": 10, "kind": "pet" },
-    { "name": "Revive Pet", "level": 10, "kind": "pet" },
-    { "name": "Tame Beast", "level": 10, "kind": "pet" },
-    { "name": "Track Humanoids", "level": 10, "kind": "utility" },
-    { "name": "Mend Pet", "level": 10, "kind": "pet" },
-    { "name": "Aspect of the Hawk", "level": 10, "kind": "buff" },
-    { "name": "Distracting Shot", "level": 12, "kind": "utility" }
+    {
+      "name": "Track Beasts",
+      "level": 1,
+      "kind": "utility",
+      "icon": "ability_tracking"
+    },
+    {
+      "name": "Serpent Sting",
+      "level": 4,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot"
+    },
+    {
+      "name": "Aspect of the Monkey",
+      "level": 4,
+      "kind": "buff",
+      "icon": "ability_hunter_aspectofthemonkey"
+    },
+    {
+      "name": "Arcane Shot",
+      "level": 6,
+      "kind": "attack",
+      "icon": "ability_hunter_aimedshot"
+    },
+    {
+      "name": "Hunter's Mark",
+      "level": 6,
+      "kind": "utility",
+      "icon": "ability_hunter_snipershot"
+    },
+    {
+      "name": "Concussive Shot",
+      "level": 8,
+      "kind": "attack",
+      "icon": "spell_frost_stun"
+    },
+    {
+      "name": "Raptor Strike",
+      "level": 8,
+      "kind": "attack",
+      "icon": "ability_meleedamage"
+    },
+    {
+      "name": "Call Pet",
+      "level": 10,
+      "kind": "pet",
+      "icon": "ability_hunter_beastcall"
+    },
+    {
+      "name": "Dismiss Pet",
+      "level": 10,
+      "kind": "pet",
+      "icon": "ability_hunter_beastcall02"
+    },
+    {
+      "name": "Feed Pet",
+      "level": 10,
+      "kind": "pet",
+      "icon": "inv_misc_food_18"
+    },
+    {
+      "name": "Revive Pet",
+      "level": 10,
+      "kind": "pet",
+      "icon": "ability_hunter_beastsoothe"
+    },
+    {
+      "name": "Tame Beast",
+      "level": 10,
+      "kind": "pet",
+      "icon": "ability_hunter_beasttaming"
+    },
+    {
+      "name": "Track Humanoids",
+      "level": 10,
+      "kind": "utility",
+      "icon": "ability_hunter_beasttracking"
+    },
+    {
+      "name": "Mend Pet",
+      "level": 10,
+      "kind": "pet",
+      "icon": "ability_hunter_mendpet"
+    },
+    {
+      "name": "Aspect of the Hawk",
+      "level": 10,
+      "kind": "buff",
+      "icon": "spell_nature_ravenform"
+    },
+    {
+      "name": "Distracting Shot",
+      "level": 12,
+      "kind": "utility",
+      "icon": "spell_arcane_blast"
+    }
   ]
 }

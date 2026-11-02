@@ -1,427 +1,305 @@
 {
  "name": "Zerosprey42",
- "source": "beekeeb/vial-qmk-zerosprey42 keyboards/beekeeb/zerosprey42 (info.json + keymaps/vial keymap.c)",
- "firmware": "1.60.1 forever build, layout LAYOUT_split_3x6_3",
+ "units": "key units, 1u = 19.05mm",
+ "source": {
+  "board": "beekeeb/zerosprey42: 42 switches, 36 at 1u and 2 at 1.5u, six thumbs",
+  "firmware": "beekeeb/vial-qmk-zerosprey42: LAYOUT_split_3x6_3 order and legends",
+  "arrangement": "modelled: 3x6 per half, half-key stagger on the outer columns, six angled thumbs"
+ },
  "keys": [
   {
-   "code": "KC_TAB",
    "legend": "Tab",
-   "matrix": [
-    0,
-    0
-   ],
    "x": 0,
-   "y": 0
+   "y": 0.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_Q",
    "legend": "Q",
-   "matrix": [
-    1,
-    0
-   ],
    "x": 1,
-   "y": 0
+   "y": 0.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_W",
    "legend": "W",
-   "matrix": [
-    0,
-    1
-   ],
    "x": 2,
-   "y": 0
+   "y": 0.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_E",
    "legend": "E",
-   "matrix": [
-    1,
-    1
-   ],
    "x": 3,
-   "y": 0
+   "y": 0.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_R",
    "legend": "R",
-   "matrix": [
-    0,
-    2
-   ],
    "x": 4,
-   "y": 0
+   "y": 0.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_T",
    "legend": "T",
-   "matrix": [
-    1,
-    2
-   ],
    "x": 5,
-   "y": 0
+   "y": 0.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_Y",
    "legend": "Y",
-   "matrix": [
-    0,
-    3
-   ],
-   "x": 6,
-   "y": 0
+   "x": 7.0,
+   "y": 0.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_U",
    "legend": "U",
-   "matrix": [
-    1,
-    3
-   ],
-   "x": 7,
-   "y": 0
+   "x": 8.0,
+   "y": 0.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_I",
    "legend": "I",
-   "matrix": [
-    0,
-    4
-   ],
-   "x": 8,
-   "y": 0
+   "x": 9.0,
+   "y": 0.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_O",
    "legend": "O",
-   "matrix": [
-    1,
-    4
-   ],
-   "x": 9,
-   "y": 0
+   "x": 10.0,
+   "y": 0.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_P",
    "legend": "P",
-   "matrix": [
-    0,
-    5
-   ],
-   "x": 10,
-   "y": 0
+   "x": 11.0,
+   "y": 0.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_BSPC",
    "legend": "Bksp",
-   "matrix": [
-    1,
-    5
-   ],
-   "x": 11,
-   "y": 0
+   "x": 12.0,
+   "y": 0.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_LCTL",
    "legend": "Ctrl",
-   "matrix": [
-    2,
-    0
-   ],
    "x": 0,
-   "y": 1
+   "y": 1.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_A",
    "legend": "A",
-   "matrix": [
-    3,
-    0
-   ],
    "x": 1,
-   "y": 1
+   "y": 1.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_S",
    "legend": "S",
-   "matrix": [
-    2,
-    1
-   ],
    "x": 2,
-   "y": 1
+   "y": 1.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_D",
    "legend": "D",
-   "matrix": [
-    3,
-    1
-   ],
    "x": 3,
-   "y": 1
+   "y": 1.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_F",
    "legend": "F",
-   "matrix": [
-    2,
-    2
-   ],
    "x": 4,
-   "y": 1
+   "y": 1.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_G",
    "legend": "G",
-   "matrix": [
-    3,
-    2
-   ],
    "x": 5,
-   "y": 1
+   "y": 1.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_H",
    "legend": "H",
-   "matrix": [
-    2,
-    3
-   ],
-   "x": 6,
-   "y": 1
+   "x": 7.0,
+   "y": 1.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_J",
    "legend": "J",
-   "matrix": [
-    3,
-    3
-   ],
-   "x": 7,
-   "y": 1
+   "x": 8.0,
+   "y": 1.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_K",
    "legend": "K",
-   "matrix": [
-    2,
-    4
-   ],
-   "x": 8,
-   "y": 1
+   "x": 9.0,
+   "y": 1.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_L",
    "legend": "L",
-   "matrix": [
-    3,
-    4
-   ],
-   "x": 9,
-   "y": 1
+   "x": 10.0,
+   "y": 1.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_SCLN",
    "legend": ";",
-   "matrix": [
-    2,
-    5
-   ],
-   "x": 10,
-   "y": 1
+   "x": 11.0,
+   "y": 1.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_QUOT",
    "legend": "'",
-   "matrix": [
-    3,
-    5
-   ],
-   "x": 11,
-   "y": 1
+   "x": 12.0,
+   "y": 1.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_LSFT",
    "legend": "Shift",
-   "matrix": [
-    4,
-    0
-   ],
    "x": 0,
-   "y": 2
+   "y": 2.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_Z",
    "legend": "Z",
-   "matrix": [
-    5,
-    0
-   ],
    "x": 1,
-   "y": 2
+   "y": 2.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_X",
    "legend": "X",
-   "matrix": [
-    4,
-    1
-   ],
    "x": 2,
-   "y": 2
+   "y": 2.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_C",
    "legend": "C",
-   "matrix": [
-    5,
-    1
-   ],
    "x": 3,
-   "y": 2
+   "y": 2.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_V",
    "legend": "V",
-   "matrix": [
-    4,
-    2
-   ],
    "x": 4,
-   "y": 2
+   "y": 2.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_B",
    "legend": "B",
-   "matrix": [
-    5,
-    2
-   ],
    "x": 5,
-   "y": 2
+   "y": 2.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_N",
    "legend": "N",
-   "matrix": [
-    4,
-    3
-   ],
-   "x": 6,
-   "y": 2
+   "x": 7.0,
+   "y": 2.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_M",
    "legend": "M",
-   "matrix": [
-    5,
-    3
-   ],
-   "x": 7,
-   "y": 2
+   "x": 8.0,
+   "y": 2.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_COMM",
    "legend": ",",
-   "matrix": [
-    4,
-    4
-   ],
-   "x": 8,
-   "y": 2
+   "x": 9.0,
+   "y": 2.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_DOT",
    "legend": ".",
-   "matrix": [
-    5,
-    4
-   ],
-   "x": 9,
-   "y": 2
+   "x": 10.0,
+   "y": 2.0,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_SLSH",
    "legend": "/",
-   "matrix": [
-    4,
-    5
-   ],
-   "x": 10,
-   "y": 2
+   "x": 11.0,
+   "y": 2.25,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_RSFT",
    "legend": "Shift",
-   "matrix": [
-    5,
-    5
-   ],
-   "x": 11,
-   "y": 2
+   "x": 12.0,
+   "y": 2.5,
+   "w": 1,
+   "rot": 0
   },
   {
-   "code": "KC_LGUI",
    "legend": "Super",
-   "matrix": [
-    6,
-    0
-   ],
-   "x": 3,
-   "y": 3
+   "x": 2.6,
+   "y": 3.35,
+   "w": 1.5,
+   "rot": 12
   },
   {
-   "code": "MO(1)",
    "legend": "Lower",
-   "matrix": [
-    6,
-    1
-   ],
-   "x": 4,
-   "y": 3
+   "x": 4.2,
+   "y": 3.55,
+   "w": 1.0,
+   "rot": 4
   },
   {
-   "code": "KC_SPC",
    "legend": "Space",
-   "matrix": [
-    6,
-    2
-   ],
-   "x": 5,
-   "y": 3
+   "x": 5.25,
+   "y": 3.75,
+   "w": 1.0,
+   "rot": -4
   },
   {
-   "code": "KC_ENT",
    "legend": "Enter",
-   "matrix": [
-    6,
-    3
-   ],
-   "x": 6,
-   "y": 3
+   "x": 7.75,
+   "y": 3.75,
+   "w": 1.0,
+   "rot": 4
   },
   {
-   "code": "MO(2)",
    "legend": "Raise",
-   "matrix": [
-    6,
-    4
-   ],
-   "x": 7,
-   "y": 3
+   "x": 8.8,
+   "y": 3.55,
+   "w": 1.0,
+   "rot": -4
   },
   {
-   "code": "KC_RALT",
    "legend": "AltGr",
-   "matrix": [
-    6,
-    5
-   ],
-   "x": 8,
-   "y": 3
+   "x": 10.4,
+   "y": 3.35,
+   "w": 1.5,
+   "rot": -12
   }
  ]
 }

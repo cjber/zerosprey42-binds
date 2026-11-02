@@ -24,10 +24,12 @@ No build step, no dependencies, no backend: plain HTML, CSS and JS, so any stati
 (`beekeeb/vial-qmk-zerosprey42`, `keyboards/beekeeb/zerosprey42`): `info.json` for the key order and
 matrix, `keymaps/vial/keymap.c` for the default legends. It is a 3x6 + 3 thumbs split, 42 keys.
 
-The board is drawn as a grid for now. The physical shape (column stagger and the angled thumbs) is in
-`pcb/zerosprey42.kicad_pcb` in the same repository: every switch has an `at x y rotation`, and the
-footprint pads name the row and column nets, so a small parser can lay the keys out exactly. That is the
-next change to the app, not a blocker.
+The arrangement is modelled: three rows of six per half, half a key of stagger on the outer columns, a
+gap between the halves, and six thumbs angled towards the middle with the outer thumb of each half at
+1.5u. Those facts come from the board (36 switches at 1u, 2 at 1.5u, six thumbs) but not their exact
+millimetres: `pcb/zerosprey42.kicad_pcb` stores its switches in a rotated frame that does not resolve
+into the board's rows and columns, and its matrix nets are numbered per hand, so parsing it needs a
+transform nobody has pinned down yet. `tools/build-board.py` is where that would go if it is worth it.
 
 ## Class data
 
@@ -47,8 +49,12 @@ can create a macro where the client allows it.
 ## Run it
 
 ```sh
-python3 -m http.server 8765 --bind 127.0.0.1   # then open http://127.0.0.1:8765/
+bun tools/dev.ts          # http://127.0.0.1:8770/, reloads the page when a file changes
+python3 -m http.server 8765 --bind 127.0.0.1   # or any static server, no reload
 ```
+
+Spell icons are the client's own art names, fetched once into `assets/icons/` by
+`python3 tools/fetch-icons.py`, so the app works offline afterwards.
 
 ## Deploy
 
