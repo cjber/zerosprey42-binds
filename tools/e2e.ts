@@ -154,6 +154,10 @@ async function main() {
     "JSON.stringify([...document.querySelectorAll('.key .primary span')].map((s) => s.textContent))",
   );
   const named = JSON.parse(levelOne);
+  const storedLevel = await evaluate(
+    "JSON.parse(localStorage.getItem('zerosprey-binds-v4')).characters[0].level",
+  );
+  check("the level field is saved to the profile", storedLevel === 1, `got ${storedLevel}`);
   check(
     "a level 1 hunter carries Track Beasts and no trained attack",
     named.includes("Track Beasts") && !named.includes("Serpent Sting") && !named.includes("Aimed Shot"),

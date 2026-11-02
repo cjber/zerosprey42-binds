@@ -133,6 +133,12 @@ describe("validate", () => {
     expect(validate(board, { hunter }, profile)).toEqual([]);
   });
 
+  test("catches a level outside 1 to 60", () => {
+    const character = newCharacter(board, "Barry Test", "hunter", 99);
+    const problems = validate(board, { hunter }, { characters: [character], macros: [] });
+    expect(problems.some((problem) => problem.includes("outside 1 to 60"))).toBe(true);
+  });
+
   test("catches a bar slot bound twice", () => {
     const character = newCharacter(board, "Barry Test", "hunter", 1);
     character.slots.Q.bare = { k: "bar", bar: 1, slot: 1 };

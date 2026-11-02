@@ -51,9 +51,15 @@ if (command === "validate") {
   process.exit(problems.length ? 1 : 0);
 }
 
+const levelIsValid = (level: number) => Number.isInteger(level) && level >= 1 && level <= 60;
+
 if (command === "plan") {
   const klass = flag("class", "hunter");
   const level = Number(flag("level", 60));
+  if (!levelIsValid(level)) {
+    console.error(`level must be a whole number from 1 to 60, got ${flag("level")}`);
+    process.exit(2);
+  }
   const name = flag("name", `Barry ${klass}`);
   const data = classes[klass];
   if (!data) {
@@ -105,6 +111,10 @@ if (command === "profile") {
   const name = String(flag("name", "Barry Buckfast"));
   const klass = String(flag("class", "hunter"));
   const level = Number(flag("level", 60));
+  if (!levelIsValid(level)) {
+    console.error(`level must be a whole number from 1 to 60, got ${flag("level")}`);
+    process.exit(2);
+  }
   const target = String(flag("out", `assets/profiles/${klass}.json`));
   const character = newCharacter(board, name, klass, level);
   autoPlace(character, classes[klass]?.abilities ?? []);
@@ -136,6 +146,13 @@ if (command === "profile") {
 }
 
 if (!command) {
+  console.error("commands: validate, plan, export, profile");
+  process.exit(2);
+}
+
+// Anything else is a typo, and a typo must not look like success.
+if (!["validate", "plan", "export", "profile"].includes(command)) {
+  console.error(`unknown command: ${command}`);
   console.error("commands: validate, plan, export, profile");
   process.exit(2);
 }
