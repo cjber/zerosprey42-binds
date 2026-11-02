@@ -1,2 +1,7 @@
 node_modules/
 .DS_Store
+
+# Patrol run data
+.sloppatrol/runs/
+.speedpatrol/runs/
+.bugpatrol/runs/
