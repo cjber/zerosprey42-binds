@@ -20,6 +20,9 @@ A physical key plus a layer maps to exactly one bar slot, defined once in `SLOT_
 `lib/planner.js`. If a task seems to need a different slot per character, the task is wrong: change the
 plan for everyone or do not change it.
 
+The right-hand keys are not spell slots. They carry the client's UI panels from `UI_BINDS` (H Honor,
+K Professions, P Spellbook, and the rest); change that one table, not a character's slots.
+
 ## Common jobs
 
 - **Add or fix a class**: `assets/classes/<class>.json`, then `python3 tools/fetch-icons.py`, then

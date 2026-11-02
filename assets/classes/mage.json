@@ -1,0 +1,271 @@
+{
+  "class": "mage",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.70707)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Arcane Intellect",
+      "level": 1,
+      "kind": "buff",
+      "icon": "spell_holy_magicalsentry",
+      "spellId": 1459
+    },
+    {
+      "name": "Frost Armor",
+      "level": 1,
+      "kind": "buff",
+      "icon": "spell_frost_frostarmor02",
+      "spellId": 168
+    },
+    {
+      "name": "Conjure Water",
+      "level": 4,
+      "kind": "utility",
+      "icon": "inv_drink_06",
+      "spellId": 5504
+    },
+    {
+      "name": "Frostbolt",
+      "level": 4,
+      "kind": "attack",
+      "icon": "spell_frost_frostbolt02",
+      "spellId": 116
+    },
+    {
+      "name": "Conjure Food",
+      "level": 6,
+      "kind": "utility",
+      "icon": "inv_misc_food_10",
+      "spellId": 587
+    },
+    {
+      "name": "Fire Blast",
+      "level": 6,
+      "kind": "attack",
+      "icon": "spell_fire_fireball",
+      "spellId": 2136
+    },
+    {
+      "name": "Arcane Missiles",
+      "level": 8,
+      "kind": "attack",
+      "icon": "spell_nature_starfall",
+      "spellId": 5143
+    },
+    {
+      "name": "Polymorph",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_nature_polymorph",
+      "spellId": 118
+    },
+    {
+      "name": "Frost Nova",
+      "level": 10,
+      "kind": "attack",
+      "icon": "spell_frost_frostnova",
+      "spellId": 122
+    },
+    {
+      "name": "Dampen Magic",
+      "level": 12,
+      "kind": "buff",
+      "icon": "spell_nature_abolishmagic",
+      "spellId": 604
+    },
+    {
+      "name": "Fireball",
+      "level": 12,
+      "kind": "attack",
+      "icon": "spell_fire_flamebolt",
+      "spellId": 145
+    },
+    {
+      "name": "Slow Fall",
+      "level": 12,
+      "kind": "utility",
+      "icon": "spell_magic_featherfall",
+      "spellId": 130
+    },
+    {
+      "name": "Arcane Explosion",
+      "level": 14,
+      "kind": "attack",
+      "icon": "spell_nature_wispsplode",
+      "spellId": 1449
+    },
+    {
+      "name": "Flamestrike",
+      "level": 16,
+      "kind": "attack",
+      "icon": "spell_fire_selfdestruct",
+      "spellId": 2120
+    },
+    {
+      "name": "Amplify Magic",
+      "level": 18,
+      "kind": "buff",
+      "icon": "spell_holy_flashheal",
+      "spellId": 1008
+    },
+    {
+      "name": "Remove Lesser Curse",
+      "level": 18,
+      "kind": "utility",
+      "icon": "spell_nature_removecurse",
+      "spellId": 475
+    },
+    {
+      "name": "Blink",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_arcane_blink",
+      "spellId": 1953
+    },
+    {
+      "name": "Blizzard",
+      "level": 20,
+      "kind": "attack",
+      "icon": "spell_frost_icestorm",
+      "spellId": 10
+    },
+    {
+      "name": "Evocation",
+      "level": 20,
+      "kind": "buff",
+      "icon": "spell_nature_purge",
+      "spellId": 12051
+    },
+    {
+      "name": "Fire Ward",
+      "level": 20,
+      "kind": "buff",
+      "icon": "spell_fire_firearmor",
+      "spellId": 543
+    },
+    {
+      "name": "Mana Shield",
+      "level": 20,
+      "kind": "buff",
+      "icon": "spell_shadow_detectlesserinvisibility",
+      "spellId": 1463
+    },
+    {
+      "name": "Frost Ward",
+      "level": 22,
+      "kind": "buff",
+      "icon": "spell_frost_frostward",
+      "spellId": 6143
+    },
+    {
+      "name": "Scorch",
+      "level": 22,
+      "kind": "attack",
+      "icon": "spell_fire_soulburn",
+      "spellId": 2948
+    },
+    {
+      "name": "Counterspell",
+      "level": 24,
+      "kind": "utility",
+      "icon": "spell_frost_iceshock",
+      "spellId": 2139
+    },
+    {
+      "name": "Cone of Cold",
+      "level": 26,
+      "kind": "attack",
+      "icon": "spell_frost_glacier",
+      "spellId": 120
+    },
+    {
+      "name": "Conjure Mana Agate",
+      "level": 28,
+      "kind": "utility",
+      "icon": "inv_misc_gem_emerald_01",
+      "spellId": 759
+    },
+    {
+      "name": "Ice Armor",
+      "level": 30,
+      "kind": "buff",
+      "icon": "spell_frost_frostarmor02",
+      "spellId": 7302
+    },
+    {
+      "name": "Pyroblast",
+      "level": 30,
+      "kind": "attack",
+      "icon": "spell_fire_fireball02",
+      "spellId": 12522
+    },
+    {
+      "name": "Mage Armor",
+      "level": 34,
+      "kind": "buff",
+      "icon": "spell_magearmor",
+      "spellId": 6117
+    },
+    {
+      "name": "Conjure Mana Jade",
+      "level": 38,
+      "kind": "utility",
+      "icon": "inv_misc_gem_emerald_02",
+      "spellId": 3552
+    },
+    {
+      "name": "Blast Wave",
+      "level": 44,
+      "kind": "attack",
+      "icon": "spell_holy_excorcism_02",
+      "spellId": 13019
+    },
+    {
+      "name": "Conjure Mana Citrine",
+      "level": 48,
+      "kind": "utility",
+      "icon": "inv_misc_gem_opal_01",
+      "spellId": 10053
+    },
+    {
+      "name": "Ice Barrier",
+      "level": 52,
+      "kind": "buff",
+      "icon": "spell_ice_lament",
+      "spellId": 13032
+    },
+    {
+      "name": "Conjure Mana Ruby",
+      "level": 58,
+      "kind": "utility",
+      "icon": "inv_misc_gem_ruby_01",
+      "spellId": 10054
+    }
+  ],
+  "macros": [
+    {
+      "id": "poly-mouseover",
+      "name": "Polymorph (mouseover)",
+      "icon": "spell_nature_polymorph",
+      "body": "#showtooltip Polymorph\n/cast [@mouseover,harm,nodead][] Polymorph"
+    },
+    {
+      "id": "counterspell-focus",
+      "name": "Counterspell (focus)",
+      "icon": "spell_frost_iceshock",
+      "body": "#showtooltip Counterspell\n/cast [@focus,harm,nodead][] Counterspell"
+    },
+    {
+      "id": "remove-curse",
+      "name": "Remove Curse (mouseover)",
+      "icon": "spell_nature_removecurse",
+      "body": "#showtooltip Remove Lesser Curse\n/cast [@mouseover,help,nodead][] Remove Lesser Curse"
+    },
+    {
+      "id": "conjure-water",
+      "name": "Conjure Water",
+      "icon": "inv_drink_06",
+      "body": "#showtooltip Conjure Water\n/cast Conjure Water"
+    }
+  ]
+}

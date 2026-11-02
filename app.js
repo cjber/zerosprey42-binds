@@ -7,7 +7,7 @@ import {
 
 const UNIT = 88;
 const GAP = 12;
-const STORE = "zerosprey-binds-v4";
+const STORE = "zerosprey-binds-v6";
 
 const state = { board: null, boards: [], boardId: "zerosprey42", layer: "bare", classes: {}, profile: null };
 
@@ -88,8 +88,28 @@ async function load() {
       stored = null;
     }
   }
-  if (stored?.characters?.length && placedCount(stored) > 0) return stored;
   const shipped = await shippedProfile();
+  if (stored?.characters?.length && placedCount(stored) > 0) {
+    // New shipped characters (a class added since this profile was saved) join the saved list
+    // without touching the characters already there. Same for their macros.
+    if (shipped) {
+      let changed = false;
+      const ids = new Set(stored.characters.map((character) => character.id));
+      for (const character of shipped.characters) {
+        if (ids.has(character.id)) continue;
+        stored.characters.push(character);
+        changed = true;
+      }
+      const macroIds = new Set((stored.macros ?? []).map((macro) => macro.id));
+      for (const macro of shipped.macros ?? []) {
+        if (macroIds.has(macro.id)) continue;
+        (stored.macros ??= []).push(macro);
+        changed = true;
+      }
+      if (changed) localStorage.setItem(STORE, JSON.stringify(stored));
+    }
+    return stored;
+  }
   if (shipped) return shipped;
   if (stored?.characters?.length) return stored;
   const character = newCharacter(state.board, "Barry Buckfast", "hunter", 60);
@@ -322,8 +342,10 @@ function fitBoard() {
   const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
   const available = stage.clientWidth - padding;
   if (available <= 0) return; // the tab is hidden; fit again when it is shown
-  const width = board.offsetWidth || 1;
-  const height = board.offsetHeight || 1;
+  // Read the inline box, not offsetWidth: the first fit can run before the browser has flushed the
+  // width set in renderBoard, which would scale the board from its 1120px CSS fallback and clip it.
+  const width = parseFloat(board.style.width) || board.offsetWidth || 1;
+  const height = parseFloat(board.style.height) || board.offsetHeight || 1;
   // Keep the keyboard readable on narrow screens. The stage scrolls horizontally
   // instead of shrinking every key below a usable size.
   const minimumScale = window.matchMedia("(max-width: 900px)").matches ? 0.65 : 0;
@@ -582,14 +604,23 @@ function renderExport() {
 // ---------- boot ----------
 
 async function boot() {
-  const [index, board, hunter] = await Promise.all([
+  const [index, board, classIndex] = await Promise.all([
     fetch("assets/boards/index.json", { cache: "no-store" }).then((r) => r.json()),
     fetch("assets/board.json", { cache: "no-store" }).then((r) => r.json()),
-    fetch("assets/classes/hunter.json").then((r) => r.json()).catch(() => null),
+    fetch("assets/classes/index.json")
+      .then((r) => r.json())
+      .catch(() => ({ classes: ["hunter"] })),
   ]);
+  const classFiles = await Promise.all(
+    (classIndex.classes ?? ["hunter"]).map((name) =>
+      fetch(`assets/classes/${name}.json`)
+        .then((r) => r.json())
+        .catch(() => null),
+    ),
+  );
   state.boards = index.boards;
   state.board = board;
-  state.classes = hunter ? { hunter } : {};
+  state.classes = Object.fromEntries(classFiles.filter(Boolean).map((klass) => [klass.class, klass]));
   state.profile = await load();
   state.profile.board ??= "zerosprey42";
   if (state.profile.board !== "zerosprey42") await loadBoard(state.profile.board);

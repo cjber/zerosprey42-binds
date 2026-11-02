@@ -12,10 +12,12 @@ No build step, no dependencies, no backend: plain HTML, CSS and JS, so any stati
   key shows that layer's ability with a full name; five dots under each key show which other layers hold
   something, and the tab badges count each layer. Alt is kept for mounts, food, potions and other items,
   so auto-place never puts a spell there. G, T, S, B and Space keep their bare press as a utility key and
-  lend their unused modifiers to the last few spells.
+  lend their unused modifiers to the last few spells. The right-hand keys carry the client's own UI
+  panels: H Honor, K Professions, P Spellbook, L Quest log, and the rest of the standard binds.
 - **Level plan**: pick a class and a level. Each ability lists its level and where it sits. Auto-place
-  puts every ability you have learned into the next free slot in a fixed order (bare first, then Shift,
-  Ctrl, Alt, Q W E R Z X C V), so a new spell never means deciding where it goes.
+  puts every ability you have learned into the next free slot in a fixed order: the left grid on bare,
+  Shift, Ctrl and Ctrl+Shift, then the spare modifiers on T, G, S and B, so a new spell never means
+  deciding where it goes.
 - **Macros**: name, icon and body, kept with the profile and listed on export.
 - **Export**: the `bindings-cache.wtf` lines for the active character, and the macros as text.
 - Profiles are per character and live in `localStorage`; download the JSON to move them between browsers.
@@ -37,11 +39,13 @@ fill the same eight grid keys, so a board without them is rejected by `validate`
 ## Class data
 
 `assets/classes/<class>.json` is the ability list: `name`, `level`, and `kind` (`attack`, `buff`,
-`utility`, `pet`, `passive`). Passives are skipped by auto-place.
+`utility`, `pet`, `passive`). Passives are skipped by auto-place. `assets/classes/index.json` lists the
+classes the page loads, so adding a file there is enough to make it selectable.
 
 The Hunter file is a seed. The authoritative list of what this client teaches, and at which level, is
 `Data/ClassSpells.lua` in `cjber/tweaks-forever` (spell IDs, level and fee, from the client and
-CMaNGOS); it needs names attached before it can be imported here.
+CMaNGOS); `tools/build-class.py` attaches SpellName and `tools/build-icons.py` attaches the client's own
+icon by spell ID. The Mage file is generated that way, with its own kind rules for buffs and utility.
 
 ## What it cannot do
 
@@ -49,13 +53,15 @@ A web page cannot write action bars or create macros. The export is for you or f
 addon to apply: `PickupSpell` and `PlaceAction` can place a spell on a bar out of combat, and `CreateMacro`
 can create a macro where the client allows it.
 
-## The hunter profile
+## The shipped profiles
 
-`assets/profiles/barry.json` is a level 60 hunter with every ability the client teaches on a key: 42 of
-them, across four spell layers on the eight grid keys plus ten spare layers on T, G, S and B. Attacks fill
-the bare and Shift layers first, then pet actions, buffs and the situational spells, so the rotation is on
-the keys the hand already knows. Alt stays empty for mounts, food and other items. F9 interacts, S walks
-forward, mouse 3 autoruns, as before.
+`assets/profiles/barry.json` carries both characters: Barry Buckfast, a level 60 hunter with every ability
+the client teaches on a key, and Alladys, a level 60 mage with the full trainer list. The hunter fills four
+spell layers on the eight grid keys plus ten spare layers on T, G, S and B; the mage fills the same grid
+and spare slots. Attacks fill the bare and Shift layers first, then pet actions, buffs and the situational
+spells, so the rotation is on the keys the hand already knows. Alt stays empty for mounts, food and other
+items. The right-hand keys carry the client's UI panels for both. F9 interacts, S walks forward, mouse 3
+autoruns, as before.
 
 ## Tested
 

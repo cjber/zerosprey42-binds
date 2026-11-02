@@ -35,6 +35,7 @@ browser requirement for anything except the UI itself.
   selectable boards and `assets/boards/<id>.json` holds them.
 - `assets/classes/<class>.json` is the ability list: `name`, `level`, `kind`
   (`attack`/`buff`/`utility`/`pet`/`passive`), `icon`, plus an optional `macros` array.
+  `assets/classes/index.json` lists the classes the page loads.
 - `assets/profiles/<name>.json` is a saved profile: characters (with their slots), macros, active id.
 - `assets/icons/<icon>.jpg` are the client's own spell icons, cached.
 
@@ -45,6 +46,8 @@ browser requirement for anything except the UI itself.
   spell goes there. Do not invent slots per character.
 - F, G, T, S, B and Space keep their bare press as a utility key; only their unused modifiers may carry
   the last few spells.
+- The right-hand keys carry the client's UI panels, not spells. `UI_BINDS` in `lib/planner.js` is the one
+  table: H Honor, K Professions, P Spellbook, L Quest log, and the rest of the standard binds.
 - Keep `lib/planner.js` free of DOM and network access so the CLI and the tests keep working.
 - No build step and no runtime dependencies. Ship plain HTML, CSS and modules.
 - A change to data files must keep `bun run check` green; a change to logic must add or update a test.
@@ -52,7 +55,8 @@ browser requirement for anything except the UI itself.
 
 ## Adding a class
 
-1. Write `assets/classes/<class>.json` with the abilities and their levels, kinds and icons.
+1. Write `assets/classes/<class>.json` with the abilities and their levels, kinds and icons, and add it
+   to `assets/classes/index.json`.
 2. `python3 tools/fetch-icons.py` to cache the icons.
 3. `bun tools/cli.ts profile --class <class> --level 60 --out assets/profiles/<name>.json`.
 4. `bun run check`.

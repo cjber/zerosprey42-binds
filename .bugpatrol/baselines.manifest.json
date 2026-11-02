@@ -3,15 +3,15 @@
   "imageDigest": "unpinned",
   "entries": {
     "/::desktop": {
-      "sha256": "686266fb65d307197f2b10c98bec2be08190abc30329113ca9fa610bde299f11",
+      "sha256": "edc0f903d9f9962b0cfe6a3dd8811fd88f393009a89658e7b7691e0c570e2163",
       "viewport": "desktop",
-      "bytes": 258561,
+      "bytes": 253333,
       "capturedAt": "2026-11-02T21:44:44.244Z"
     },
     "/::mobile": {
-      "sha256": "afc3731dc26307e4982de913dc0f1670d3d2cf1b2c3577e73757896ff6428224",
+      "sha256": "6d940932b54847aa3500e396768bd842b21f725ba7a5ee0338b062467792e666",
       "viewport": "mobile",
-      "bytes": 123729,
+      "bytes": 122415,
       "capturedAt": "2026-11-02T21:44:44.797Z"
     }
   }

@@ -53,6 +53,31 @@ ICONS = {
 }
 
 # Names the keyword rules get wrong, pinned by hand.
+MAGE_KIND_OVERRIDES = {
+    "Arcane Intellect": "buff",
+    "Frost Armor": "buff",
+    "Ice Armor": "buff",
+    "Mage Armor": "buff",
+    "Dampen Magic": "buff",
+    "Amplify Magic": "buff",
+    "Mana Shield": "buff",
+    "Fire Ward": "buff",
+    "Frost Ward": "buff",
+    "Ice Barrier": "buff",
+    "Evocation": "buff",
+    "Conjure Water": "utility",
+    "Conjure Food": "utility",
+    "Conjure Mana Agate": "utility",
+    "Conjure Mana Jade": "utility",
+    "Conjure Mana Citrine": "utility",
+    "Conjure Mana Ruby": "utility",
+    "Polymorph": "utility",
+    "Slow Fall": "utility",
+    "Remove Lesser Curse": "utility",
+    "Blink": "utility",
+    "Counterspell": "utility",
+}
+
 KIND_OVERRIDES = {
     "Mongoose Bite": "attack",
     "Counterattack": "attack",
@@ -72,9 +97,10 @@ KIND_ICON = {
 }
 
 
-def kind_for(name: str) -> str:
-    if name in KIND_OVERRIDES:
-        return KIND_OVERRIDES[name]
+def kind_for(name: str, klass: str) -> str:
+    overrides = MAGE_KIND_OVERRIDES if klass == "mage" else KIND_OVERRIDES
+    if name in overrides:
+        return overrides[name]
     lowered = name.lower()
     for kind, words in KIND_RULES:
         if any(word in lowered for word in words):
@@ -106,7 +132,7 @@ def main():
 
     abilities = []
     for name, entry in sorted(by_name.items(), key=lambda item: (item[1]["level"], item[0])):
-        kind = kind_for(name)
+        kind = kind_for(name, CLASS)
         abilities.append(
             {
                 "name": name,

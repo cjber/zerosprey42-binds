@@ -12,6 +12,18 @@
       "reason": "The board is intentionally wider than a phone and the page tells the user to swipe across it; keys beyond the viewport are reachable by horizontal scroll, not lost. Bugpatrol's off-viewport rule does not account for scroll containers.",
       "decidedBy": "agent",
       "decidedAt": "2026-11-02T21:45:12.668041+00:00"
+    },
+    {
+      "id": "intent_2_occlusion_board",
+      "scope": {
+        "kind": "rule-on-screen",
+        "ruleId": "layout/occlusion",
+        "screenId": "/"
+      },
+      "decision": "intended",
+      "reason": "The board is wider than a phone and scrolls horizontally; keys beyond the initial viewport are reached by swiping. The centre-point hit test sees body because the point is off-screen, not because the key is covered.",
+      "decidedBy": "agent",
+      "decidedAt": "2026-11-02T23:32:45.146489+00:00"
     }
   ]
 }

@@ -39,7 +39,11 @@
           }
         },
         "I": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEPETBOOK",
+            "label": "Pet"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -107,13 +111,21 @@
           }
         },
         "U": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEWHOTAB",
+            "label": "Who"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         "O": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLESOCIAL",
+            "label": "Friends"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -148,7 +160,11 @@
           }
         },
         "Y": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLERAIDTAB",
+            "label": "Raid"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -197,19 +213,31 @@
           "alt": null
         },
         "K": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEPROFESSIONBOOK",
+            "label": "Profs"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         "P": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLESPELLBOOK",
+            "label": "Spells"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         "Bksp": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEGAMEMENU",
+            "label": "Menu"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -271,13 +299,21 @@
           }
         },
         "J": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEGUILDTAB",
+            "label": "Guild"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         "L": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEQUESTLOG",
+            "label": "Quest log"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -308,7 +344,11 @@
           }
         },
         "H": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLECHARACTER4",
+            "label": "Honor"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -357,19 +397,31 @@
           }
         },
         "<": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEBATTLEFIELDMINIMAP",
+            "label": "BGs"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         ";": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLECHARACTER0",
+            "label": "Char"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         "'": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLECHATTAB",
+            "label": "Chat"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -412,13 +464,21 @@
           "alt": null
         },
         "M": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEWORLDMAP",
+            "label": "Map"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         ">": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEMINIMAP",
+            "label": "Minimap"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -453,7 +513,11 @@
           }
         },
         "N": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLETALENTS",
+            "label": "Talents"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -555,6 +619,573 @@
           "label": "Interact"
         }
       }
+    },
+    {
+      "id": "mage-alladys",
+      "name": "Alladys",
+      "class": "mage",
+      "level": 60,
+      "slots": {
+        "E": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 3,
+            "ability": "Arcane Missiles",
+            "icon": "spell_nature_starfall"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 11,
+            "ability": "Pyroblast",
+            "icon": "spell_fire_fireball02"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 7,
+            "ability": "Mana Shield",
+            "icon": "spell_shadow_detectlesserinvisibility"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 11,
+            "ability": "Slow Fall",
+            "icon": "spell_magic_featherfall"
+          }
+        },
+        "I": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEPETBOOK",
+            "label": "Pet"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "W": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 2,
+            "ability": "Fire Blast",
+            "icon": "spell_fire_fireball"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 10,
+            "ability": "Cone of Cold",
+            "icon": "spell_frost_glacier"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 6,
+            "ability": "Fire Ward",
+            "icon": "spell_fire_firearmor"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 10,
+            "ability": "Polymorph",
+            "icon": "spell_nature_polymorph"
+          }
+        },
+        "R": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 4,
+            "ability": "Frost Nova",
+            "icon": "spell_frost_frostnova"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 12,
+            "ability": "Blast Wave",
+            "icon": "spell_holy_excorcism_02"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 8,
+            "ability": "Frost Ward",
+            "icon": "spell_frost_frostward"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 12,
+            "ability": "Remove Lesser Curse",
+            "icon": "spell_nature_removecurse"
+          }
+        },
+        "U": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEWHOTAB",
+            "label": "Who"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "O": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLESOCIAL",
+            "label": "Friends"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "T": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TARGETNEARESTENEMY",
+            "label": "Target nearest"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 5,
+            "ability": "Conjure Mana Citrine",
+            "icon": "inv_misc_gem_opal_01"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 6,
+            "ability": "Conjure Mana Ruby",
+            "icon": "inv_misc_gem_ruby_01"
+          },
+          "alt": null
+        },
+        "Y": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLERAIDTAB",
+            "label": "Raid"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Tab": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Q": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 1,
+            "ability": "Frostbolt",
+            "icon": "spell_frost_frostbolt02"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 9,
+            "ability": "Scorch",
+            "icon": "spell_fire_soulburn"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 5,
+            "ability": "Evocation",
+            "icon": "spell_nature_purge"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 9,
+            "ability": "Conjure Food",
+            "icon": "inv_misc_food_10"
+          }
+        },
+        "D": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "K": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEPROFESSIONBOOK",
+            "label": "Profs"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "P": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLESPELLBOOK",
+            "label": "Spells"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Bksp": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEGAMEMENU",
+            "label": "Menu"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "S": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "F": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 8,
+            "ability": "Blizzard",
+            "icon": "spell_frost_icestorm"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 4,
+            "ability": "Amplify Magic",
+            "icon": "spell_holy_flashheal"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 12,
+            "ability": "Conjure Water",
+            "icon": "inv_drink_06"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 4,
+            "ability": "Conjure Mana Jade",
+            "icon": "inv_misc_gem_emerald_02"
+          }
+        },
+        "J": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEGUILDTAB",
+            "label": "Guild"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "L": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEQUESTLOG",
+            "label": "Quest log"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "G": {
+          "bare": {
+            "k": "cmd",
+            "binding": "BONUSACTIONBUTTON1",
+            "label": "Pet attack"
+          },
+          "shift": {
+            "k": "cmd",
+            "binding": "BONUSACTIONBUTTON2",
+            "label": "Pet follow"
+          },
+          "ctrl": {
+            "k": "cmd",
+            "binding": "STOPCASTING",
+            "label": "Stop cast"
+          },
+          "alt": null
+        },
+        "H": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLECHARACTER4",
+            "label": "Honor"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Esc": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "A": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "C": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 7,
+            "ability": "Flamestrike",
+            "icon": "spell_fire_selfdestruct"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 3,
+            "ability": "Dampen Magic",
+            "icon": "spell_nature_abolishmagic"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 11,
+            "ability": "Ice Barrier",
+            "icon": "spell_ice_lament"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 3,
+            "ability": "Conjure Mana Agate",
+            "icon": "inv_misc_gem_emerald_01"
+          }
+        },
+        "<": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEBATTLEFIELDMINIMAP",
+            "label": "BGs"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        ";": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLECHARACTER0",
+            "label": "Char"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "'": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLECHATTAB",
+            "label": "Chat"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "X": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 6,
+            "ability": "Arcane Explosion",
+            "icon": "spell_nature_wispsplode"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 2,
+            "ability": "Frost Armor",
+            "icon": "spell_frost_frostarmor02"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 10,
+            "ability": "Mage Armor",
+            "icon": "spell_magearmor"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 2,
+            "ability": "Counterspell",
+            "icon": "spell_frost_iceshock"
+          }
+        },
+        "V": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "M": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEWORLDMAP",
+            "label": "Map"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        ">": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEMINIMAP",
+            "label": "Minimap"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "B": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEBACKPACK",
+            "label": "Bags"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "N": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLETALENTS",
+            "label": "Talents"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "LShift": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Z": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 5,
+            "ability": "Fireball",
+            "icon": "spell_fire_flamebolt"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 1,
+            "ability": "Arcane Intellect",
+            "icon": "spell_holy_magicalsentry"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 9,
+            "ability": "Ice Armor",
+            "icon": "spell_frost_frostarmor02"
+          },
+          "alt": null,
+          "ctrlshift": {
+            "k": "bar",
+            "bar": 4,
+            "slot": 1,
+            "ability": "Blink",
+            "icon": "spell_arcane_blink"
+          }
+        },
+        "?": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "RShift": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "MO(1)": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "MO(3)": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Space": {
+          "bare": {
+            "k": "cmd",
+            "binding": "JUMP",
+            "label": "Jump"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Enter": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "LGui": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "MO(2)": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        }
+      },
+      "extra": {
+        "bare:F9": {
+          "k": "cmd",
+          "binding": "INTERACTTARGET",
+          "label": "Interact"
+        }
+      }
     }
   ],
   "macros": [
@@ -593,6 +1224,30 @@
       "name": "Feed Pet",
       "icon": "inv_misc_food_18",
       "body": "#showtooltip Feed Pet\n/cast [pet,nodead] Feed Pet\n/use [pet,nodead] 0 1"
+    },
+    {
+      "id": "poly-mouseover",
+      "name": "Polymorph (mouseover)",
+      "icon": "spell_nature_polymorph",
+      "body": "#showtooltip Polymorph\n/cast [@mouseover,harm,nodead][] Polymorph"
+    },
+    {
+      "id": "counterspell-focus",
+      "name": "Counterspell (focus)",
+      "icon": "spell_frost_iceshock",
+      "body": "#showtooltip Counterspell\n/cast [@focus,harm,nodead][] Counterspell"
+    },
+    {
+      "id": "remove-curse",
+      "name": "Remove Curse (mouseover)",
+      "icon": "spell_nature_removecurse",
+      "body": "#showtooltip Remove Lesser Curse\n/cast [@mouseover,help,nodead][] Remove Lesser Curse"
+    },
+    {
+      "id": "conjure-water",
+      "name": "Conjure Water",
+      "icon": "inv_drink_06",
+      "body": "#showtooltip Conjure Water\n/cast Conjure Water"
     }
   ],
   "active": "hunter-barry-buckfast"

@@ -114,11 +114,11 @@ async function main() {
   // A stored profile that binds nothing is the mark of a failed load: the shipped one must win, and
   // the empty one must not be saved back.
   await evaluate(
-    `localStorage.setItem('zerosprey-binds-v4', JSON.stringify({characters:[{id:'x',name:'Barry Buckfast',class:'hunter',level:60,slots:{}}],macros:[],active:'x'})); location.reload(); true`,
+    `localStorage.setItem('zerosprey-binds-v6', JSON.stringify({characters:[{id:'x',name:'Barry Buckfast',class:'hunter',level:60,slots:{}}],macros:[],active:'x'})); location.reload(); true`,
   );
   await sleep(2500);
   const recovered = await evaluate(
-    "JSON.stringify({placed: document.querySelectorAll('.key.assigned').length, stored: (JSON.parse(localStorage.getItem('zerosprey-binds-v4')||'{}').characters?.[0]?.slots && Object.values(JSON.parse(localStorage.getItem('zerosprey-binds-v4')).characters[0].slots).reduce((n,s)=>n+Object.values(s).filter(Boolean).length,0)) })",
+    "JSON.stringify({placed: document.querySelectorAll('.key.assigned').length, stored: (JSON.parse(localStorage.getItem('zerosprey-binds-v6')||'{}').characters?.[0]?.slots && Object.values(JSON.parse(localStorage.getItem('zerosprey-binds-v6')).characters[0].slots).reduce((n,s)=>n+Object.values(s).filter(Boolean).length,0)) })",
   );
   const recovery = JSON.parse(recovered);
   check("an empty stored profile is replaced by the shipped one", recovery.placed > 0, recovered);
@@ -129,6 +129,17 @@ async function main() {
 
   const profileName = await evaluate("document.querySelector('.chars button.on')?.textContent");
   check("the shipped hunter profile loads", profileName === "Barry Buckfast", `got ${profileName}`);
+
+  // Adding a class is data-driven: the class index loads it, the shipped profile carries its
+  // character, and a saved profile picks the new character up on the next load.
+  const classOptions = await evaluate(
+    "JSON.stringify([...document.querySelectorAll('#plan-class option')].map((option) => option.value))",
+  );
+  check("the class list includes the mage", JSON.parse(classOptions).includes("mage"), classOptions);
+  const characters = await evaluate(
+    "JSON.stringify([...document.querySelectorAll('#chars button')].map((button) => button.textContent))",
+  );
+  check("the shipped mage character is in the picker", JSON.parse(characters).includes("Alladys"), characters);
 
   // Each layer is shown on its own now, so count the icons by walking the tabs.
   const layerIcons = await evaluate(
@@ -238,7 +249,7 @@ async function main() {
   );
   const named = JSON.parse(levelOne);
   const storedLevel = await evaluate(
-    "JSON.parse(localStorage.getItem('zerosprey-binds-v4')).characters[0].level",
+    "JSON.parse(localStorage.getItem('zerosprey-binds-v6')).characters[0].level",
   );
   check("the level field is saved to the profile", storedLevel === 1, `got ${storedLevel}`);
   check(
@@ -273,7 +284,7 @@ async function main() {
   );
   await sleep(700);
   const picked = await evaluate(
-    "JSON.stringify({ keys: document.querySelectorAll('.key').length, board: JSON.parse(localStorage.getItem('zerosprey-binds-v4')).board })",
+    "JSON.stringify({ keys: document.querySelectorAll('.key').length, board: JSON.parse(localStorage.getItem('zerosprey-binds-v6')).board })",
   );
   const chosen = JSON.parse(picked);
   check("picking a 36-key board draws 36 keys", chosen.keys === 36 && chosen.board === "corne-3x5", picked);
