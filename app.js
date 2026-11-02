@@ -211,13 +211,15 @@ function renderBoard() {
     const slots =
       character.slots[key.legend] ?? { bare: null, shift: null, ctrl: null, alt: null, ctrlshift: null };
     const action = slots[state.layer];
-    const cap = document.createElement("div");
+    const cap = document.createElement("button");
+    cap.type = "button";
     cap.className =
       "key" + (MODS.some((m) => slots[m.id]) ? " assigned" : "") + (key.rot ? " tilted" : "");
     cap.style.left = `${key.x * UNIT}px`;
     cap.style.top = `${key.y * UNIT}px`;
     cap.style.width = `${key.w * UNIT - GAP}px`;
     cap.style.height = `${UNIT - GAP}px`;
+    cap.tabIndex = 0;
     cap.style.setProperty("--rot", `${key.rot ?? 0}deg`);
     if (key.rot) {
       cap.style.transform = `rotate(${key.rot}deg)`;
@@ -232,13 +234,15 @@ function renderBoard() {
 
     const primary = document.createElement("div");
     const base = state.layer === "bare" ? BASE_LABELS[key.legend] : null;
-    primary.className = "primary" + (action ? "" : base ? " base" : " empty");
+    const icon = actionIcon(action);
+    primary.className = "primary" + (action ? (icon ? "" : " no-icon") : base ? " base" : " empty");
     if (action) {
-      const icon = actionIcon(action);
       if (icon) {
         const img = document.createElement("img");
         img.src = icon;
         img.alt = "";
+        img.width = 64;
+        img.height = 64;
         img.onerror = () => img.remove();
         primary.append(img);
       }
@@ -255,6 +259,8 @@ function renderBoard() {
         image.className = "movement-icon";
         image.src = `assets/wow/${movementIcon}`;
         image.alt = base.label;
+        image.width = 64;
+        image.height = 64;
         glyph.append(image);
       } else {
         glyph.textContent = base.glyph;
@@ -274,10 +280,8 @@ function renderBoard() {
     primary.title = `${key.legend} · ${LAYER_LABEL[state.layer]}: ${
       action ? actionLabel(action, state.profile.macros) : base?.label ?? "empty"
     }`;
-    primary.onclick = (event) => {
-      event.stopPropagation();
-      openPalette(event, key.legend, state.layer);
-    };
+    primary.setAttribute("aria-label", primary.title);
+    cap.onclick = (event) => openPalette(event, key.legend, state.layer);
     body.append(primary);
 
     // One dot per layer, filled where that layer has something. The board shows the selected layer;
