@@ -319,7 +319,7 @@ function fitBoard() {
   const height = board.offsetHeight || 1;
   // Keep the keyboard readable on narrow screens. The stage scrolls horizontally
   // instead of shrinking every key below a usable size.
-  const minimumScale = window.matchMedia("(max-width: 900px)").matches ? 0.72 : 0;
+  const minimumScale = window.matchMedia("(max-width: 900px)").matches ? 0.65 : 0;
   const scale = Math.min(1, Math.max(minimumScale, available / width));
   board.style.transform = `scale(${scale})`;
   fit.style.width = `${width * scale}px`;
