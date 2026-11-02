@@ -9,8 +9,9 @@ This file is for agents. A human wanting the app can read `README.md`.
 
 ```sh
 bun tools/dev.ts                  # dev server on http://127.0.0.1:8770/, live reload
-bun run check                     # the gate: data validation plus unit tests
+bun run check                     # the gate: validate, unit tests, then the browser e2e run
 bun test                          # unit tests only
+bun tools/e2e.ts                  # headless Chrome drives the page and asserts twelve behaviours
 bun tools/cli.ts validate --json   # board, class and profile consistency
 bun tools/cli.ts plan --class hunter --level 60 --json
 bun tools/cli.ts export --format wtf --out /tmp/binds.wtf
@@ -50,6 +51,19 @@ browser requirement for anything except the UI itself.
 2. `python3 tools/fetch-icons.py` to cache the icons.
 3. `bun tools/cli.ts profile --class <class> --level 60 --out assets/profiles/<name>.json`.
 4. `bun run check`.
+
+## Patrols
+
+All four agent-labs-dev products are configured here, and their checks are the gate above.
+
+- Mergepatrol: `.mergepatrol/mergepatrol.yml` plus the skill. The App is not installed on this repo, so
+  the queue does nothing until it is; until then PRs merge by hand.
+- Speedpatrol: `.speedpatrol/` times `gate.unit` and `gate.e2e`. Run `npx -y speedpatrol@latest run`.
+- Sloppatrol: `.sloppatrol/` uses the gate as its oracle. Run `npx -y sloppatrol@latest check`; it works
+  from a clean checkout of `origin/main`, so commit before expecting it to pass.
+- Bugpatrol: `.bugpatrol/` describes the app and the e2e harness.
+
+Patrol run data lands under each product's `runs/` folder and is gitignored.
 
 ## Where the data comes from
 

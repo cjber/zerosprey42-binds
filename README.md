@@ -46,6 +46,13 @@ A web page cannot write action bars or create macros. The export is for you or f
 addon to apply: `PickupSpell` and `PlaceAction` can place a spell on a bar out of combat, and `CreateMacro`
 can create a macro where the client allows it.
 
+## Tested
+
+`bun run check` is the gate: it validates the board, the class data and the profile, runs the unit tests,
+then boots headless Chrome and drives the page end to end. The e2e run asserts the 42 keys, the shipped
+profile, icons on every placed ability, the palette, assignment, the exported binding, level re-planning,
+the fit at 1100px and the macro list.
+
 ## Run it
 
 ```sh
