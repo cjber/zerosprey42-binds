@@ -164,6 +164,16 @@ async function main() {
   );
   const names = JSON.parse(labels);
   check("placed keys are named", names.includes("Serpent Sting") || names.includes("Arcane Shot"), labels);
+  const utilityDisplay = await evaluate(
+    `(() => {
+      const key = [...document.querySelectorAll('.key')].find((candidate) => candidate.querySelector('.primary span')?.textContent === 'Bags');
+      const spell = [...document.querySelectorAll('.key')].find((candidate) => candidate.querySelector('.primary span')?.textContent === 'Serpent Sting');
+      return JSON.stringify({ utility: key ? getComputedStyle(key.querySelector('.primary span')).display : null, spell: spell ? getComputedStyle(spell.querySelector('.primary span')).display : null });
+    })()`
+  );
+  const utilityState = JSON.parse(utilityDisplay);
+  check("utility binds keep a readable label", utilityState.utility === "flex", utilityDisplay);
+  check("spell names stay hidden until interaction", utilityState.spell === "none", utilityDisplay);
 
   // Assigning a spell through the palette updates the key and the export.
   // Pick the Q key by its legend, not by position: the board order comes from the keyboard itself.

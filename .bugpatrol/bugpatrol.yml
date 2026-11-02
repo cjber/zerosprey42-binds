@@ -1,5 +1,9 @@
 version: 1
 
+run:
+  command: bun tools/dev.ts 8792
+  url: http://127.0.0.1:8792/
+
 # Bugpatrol profile. There is no server to boot: the app is static files, and what exercises it is a
 # real browser, which is what tools/e2e.ts already drives.
 app:
