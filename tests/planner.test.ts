@@ -1,7 +1,8 @@
 import { describe, expect, test } from "bun:test";
+import boardsIndex from "../assets/boards/index.json";
 import {
   autoPlace, blankSlots, findPlacement, newCharacter, toBindings, toMacroText, validate,
-  SLOT_PLAN, SLOT_ORDER, bindingFor,
+  validateBoard, SLOT_PLAN, SLOT_ORDER, bindingFor,
 } from "../lib/planner.js";
 
 const board = {
@@ -35,7 +36,7 @@ describe("slot plan", () => {
       expect(seen.has(id)).toBe(false);
       seen.add(id);
     }
-    expect(seen.size).toBe(44);
+    expect(seen.size).toBe(42);
   });
 
   test("each layer fills the next stretch of bars, Ctrl+Shift reaching bar 4", () => {
@@ -44,10 +45,13 @@ describe("slot plan", () => {
     expect(SLOT_PLAN["shift:Q"]).toEqual({ bar: 1, slot: 9 });
     expect(SLOT_PLAN["shift:F"]).toEqual({ bar: 2, slot: 4 });
     expect(SLOT_PLAN["ctrl:F"]).toEqual({ bar: 2, slot: 12 });
-    expect(SLOT_PLAN["alt:F"]).toEqual({ bar: 3, slot: 8 });
     expect(SLOT_PLAN["ctrlshift:Q"]).toEqual({ bar: 3, slot: 9 });
     expect(SLOT_PLAN["ctrlshift:F"]).toEqual({ bar: 4, slot: 4 });
     expect(SLOT_PLAN["shift:T"]).toEqual({ bar: 4, slot: 5 });
+  });
+
+  test("keeps spells off Alt, which is for mounts and items", () => {
+    for (const entry of SLOT_ORDER) expect(entry.startsWith("alt:")).toBe(false);
   });
 });
 
@@ -71,13 +75,11 @@ describe("autoPlace", () => {
     expect(findPlacement(character, "Track Undead")).toBe("W");
   });
 
-  test("never takes a utility key", () => {
+  test("never takes a utility key's bare press", () => {
     const character = newCharacter(board, "Barry Test", "hunter", 60);
     autoPlace(character, hunter.abilities);
     for (const key of ["F", "G", "T", "S", "B", "Space"]) {
-      for (const mod of ["bare", "shift", "ctrl", "alt"]) {
-        expect(character.slots[key][mod]).toBe(null);
-      }
+      expect(character.slots[key].bare).toBe(null);
     }
   });
 
@@ -89,8 +91,8 @@ describe("autoPlace", () => {
     expect(JSON.stringify(character.slots)).toBe(first);
   });
 
-  test("fits 40 abilities, and reports the ones past the last slot", () => {
-    const fits = Array.from({ length: 40 }, (_, index) => ({
+  test("fits 42 abilities, and reports the ones past the last slot", () => {
+    const fits = Array.from({ length: 42 }, (_, index) => ({
       name: `Spell ${index}`, level: 1, kind: "attack", icon: "x",
     }));
     const character = newCharacter(board, "Barry Test", "hunter", 60);
@@ -100,7 +102,7 @@ describe("autoPlace", () => {
       name: `Extra ${index}`, level: 1, kind: "utility", icon: "x",
     }))];
     const second = newCharacter(board, "Barry Test", "hunter", 60);
-    expect(autoPlace(second, tooMany).length).toBe(2);
+    expect(autoPlace(second, tooMany).length).toBe(6);
   });
 });
 
@@ -153,5 +155,20 @@ describe("validate", () => {
     character.slots.W.bare = { k: "bar", bar: 1, slot: 1 };
     const problems = validate(board, { hunter }, { characters: [character], macros: [] });
     expect(problems.some((problem) => problem.includes("bound twice"))).toBe(true);
+  });
+});
+
+describe("boards", () => {
+  for (const entry of boardsIndex.boards) {
+    test(`${entry.id} is a usable board`, async () => {
+      const data = await Bun.file(entry.file).json();
+      expect(validateBoard(data)).toEqual([]);
+      expect(data.keys.length).toBe(entry.keys);
+    });
+  }
+
+  test("a board without the grid keys is rejected", () => {
+    const problems = validateBoard({ keys: [{ legend: "Q", x: 0, y: 0, w: 1 }] });
+    expect(problems.some((problem) => problem.includes("grid keys"))).toBe(true);
   });
 });

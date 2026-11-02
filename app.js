@@ -1,19 +1,28 @@
 // Browser shell: DOM only. All planner logic lives in lib/planner.js and is unit tested.
 
 import {
-  MODS, COMMANDS, BARS, SLOT_PLAN, SLOT_ORDER, blankSlots, newCharacter,
+  MODS, COMMANDS, BARS, SLOT_PLAN, SLOT_ORDER, blankSlots, newCharacter, BASE_LABELS,
   actionLabel, bindingFor, autoPlace, toBindings, toMacroText, findPlacement,
 } from "./lib/planner.js";
 
 const UNIT = 88;
-const GAP = 6;
+const GAP = 12;
 const STORE = "zerosprey-binds-v4";
 
-const state = { board: null, classes: {}, profile: null };
+const state = { board: null, boards: [], boardId: "zerosprey42", classes: {}, profile: null };
 const el = (id) => document.getElementById(id);
 const newId = () => Math.random().toString(36).slice(2, 9);
 
 const active = () => state.profile.characters.find((c) => c.id === state.profile.active);
+
+// Every board is a plain JSON file listed in assets/boards/index.json; the default one is the
+// keyboard's own PCB layout.
+async function loadBoard(id) {
+  const entry = state.boards.find((board) => board.id === id) ?? state.boards[0];
+  state.board = await fetch(entry.file, { cache: "no-store" }).then((response) => response.json());
+  state.boardId = entry.id;
+  return state.board;
+}
 const save = () => localStorage.setItem(STORE, JSON.stringify(state.profile));
 
 function actionIcon(action) {
@@ -92,6 +101,7 @@ function renderChars() {
     const shipped = await shippedProfile();
     if (!shipped) return alert("The shipped profile could not be loaded.");
     state.profile = shipped;
+    await loadBoard(state.profile.board ?? "zerosprey42");
     save();
     renderAll();
   };
@@ -126,6 +136,26 @@ function renderChars() {
   };
   label.append(input);
   box.append(label);
+
+  const keyboard = document.createElement("label");
+  keyboard.textContent = "keyboard";
+  const select = document.createElement("select");
+  select.className = "board-pick";
+  for (const board of state.boards) {
+    const option = document.createElement("option");
+    option.value = board.id;
+    option.textContent = `${board.name} (${board.keys})`;
+    option.selected = board.id === state.boardId;
+    select.append(option);
+  }
+  select.onchange = async () => {
+    await loadBoard(select.value);
+    state.profile.board = state.boardId;
+    save();
+    renderAll();
+  };
+  keyboard.append(select);
+  box.append(keyboard);
 }
 
 // ---------- board ----------
@@ -134,8 +164,9 @@ function renderBoard() {
   const board = el("board");
   board.innerHTML = "";
   const character = active();
-  const right = Math.max(...state.board.keys.map((k) => (k.x + (k.w ?? 1)) * UNIT));
-  const bottom = Math.max(...state.board.keys.map((k) => k.y * UNIT + UNIT));
+  // board.json carries the box, including the room rotated keycaps need at the edges.
+  const right = (state.board.width ?? Math.max(...state.board.keys.map((k) => (k.x + (k.w ?? 1)) * UNIT))) * UNIT;
+  const bottom = (state.board.height ?? Math.max(...state.board.keys.map((k) => k.y * UNIT + UNIT))) * UNIT;
   board.style.width = `${right}px`;
   board.style.height = `${bottom}px`;
 
@@ -143,20 +174,25 @@ function renderBoard() {
   for (const key of state.board.keys) {
     const slots = character.slots[key.legend] ?? { bare: null, shift: null, ctrl: null, alt: null };
     const cap = document.createElement("div");
-    cap.className = "key" + (MODS.some((m) => slots[m.id]) ? " assigned" : "");
+    cap.className =
+      "key" + (MODS.some((m) => slots[m.id]) ? " assigned" : "") + (key.rot ? " tilted" : "");
     cap.style.left = `${key.x * UNIT}px`;
     cap.style.top = `${key.y * UNIT}px`;
     cap.style.width = `${key.w * UNIT - GAP}px`;
     cap.style.height = `${UNIT - GAP}px`;
+    cap.style.setProperty("--rot", `${key.rot ?? 0}deg`);
     if (key.rot) cap.style.transform = `rotate(${key.rot}deg)`;
+    // The keycap turns with the board, the writing on it does not: keep the label and icons upright.
+    const body = document.createElement("div");
+    body.className = "body";
 
     const legend = document.createElement("div");
     legend.className = "legend";
     legend.textContent = key.legend;
-    cap.append(legend);
 
     const primary = document.createElement("div");
-    primary.className = "primary" + (slots.bare ? "" : " empty");
+    const base = BASE_LABELS[key.legend];
+    primary.className = "primary" + (slots.bare ? "" : base ? " base" : " empty");
     if (slots.bare) {
       const icon = actionIcon(slots.bare);
       if (icon) {
@@ -170,16 +206,17 @@ function renderBoard() {
       name.textContent = actionLabel(slots.bare, state.profile.macros);
       primary.append(name);
     } else {
-      primary.textContent = "empty";
+      // A turned key clips its corner legend, so name it in the middle instead.
+      primary.textContent = base ?? (key.rot ? key.legend : "empty");
     }
     primary.title = slots.bare
       ? `${key.legend}: ${actionLabel(slots.bare, state.profile.macros)}`
-      : `${key.legend}: empty`;
+      : `${key.legend}: ${base ?? "empty"}`;
     primary.onclick = (event) => {
       event.stopPropagation();
       openPalette(event, key.legend, "bare");
     };
-    cap.append(primary);
+    body.append(primary);
 
     const mods = document.createElement("div");
     mods.className = "mods";
@@ -207,7 +244,9 @@ function renderBoard() {
       };
       mods.append(chip);
     }
-    cap.append(mods);
+    body.append(mods);
+    body.append(legend);
+    cap.append(body);
     board.append(cap);
   }
   fitBoard();
@@ -479,13 +518,17 @@ function renderExport() {
 // ---------- boot ----------
 
 async function boot() {
-  const [board, hunter] = await Promise.all([
+  const [index, board, hunter] = await Promise.all([
+    fetch("assets/boards/index.json").then((r) => r.json()),
     fetch("assets/board.json").then((r) => r.json()),
     fetch("assets/classes/hunter.json").then((r) => r.json()).catch(() => null),
   ]);
+  state.boards = index.boards;
   state.board = board;
   state.classes = hunter ? { hunter } : {};
   state.profile = await load();
+  state.profile.board ??= "zerosprey42";
+  if (state.profile.board !== "zerosprey42") await loadBoard(state.profile.board);
   save();
   renderAll();
 
@@ -518,6 +561,8 @@ async function boot() {
     const file = event.target.files?.[0];
     if (!file) return;
     state.profile = JSON.parse(await file.text());
+    state.profile.board ??= "zerosprey42";
+    await loadBoard(state.profile.board);
     save();
     renderAll();
   };

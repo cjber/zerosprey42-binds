@@ -136,9 +136,10 @@ async function main() {
   check("no icon fails to load", noBroken === 0, `broken: ${noBroken}`);
 
   const labels = await evaluate(
-    "JSON.stringify([...document.querySelectorAll('.key .primary span')].map((s) => s.textContent).slice(0, 4))",
+    "JSON.stringify([...document.querySelectorAll('.key .primary span')].map((s) => s.textContent))",
   );
-  check("placed keys are named", labels.includes("Serpent") || labels.includes("Arcane"), labels);
+  const names = JSON.parse(labels);
+  check("placed keys are named", names.includes("Serpent Sting") || names.includes("Arcane Shot"), labels);
 
   // Assigning a spell through the palette updates the key and the export.
   // Pick the Q key by its legend, not by position: the board order comes from the keyboard itself.
@@ -205,6 +206,25 @@ async function main() {
   await sleep(300);
   const macroCount = await evaluate("document.querySelectorAll('#macro-list li').length");
   check("macros are listed", macroCount >= 3, `got ${macroCount}`);
+
+  // The keyboard picker swaps the board and remembers the choice.
+  const boards = await evaluate("document.querySelectorAll('.board-pick option').length");
+  check("the keyboard picker lists every board", boards >= 2, `got ${boards}`);
+  await evaluate(
+    "(() => { const s = document.querySelector('.board-pick'); s.value = 'corne-3x5'; s.dispatchEvent(new Event('change')); return true; })()",
+  );
+  await sleep(700);
+  const picked = await evaluate(
+    "JSON.stringify({ keys: document.querySelectorAll('.key').length, board: JSON.parse(localStorage.getItem('zerosprey-binds-v4')).board })",
+  );
+  const chosen = JSON.parse(picked);
+  check("picking a 36-key board draws 36 keys", chosen.keys === 36 && chosen.board === "corne-3x5", picked);
+  await evaluate(
+    "(() => { const s = document.querySelector('.board-pick'); s.value = 'zerosprey42'; s.dispatchEvent(new Event('change')); return true; })()",
+  );
+  await sleep(700);
+  const back = await evaluate("document.querySelectorAll('.key').length");
+  check("switching back restores the 42-key board", back === 42, `got ${back}`);
 
   ws.close();
 }

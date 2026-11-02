@@ -1,0 +1,265 @@
+{
+ "name": "Corne 3x5",
+ "units": "key units, from the QMK layout",
+ "width": 14.0,
+ "height": 5.7,
+ "source": {
+  "file": "crkbd/info.json",
+  "layout": "LAYOUT_split_3x5_3",
+  "read": "https://raw.githubusercontent.com/qmk/qmk_firmware/master/keyboards/crkbd/info.json"
+ },
+ "keys": [
+  {
+   "legend": "Q",
+   "x": 0.5,
+   "y": 0.8,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "W",
+   "x": 1.5,
+   "y": 0.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "E",
+   "x": 2.5,
+   "y": 0.5,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "R",
+   "x": 3.5,
+   "y": 0.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "T",
+   "x": 4.5,
+   "y": 0.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "Y",
+   "x": 8.5,
+   "y": 0.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "U",
+   "x": 9.5,
+   "y": 0.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "I",
+   "x": 10.5,
+   "y": 0.5,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "O",
+   "x": 11.5,
+   "y": 0.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "P",
+   "x": 12.5,
+   "y": 0.8,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "A",
+   "x": 0.5,
+   "y": 1.8,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "S",
+   "x": 1.5,
+   "y": 1.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "D",
+   "x": 2.5,
+   "y": 1.5,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "F",
+   "x": 3.5,
+   "y": 1.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "G",
+   "x": 4.5,
+   "y": 1.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "H",
+   "x": 8.5,
+   "y": 1.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "J",
+   "x": 9.5,
+   "y": 1.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "K",
+   "x": 10.5,
+   "y": 1.5,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "L",
+   "x": 11.5,
+   "y": 1.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": ";",
+   "x": 12.5,
+   "y": 1.8,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "Z",
+   "x": 0.5,
+   "y": 2.8,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "X",
+   "x": 1.5,
+   "y": 2.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "C",
+   "x": 2.5,
+   "y": 2.5,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "V",
+   "x": 3.5,
+   "y": 2.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "B",
+   "x": 4.5,
+   "y": 2.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "N",
+   "x": 8.5,
+   "y": 2.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "M",
+   "x": 9.5,
+   "y": 2.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": ",",
+   "x": 10.5,
+   "y": 2.5,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": ".",
+   "x": 11.5,
+   "y": 2.6,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "/",
+   "x": 12.5,
+   "y": 2.8,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "Super",
+   "x": 3.5,
+   "y": 4.2,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "Lower",
+   "x": 4.5,
+   "y": 4.2,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "Space",
+   "x": 5.5,
+   "y": 3.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "Enter",
+   "x": 7.5,
+   "y": 3.7,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "Raise",
+   "x": 8.5,
+   "y": 4.2,
+   "w": 1,
+   "rot": 0
+  },
+  {
+   "legend": "AltGr",
+   "x": 9.5,
+   "y": 4.2,
+   "w": 1,
+   "rot": 0
+  }
+ ]
+}

@@ -1,16 +1,17 @@
 # Zerosprey42 binds
 
 A planner for WoW: Forever keybinds on a 42-key board. Open `index.html`, or serve the folder, and it
-draws your Zerosprey42 keys with four bind layers each, places your class abilities as you level, keeps a
-list of macros, and exports a `bindings-cache.wtf` you can drop into the client.
+draws your Zerosprey42 keys with the real thumb cluster, places your class abilities as you level, keeps
+a list of macros, and exports a `bindings-cache.wtf` you can drop into the client.
 
 No build step, no dependencies, no backend: plain HTML, CSS and JS, so any static host serves it.
 
 ## What it does
 
-- **Binds**: every key on the board carries four slots, bare, Shift, Ctrl and Alt. Click a chip to assign
-  a bar slot, a pet action, a command or a macro. F, G, T, S, B and Space are treated as utility keys and
-  are never auto-filled.
+- **Binds**: every key on the board carries five slots, bare, Shift, Ctrl, Ctrl+Shift and Alt. Click a
+  chip to assign a bar slot, a pet action, a command or a macro. Alt is kept for mounts, food, potions
+  and other items, so auto-place never puts a spell there. G, T, S, B and Space keep their bare press as
+  a utility key and lend their unused modifiers to the last few spells.
 - **Level plan**: pick a class and a level. Each ability lists its level and where it sits. Auto-place
   puts every ability you have learned into the next free slot in a fixed order (bare first, then Shift,
   Ctrl, Alt, Q W E R Z X C V), so a new spell never means deciding where it goes.
@@ -20,16 +21,17 @@ No build step, no dependencies, no backend: plain HTML, CSS and JS, so any stati
 
 ## The board
 
-`assets/board.json` is generated from the Vial firmware
-(`beekeeb/vial-qmk-zerosprey42`, `keyboards/beekeeb/zerosprey42`): `info.json` for the key order and
-matrix, `keymaps/vial/keymap.c` for the default legends. It is a 3x6 + 3 thumbs split, 42 keys.
+`assets/board.json` comes from the keyboard itself. `tools/read-pcb.py` reads the 42 switch footprints in
+`pcb/zerosprey42.kicad_pcb` (`beekeeb/zerosprey42`): centre, width and the 1.5u thumbs, which gives the
+V-shaped halves, the two inner columns that step down towards the thumbs, and the thumb fan with the
+wide key inboard. `tools/build-board.py` converts those millimetres into key units and the box the page
+draws. The firmware's Vial layout is not used for geometry: its thumb entries cascade a row each and its
+outer columns sit a key low, so it draws a board that does not exist.
 
-The arrangement is modelled: three rows of six per half, half a key of stagger on the outer columns, a
-gap between the halves, and six thumbs angled towards the middle with the outer thumb of each half at
-1.5u. Those facts come from the board (36 switches at 1u, 2 at 1.5u, six thumbs) but not their exact
-millimetres: `pcb/zerosprey42.kicad_pcb` stores its switches in a rotated frame that does not resolve
-into the board's rows and columns, and its matrix nets are numbered per hand, so parsing it needs a
-transform nobody has pinned down yet. `tools/build-board.py` is where that would go if it is worth it.
+The keyboard itself is selectable next to the level field. `assets/boards/index.json` lists the boards and
+`tools/import-qmk.py` regenerates the QMK ones (Corne 3x6 and 3x5, Sofle, Lily58, Planck) from QMK's own
+layout coordinates. The choice is stored in the profile, and the CLI takes `--board <id>`. Spells still
+fill the same eight grid keys, so a board without them is rejected by `validate`.
 
 ## Class data
 
@@ -49,9 +51,10 @@ can create a macro where the client allows it.
 ## The hunter profile
 
 `assets/profiles/barry.json` is a level 60 hunter with every ability the client teaches on a key: 42 of
-them, across five layers on the eight grid keys plus four spare layers on the utility keys. Attacks fill
+them, across four spell layers on the eight grid keys plus ten spare layers on T, G, S and B. Attacks fill
 the bare and Shift layers first, then pet actions, buffs and the situational spells, so the rotation is on
-the keys the hand already knows. F9 interacts, S walks forward, mouse 3 autoruns, as before.
+the keys the hand already knows. Alt stays empty for mounts, food and other items. F9 interacts, S walks
+forward, mouse 3 autoruns, as before.
 
 ## Tested
 

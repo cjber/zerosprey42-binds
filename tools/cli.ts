@@ -5,12 +5,22 @@
 //   bun tools/cli.ts profile --name "Barry Buckfast" --class hunter --level 60 --out assets/profiles/barry.json
 
 import {
-  autoPlace, blankSlots, findPlacement, newCharacter, toBindings, toMacroText, validate, MODS,
+  autoPlace, blankSlots, findPlacement, newCharacter, toBindings, toMacroText, validate,
+  validateBoard, MODS,
 } from "../lib/planner.js";
 
 const root = new URL("..", import.meta.url).pathname;
 const read = async (path) => JSON.parse(await Bun.file(`${root}${path}`).text());
-const board = await read("assets/board.json");
+const boardsIndex = await read("assets/boards/index.json");
+
+async function loadBoard(id) {
+  const entry = boardsIndex.boards.find((candidate) => candidate.id === id);
+  if (!entry) {
+    console.error(`no board ${id}; choose one of ${boardsIndex.boards.map((b) => b.id).join(", ")}`);
+    process.exit(2);
+  }
+  return read(entry.file);
+}
 
 async function loadClasses() {
   const dir = `${root}assets/classes`;
@@ -40,9 +50,17 @@ const json = args.includes("--json");
 
 const classes = await loadClasses();
 const profile = await loadProfile();
+const selected = String(flag("board", profile.board ?? "zerosprey42"));
+const board = await loadBoard(selected);
+const universe = (await Promise.all(boardsIndex.boards.map((entry) => loadBoard(entry.id))))
+  .flatMap((candidate) => candidate.keys.map((key) => key.legend));
 
 if (command === "validate") {
-  const problems = validate(board, classes, profile);
+  const problems = [];
+  for (const entry of boardsIndex.boards) {
+    if (entry.id !== selected) problems.push(...validateBoard(await loadBoard(entry.id)));
+  }
+  problems.push(...validate(board, classes, profile, universe));
   if (json) {
     console.log(JSON.stringify({ ok: problems.length === 0, problems }, null, 2));
   } else {
@@ -100,7 +118,8 @@ if (command === "export") {
   const text = format === "macros" ? toMacroText(profile) : toBindings(character, board);
   const out = flag("out");
   if (out) {
-    await Bun.write(`${root}${out}`, text);
+    const target = String(out).startsWith("/") ? String(out) : `${root}${out}`;
+    await Bun.write(target, text);
     console.log(`wrote ${out}`);
   } else {
     console.log(text);
@@ -137,6 +156,7 @@ if (command === "profile") {
   }
   const macros = (classes[klass]?.macros ?? []).map((macro) => ({ ...macro }));
   const next = {
+    board: selected,
     characters: [character],
     macros,
     active: character.id,

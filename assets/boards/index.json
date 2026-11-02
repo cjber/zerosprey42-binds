@@ -1,0 +1,46 @@
+{
+ "boards": [
+  {
+   "id": "zerosprey42",
+   "name": "Zerosprey42",
+   "file": "assets/board.json",
+   "keys": 42,
+   "source": "the keyboard's PCB, read by tools/read-pcb.py"
+  },
+  {
+   "id": "corne",
+   "name": "Corne 3x6",
+   "file": "assets/boards/corne.json",
+   "keys": 42,
+   "source": "crkbd/info.json"
+  },
+  {
+   "id": "corne-3x5",
+   "name": "Corne 3x5",
+   "file": "assets/boards/corne-3x5.json",
+   "keys": 36,
+   "source": "crkbd/info.json"
+  },
+  {
+   "id": "lily58",
+   "name": "Lily58",
+   "file": "assets/boards/lily58.json",
+   "keys": 58,
+   "source": "lily58/rev1/keyboard.json"
+  },
+  {
+   "id": "planck",
+   "name": "Planck 4x12",
+   "file": "assets/boards/planck.json",
+   "keys": 48,
+   "source": "planck/rev6/keyboard.json"
+  },
+  {
+   "id": "sofle",
+   "name": "Sofle",
+   "file": "assets/boards/sofle.json",
+   "keys": 60,
+   "source": "sofle/rev1/keyboard.json"
+  }
+ ]
+}
