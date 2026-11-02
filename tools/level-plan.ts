@@ -42,9 +42,9 @@ lines.push("| --- | --- | --- |");
 lines.push("| bare | bar 1, slots 1-8 | Q W E R Z X C F |");
 lines.push("| Shift | bar 1 slots 9-12, bar 2 slots 1-4 | Q W E R Z X C F |");
 lines.push("| Ctrl | bar 2, slots 5-12 | Q W E R Z X C F |");
-lines.push("| Alt | bar 3, slots 1-8 | Q W E R Z X C F |");
 lines.push("| Ctrl+Shift | bar 3 slots 9-12, bar 4 slots 1-4 | Q W E R Z X C F |");
-lines.push("| spare | bar 4, slots 5-8 | Shift+T, Ctrl+T, Alt+T, Alt+G |");
+lines.push("| spare | bar 3 slots 1-8, bar 4 slots 5-6 | Shift/Ctrl/Ctrl+Shift on T, G, S and B |");
+lines.push("| Alt | bar 3, slots 1-8 | reserved for mounts, food and items, never a spell |");
 lines.push("");
 
 console.log(lines.join("\n"));

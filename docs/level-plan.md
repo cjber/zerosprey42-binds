@@ -57,7 +57,7 @@ Abilities: 42. Placed: 42. Unplaced: 0.
 | bare | bar 1, slots 1-8 | Q W E R Z X C F |
 | Shift | bar 1 slots 9-12, bar 2 slots 1-4 | Q W E R Z X C F |
 | Ctrl | bar 2, slots 5-12 | Q W E R Z X C F |
-| Alt | bar 3, slots 1-8 | Q W E R Z X C F |
 | Ctrl+Shift | bar 3 slots 9-12, bar 4 slots 1-4 | Q W E R Z X C F |
-| spare | bar 4, slots 5-8 | Shift+T, Ctrl+T, Alt+T, Alt+G |
+| spare | bar 3 slots 1-8, bar 4 slots 5-6 | Shift/Ctrl/Ctrl+Shift on T, G, S and B |
+| Alt | bar 3, slots 1-8 | reserved for mounts, food and items, never a spell |
 
