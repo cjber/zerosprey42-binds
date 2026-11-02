@@ -302,20 +302,38 @@
     {
       "id": "pet-attack",
       "name": "Pet Attack",
-      "icon": "ability_hunter_beastcall",
-      "body": "#showtooltip\n/petattack\n/cast Serpent Sting"
-    },
-    {
-      "id": "mend-pet",
-      "name": "Mend Pet",
-      "icon": "ability_hunter_mendpet",
-      "body": "#showtooltip\n/cast [target=pet,exists] Mend Pet"
-    },
-    {
-      "id": "hunters-mark",
-      "name": "Hunter's Mark",
       "icon": "ability_hunter_snipershot",
-      "body": "#showtooltip\n/cast Hunter's Mark"
+      "body": "#showtooltip Hunter's Mark\n/petattack\n/cast Hunter's Mark"
+    },
+    {
+      "id": "pet-care",
+      "name": "Pet Care",
+      "icon": "ability_hunter_mendpet",
+      "body": "#showtooltip\n/cast [@pet,nodead,exists] Mend Pet\n/stopmacro [@pet,nodead,exists]\n/cast [@pet,dead,exists] Revive Pet\n/castsequence reset=2 Call Pet, Revive Pet"
+    },
+    {
+      "id": "sting-mouseover",
+      "name": "Sting (mouseover)",
+      "icon": "ability_hunter_quickshot",
+      "body": "#showtooltip Serpent Sting\n/cast [@mouseover,harm,nodead][] Serpent Sting"
+    },
+    {
+      "id": "pet-panic",
+      "name": "Pet Panic",
+      "icon": "ability_hunter_beastcall",
+      "body": "#showtooltip\n/petpassive\n/petfollow"
+    },
+    {
+      "id": "aspect-swap",
+      "name": "Aspect Swap",
+      "icon": "spell_nature_ravenform",
+      "body": "#showtooltip\n/castsequence reset=6 Aspect of the Hawk, Aspect of the Monkey"
+    },
+    {
+      "id": "feed-pet",
+      "name": "Feed Pet",
+      "icon": "inv_misc_food_18",
+      "body": "#showtooltip Feed Pet\n/cast [pet,nodead] Feed Pet\n/use [pet,nodead] 0 1"
     }
   ]
 }
