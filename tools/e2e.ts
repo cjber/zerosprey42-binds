@@ -130,8 +130,32 @@ async function main() {
   const profileName = await evaluate("document.querySelector('.chars button.on')?.textContent");
   check("the shipped hunter profile loads", profileName === "Barry Buckfast", `got ${profileName}`);
 
-  const abilityIcons = await evaluate("document.querySelectorAll('.key img').length");
-  check("every placed ability shows its icon, on the bare layer and the mod chips", abilityIcons >= 32, `got ${abilityIcons}`);
+  // Each layer is shown on its own now, so count the icons by walking the tabs.
+  const layerIcons = await evaluate(
+    `(() => {
+      const counts = {};
+      for (const button of document.querySelectorAll('.layers button')) {
+        button.click();
+        counts[button.dataset.layer] = document.querySelectorAll('.key img').length;
+      }
+      document.querySelector('.layers button[data-layer=bare]').click();
+      return JSON.stringify(counts);
+    })()`,
+  );
+  const counts = JSON.parse(layerIcons);
+  const totalIcons = Object.values(counts).reduce((total: number, count: number) => total + count, 0);
+  check("every layer shows the icons placed on it", totalIcons >= 32, layerIcons);
+  check("Alt starts with no spells on it", counts.alt === 0, layerIcons);
+  const ctrlSeesQ = await evaluate(
+    `(() => {
+      document.querySelector('.layers button[data-layer=ctrl]').click();
+      const key = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === 'Q');
+      const text = key.querySelector('.primary span')?.textContent;
+      document.querySelector('.layers button[data-layer=bare]').click();
+      return text;
+    })()`,
+  );
+  check("switching layer changes what a key shows", ctrlSeesQ && ctrlSeesQ !== "Serpent Sting", String(ctrlSeesQ));
   const noBroken = await evaluate("[...document.images].filter((i) => !i.complete || i.naturalWidth === 0).length");
   check("no icon fails to load", noBroken === 0, `broken: ${noBroken}`);
 

@@ -8,10 +8,11 @@ No build step, no dependencies, no backend: plain HTML, CSS and JS, so any stati
 
 ## What it does
 
-- **Binds**: every key on the board carries five slots, bare, Shift, Ctrl, Ctrl+Shift and Alt. Click a
-  chip to assign a bar slot, a pet action, a command or a macro. Alt is kept for mounts, food, potions
-  and other items, so auto-place never puts a spell there. G, T, S, B and Space keep their bare press as
-  a utility key and lend their unused modifiers to the last few spells.
+- **Binds**: one layer at a time. Pick bare, Shift, Ctrl, Alt or Ctrl+Shift above the board and every
+  key shows that layer's ability with a full name; five dots under each key show which other layers hold
+  something, and the tab badges count each layer. Alt is kept for mounts, food, potions and other items,
+  so auto-place never puts a spell there. G, T, S, B and Space keep their bare press as a utility key and
+  lend their unused modifiers to the last few spells.
 - **Level plan**: pick a class and a level. Each ability lists its level and where it sits. Auto-place
   puts every ability you have learned into the next free slot in a fixed order (bare first, then Shift,
   Ctrl, Alt, Q W E R Z X C V), so a new spell never means deciding where it goes.

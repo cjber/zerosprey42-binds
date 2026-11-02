@@ -9,7 +9,18 @@ const UNIT = 88;
 const GAP = 12;
 const STORE = "zerosprey-binds-v4";
 
-const state = { board: null, boards: [], boardId: "zerosprey42", classes: {}, profile: null };
+const state = { board: null, boards: [], boardId: "zerosprey42", layer: "bare", classes: {}, profile: null };
+
+// One layer on screen at a time. The bar plan is per layer, so the tabs double as a reminder of where
+// each layer's slots live.
+const LAYER_LABEL = { bare: "bare", shift: "Shift", ctrl: "Ctrl", ctrlshift: "Ctrl+Shift", alt: "Alt" };
+const LAYER_HINT = {
+  bare: "bar 1, slots 1 to 8",
+  shift: "bar 1 slots 9 to 12 and bar 2 slots 1 to 4",
+  ctrl: "bar 2, slots 5 to 12",
+  ctrlshift: "bar 3 slots 9 to 12 and bar 4 slots 1 to 4",
+  alt: "mounts, food, potions and other items",
+};
 const el = (id) => document.getElementById(id);
 const newId = () => Math.random().toString(36).slice(2, 9);
 
@@ -160,7 +171,31 @@ function renderChars() {
 
 // ---------- board ----------
 
+function renderLayers() {
+  const box = el("layers");
+  box.innerHTML = "";
+  const character = active();
+  for (const mod of MODS) {
+    const count = Object.values(character.slots).filter((slots) => slots[mod.id]).length;
+    const button = document.createElement("button");
+    button.dataset.layer = mod.id;
+    button.className = mod.id === state.layer ? "on" : "";
+    button.append(LAYER_LABEL[mod.id]);
+    const badge = document.createElement("span");
+    badge.className = "count";
+    badge.textContent = String(count);
+    button.append(badge);
+    button.title = LAYER_HINT[mod.id];
+    button.onclick = () => {
+      state.layer = mod.id;
+      renderBoard();
+    };
+    box.append(button);
+  }
+}
+
 function renderBoard() {
+  renderLayers();
   const board = el("board");
   board.innerHTML = "";
   const character = active();
@@ -172,7 +207,9 @@ function renderBoard() {
 
   // The board is laid out at its own scale, then fitted once the keys exist.
   for (const key of state.board.keys) {
-    const slots = character.slots[key.legend] ?? { bare: null, shift: null, ctrl: null, alt: null };
+    const slots =
+      character.slots[key.legend] ?? { bare: null, shift: null, ctrl: null, alt: null, ctrlshift: null };
+    const action = slots[state.layer];
     const cap = document.createElement("div");
     cap.className =
       "key" + (MODS.some((m) => slots[m.id]) ? " assigned" : "") + (key.rot ? " tilted" : "");
@@ -185,7 +222,6 @@ function renderBoard() {
       cap.style.transform = `rotate(${key.rot}deg)`;
       if (key.ox !== undefined) cap.style.transformOrigin = `${key.ox * UNIT}px ${key.oy * UNIT}px`;
     }
-    // The keycap turns with the board, the writing on it does not: keep the label and icons upright.
     const body = document.createElement("div");
     body.className = "body";
 
@@ -194,10 +230,10 @@ function renderBoard() {
     legend.textContent = key.legend;
 
     const primary = document.createElement("div");
-    const base = BASE_LABELS[key.legend];
-    primary.className = "primary" + (slots.bare ? "" : base ? " base" : " empty");
-    if (slots.bare) {
-      const icon = actionIcon(slots.bare);
+    const base = state.layer === "bare" ? BASE_LABELS[key.legend] : null;
+    primary.className = "primary" + (action ? "" : base ? " base" : " empty");
+    if (action) {
+      const icon = actionIcon(action);
       if (icon) {
         const img = document.createElement("img");
         img.src = icon;
@@ -206,52 +242,48 @@ function renderBoard() {
         primary.append(img);
       }
       const name = document.createElement("span");
-      name.textContent = actionLabel(slots.bare, state.profile.macros);
+      name.textContent = actionLabel(action, state.profile.macros);
       primary.append(name);
-    } else if (!base && key.legend.length > 3) {
-      // Named keys (Super, Lower, Space, Tab) read better in the middle than as an "empty" key with
+    } else if (base) {
+      // Movement keys have no spell icon: draw their arrow big and name them underneath.
+      const glyph = document.createElement("div");
+      glyph.className = "glyph";
+      glyph.textContent = base.glyph;
+      primary.append(glyph);
+      const name = document.createElement("span");
+      name.textContent = base.label;
+      primary.append(name);
+    } else if (key.legend.length > 3) {
+      // Named keys (LGui, MO(1), Space, Tab) read better in the middle than as an "empty" key with
       // their name in the corner, and a turned key clips that corner anyway.
       primary.textContent = key.legend;
       cap.classList.add("named");
     } else {
-      primary.textContent = base ?? "empty";
+      primary.textContent = "empty";
     }
-    primary.title = slots.bare
-      ? `${key.legend}: ${actionLabel(slots.bare, state.profile.macros)}`
-      : `${key.legend}: ${base ?? "empty"}`;
+    primary.title = `${key.legend} · ${LAYER_LABEL[state.layer]}: ${
+      action ? actionLabel(action, state.profile.macros) : base?.label ?? "empty"
+    }`;
     primary.onclick = (event) => {
       event.stopPropagation();
-      openPalette(event, key.legend, "bare");
+      openPalette(event, key.legend, state.layer);
     };
     body.append(primary);
 
-    const mods = document.createElement("div");
-    mods.className = "mods";
-    for (const mod of MODS.slice(1)) {
-      const action = slots[mod.id];
-      const chip = document.createElement("div");
-      chip.className = "mod" + (action ? " has" : "");
-      const mini = action ? actionIcon(action) : null;
-      if (mini) {
-        const img = document.createElement("img");
-        img.src = mini;
-        img.alt = "";
-        img.onerror = () => {
-          img.remove();
-          chip.textContent = mod.label;
-        };
-        chip.append(img);
-      } else {
-        chip.textContent = action ? mod.label : "·";
-      }
-      chip.title = `${mod.id}: ${action ? actionLabel(action, state.profile.macros) : "empty"}`;
-      chip.onclick = (event) => {
-        event.stopPropagation();
-        openPalette(event, key.legend, mod.id);
-      };
-      mods.append(chip);
+    // One dot per layer, filled where that layer has something. The board shows the selected layer;
+    // the dots are how you see at a glance what is hiding underneath it.
+    const dots = document.createElement("div");
+    dots.className = "dots";
+    for (const mod of MODS) {
+      const dot = document.createElement("span");
+      dot.className =
+        "dot" + (slots[mod.id] ? " on" : "") + (mod.id === state.layer ? " current" : "");
+      dot.title = `${LAYER_LABEL[mod.id]}: ${
+        slots[mod.id] ? actionLabel(slots[mod.id], state.profile.macros) : "empty"
+      }`;
+      dots.append(dot);
     }
-    body.append(mods);
+    body.append(dots);
     body.append(legend);
     cap.append(body);
     board.append(cap);
@@ -290,7 +322,7 @@ function openPalette(event, legend, modId) {
     palette.append(node);
     return node;
   };
-  heading(`${legend} · ${modId === "bare" ? "no modifier" : modId}`);
+  heading(`${legend} · ${modId === "bare" ? "no modifier" : LAYER_LABEL[modId]}`);
 
   const abilities = state.classes[character.class]?.abilities ?? [];
   if (abilities.length) {
