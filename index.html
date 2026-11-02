@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zerosprey42 · WoW binds</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Zerosprey42 <span>·</span> WoW Forever binds</h1>
+      <div class="chars" id="chars"></div>
+    </header>
+
+    <nav>
+      <button data-tab="binds" class="on">Binds</button>
+      <button data-tab="plan">Level plan</button>
+      <button data-tab="macros">Macros</button>
+      <button data-tab="export">Export</button>
+    </nav>
+
+    <main>
+      <section id="tab-binds">
+        <div class="board-wrap">
+          <div id="board" class="board"></div>
+          <p class="hint">
+            Click a chip to change it. Each key carries four bars: bare, Shift, Ctrl and Alt.
+            F, G, T, S, B and Space are the utility keys and are never auto-filled.
+          </p>
+        </div>
+      </section>
+
+      <section id="tab-plan" hidden>
+        <div class="plan-controls">
+          <label>Class
+            <select id="plan-class"></select>
+          </label>
+          <label>Level
+            <input id="plan-level" type="number" min="1" max="60" value="60" />
+          </label>
+          <button id="plan-auto">Auto-place new spells</button>
+          <button id="plan-clear">Clear places</button>
+        </div>
+        <div id="plan-list" class="plan-list"></div>
+      </section>
+
+      <section id="tab-macros" hidden>
+        <div class="macro-form">
+          <input id="macro-name" placeholder="Macro name" />
+          <input id="macro-icon" placeholder="Icon (e.g. ability_hunter_aimedshot)" />
+          <textarea id="macro-body" rows="4" placeholder="#showtooltip&#10;/cast Aimed Shot"></textarea>
+          <button id="macro-add">Add macro</button>
+        </div>
+        <ul id="macro-list" class="macro-list"></ul>
+      </section>
+
+      <section id="tab-export" hidden>
+        <div class="export-grid">
+          <div>
+            <h2>bindings-cache.wtf</h2>
+            <p class="hint">Save as <code>WTF/Account/&lt;id&gt;/bindings-cache.wtf</code> with the game closed.</p>
+            <pre id="out-bindings"></pre>
+          </div>
+          <div>
+            <h2>macros</h2>
+            <p class="hint">One block per macro; create them in game, or paste the body into the macro window.</p>
+            <pre id="out-macros"></pre>
+          </div>
+        </div>
+        <div class="io">
+          <button id="io-save">Download profile JSON</button>
+          <label class="io-load">Load profile JSON<input id="io-file" type="file" accept="application/json" /></label>
+        </div>
+      </section>
+    </main>
+
+    <div id="palette" class="palette" hidden></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
