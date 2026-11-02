@@ -1,102 +1,301 @@
 {
   "class": "hunter",
-  "note": "Seed list. Levels follow classic hunter training; the authoritative list for this client is cjber/tweaks-forever Data/ClassSpells.lua (spell IDs, level and fee), which still needs names attached before it can be imported here.",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.70707)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
   "abilities": [
     {
       "name": "Track Beasts",
       "level": 1,
       "kind": "utility",
-      "icon": "ability_tracking"
-    },
-    {
-      "name": "Serpent Sting",
-      "level": 4,
-      "kind": "attack",
-      "icon": "ability_hunter_quickshot"
+      "icon": "ability_tracking",
+      "spellId": 1494
     },
     {
       "name": "Aspect of the Monkey",
       "level": 4,
       "kind": "buff",
-      "icon": "ability_hunter_aspectofthemonkey"
+      "icon": "ability_hunter_aspectofthemonkey",
+      "spellId": 13163
+    },
+    {
+      "name": "Serpent Sting",
+      "level": 4,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 1978
     },
     {
       "name": "Arcane Shot",
       "level": 6,
       "kind": "attack",
-      "icon": "ability_hunter_aimedshot"
+      "icon": "ability_hunter_aimedshot",
+      "spellId": 3044
     },
     {
       "name": "Hunter's Mark",
       "level": 6,
       "kind": "utility",
-      "icon": "ability_hunter_snipershot"
+      "icon": "ability_hunter_snipershot",
+      "spellId": 1130
     },
     {
       "name": "Concussive Shot",
       "level": 8,
       "kind": "attack",
-      "icon": "spell_frost_stun"
-    },
-    {
-      "name": "Raptor Strike",
-      "level": 8,
-      "kind": "attack",
-      "icon": "ability_meleedamage"
-    },
-    {
-      "name": "Call Pet",
-      "level": 10,
-      "kind": "pet",
-      "icon": "ability_hunter_beastcall"
-    },
-    {
-      "name": "Dismiss Pet",
-      "level": 10,
-      "kind": "pet",
-      "icon": "ability_hunter_beastcall02"
-    },
-    {
-      "name": "Feed Pet",
-      "level": 10,
-      "kind": "pet",
-      "icon": "inv_misc_food_18"
-    },
-    {
-      "name": "Revive Pet",
-      "level": 10,
-      "kind": "pet",
-      "icon": "ability_hunter_beastsoothe"
-    },
-    {
-      "name": "Tame Beast",
-      "level": 10,
-      "kind": "pet",
-      "icon": "ability_hunter_beasttaming"
-    },
-    {
-      "name": "Track Humanoids",
-      "level": 10,
-      "kind": "utility",
-      "icon": "ability_tracking"
-    },
-    {
-      "name": "Mend Pet",
-      "level": 10,
-      "kind": "pet",
-      "icon": "ability_hunter_mendpet"
+      "icon": "spell_frost_stun",
+      "spellId": 5116
     },
     {
       "name": "Aspect of the Hawk",
       "level": 10,
       "kind": "buff",
-      "icon": "spell_nature_ravenform"
+      "icon": "spell_nature_ravenform",
+      "spellId": 13165
+    },
+    {
+      "name": "Track Humanoids",
+      "level": 10,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 19883
     },
     {
       "name": "Distracting Shot",
       "level": 12,
       "kind": "utility",
-      "icon": "spell_arcane_blast"
+      "icon": "spell_arcane_blast",
+      "spellId": 20736
+    },
+    {
+      "name": "Mend Pet",
+      "level": 12,
+      "kind": "pet",
+      "icon": "ability_hunter_mendpet",
+      "spellId": 136
+    },
+    {
+      "name": "Wing Clip",
+      "level": 12,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 2974
+    },
+    {
+      "name": "Eagle Eye",
+      "level": 14,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 6197
+    },
+    {
+      "name": "Eyes of the Beast",
+      "level": 14,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 1002
+    },
+    {
+      "name": "Scare Beast",
+      "level": 14,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 1513
+    },
+    {
+      "name": "Immolation Trap",
+      "level": 16,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 13795
+    },
+    {
+      "name": "Mongoose Bite",
+      "level": 16,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 1495
+    },
+    {
+      "name": "Raptor Strike",
+      "level": 16,
+      "kind": "attack",
+      "icon": "ability_meleedamage",
+      "spellId": 14261
+    },
+    {
+      "name": "Multi-Shot",
+      "level": 18,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 2643
+    },
+    {
+      "name": "Track Undead",
+      "level": 18,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 19884
+    },
+    {
+      "name": "Aspect of the Cheetah",
+      "level": 20,
+      "kind": "buff",
+      "icon": "spell_nature_ravenform",
+      "spellId": 5118
+    },
+    {
+      "name": "Disengage",
+      "level": 20,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 781
+    },
+    {
+      "name": "Freezing Trap",
+      "level": 20,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 1499
+    },
+    {
+      "name": "Scorpid Sting",
+      "level": 22,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 3043
+    },
+    {
+      "name": "Beast Lore",
+      "level": 24,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 1462
+    },
+    {
+      "name": "Track Hidden",
+      "level": 24,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 19885
+    },
+    {
+      "name": "Rapid Fire",
+      "level": 26,
+      "kind": "buff",
+      "icon": "spell_nature_ravenform",
+      "spellId": 3045
+    },
+    {
+      "name": "Track Elementals",
+      "level": 26,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 19880
+    },
+    {
+      "name": "Frost Trap",
+      "level": 28,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 13809
+    },
+    {
+      "name": "Aspect of the Beast",
+      "level": 30,
+      "kind": "buff",
+      "icon": "spell_nature_ravenform",
+      "spellId": 13161
+    },
+    {
+      "name": "Feign Death",
+      "level": 30,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 5384
+    },
+    {
+      "name": "Flare",
+      "level": 32,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 1543
+    },
+    {
+      "name": "Track Demons",
+      "level": 32,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 19878
+    },
+    {
+      "name": "Explosive Trap",
+      "level": 34,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 13813
+    },
+    {
+      "name": "Aimed Shot",
+      "level": 36,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 20901
+    },
+    {
+      "name": "Viper Sting",
+      "level": 36,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 3034
+    },
+    {
+      "name": "Aspect of the Pack",
+      "level": 40,
+      "kind": "buff",
+      "icon": "spell_nature_ravenform",
+      "spellId": 13159
+    },
+    {
+      "name": "Track Giants",
+      "level": 40,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 19882
+    },
+    {
+      "name": "Volley",
+      "level": 40,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 1510
+    },
+    {
+      "name": "Aspect of the Wild",
+      "level": 46,
+      "kind": "buff",
+      "icon": "spell_nature_ravenform",
+      "spellId": 20043
+    },
+    {
+      "name": "Track Dragonkin",
+      "level": 50,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 19879
+    },
+    {
+      "name": "Counterattack",
+      "level": 54,
+      "kind": "attack",
+      "icon": "ability_hunter_quickshot",
+      "spellId": 20910
+    },
+    {
+      "name": "Trueshot Aura",
+      "level": 60,
+      "kind": "buff",
+      "icon": "spell_nature_ravenform",
+      "spellId": 20906
     }
   ],
   "macros": [

@@ -17,72 +17,120 @@
             "k": "bar",
             "bar": 1,
             "slot": 1,
-            "ability": "Track Beasts",
-            "icon": "ability_tracking"
-          },
-          "shift": {
-            "k": "bar",
-            "bar": 1,
-            "slot": 9,
-            "ability": "Call Pet",
-            "icon": "ability_hunter_beastcall"
-          },
-          "ctrl": null,
-          "alt": null
-        },
-        "W": {
-          "bare": {
-            "k": "bar",
-            "bar": 1,
-            "slot": 2,
-            "ability": "Aspect of the Monkey",
-            "icon": "ability_hunter_aspectofthemonkey"
-          },
-          "shift": {
-            "k": "bar",
-            "bar": 1,
-            "slot": 10,
-            "ability": "Dismiss Pet",
-            "icon": "ability_hunter_beastcall02"
-          },
-          "ctrl": null,
-          "alt": null
-        },
-        "E": {
-          "bare": {
-            "k": "bar",
-            "bar": 1,
-            "slot": 3,
             "ability": "Serpent Sting",
             "icon": "ability_hunter_quickshot"
           },
           "shift": {
             "k": "bar",
             "bar": 1,
-            "slot": 11,
-            "ability": "Feed Pet",
-            "icon": "inv_misc_food_18"
+            "slot": 9,
+            "ability": "Aimed Shot",
+            "icon": "ability_hunter_quickshot"
           },
-          "ctrl": null,
-          "alt": null
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 5,
+            "ability": "Rapid Fire",
+            "icon": "spell_nature_ravenform"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 1,
+            "ability": "Distracting Shot",
+            "icon": "spell_arcane_blast"
+          }
         },
-        "R": {
+        "W": {
           "bare": {
             "k": "bar",
             "bar": 1,
-            "slot": 4,
+            "slot": 2,
             "ability": "Arcane Shot",
             "icon": "ability_hunter_aimedshot"
           },
           "shift": {
             "k": "bar",
             "bar": 1,
-            "slot": 12,
-            "ability": "Mend Pet",
-            "icon": "ability_hunter_mendpet"
+            "slot": 10,
+            "ability": "Viper Sting",
+            "icon": "ability_hunter_quickshot"
           },
-          "ctrl": null,
-          "alt": null
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 6,
+            "ability": "Aspect of the Beast",
+            "icon": "spell_nature_ravenform"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 2,
+            "ability": "Eagle Eye",
+            "icon": "ability_tracking"
+          }
+        },
+        "E": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 3,
+            "ability": "Concussive Shot",
+            "icon": "spell_frost_stun"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 11,
+            "ability": "Volley",
+            "icon": "ability_hunter_quickshot"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 7,
+            "ability": "Aspect of the Pack",
+            "icon": "spell_nature_ravenform"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 3,
+            "ability": "Eyes of the Beast",
+            "icon": "ability_tracking"
+          }
+        },
+        "R": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 4,
+            "ability": "Wing Clip",
+            "icon": "ability_hunter_quickshot"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 12,
+            "ability": "Counterattack",
+            "icon": "ability_hunter_quickshot"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 8,
+            "ability": "Aspect of the Wild",
+            "icon": "spell_nature_ravenform"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 4,
+            "ability": "Scare Beast",
+            "icon": "ability_tracking"
+          }
         },
         "T": {
           "bare": {
@@ -233,72 +281,120 @@
             "k": "bar",
             "bar": 1,
             "slot": 5,
-            "ability": "Hunter's Mark",
-            "icon": "ability_hunter_snipershot"
+            "ability": "Mongoose Bite",
+            "icon": "ability_hunter_quickshot"
           },
           "shift": {
             "k": "bar",
             "bar": 2,
             "slot": 1,
-            "ability": "Revive Pet",
-            "icon": "ability_hunter_beastsoothe"
+            "ability": "Mend Pet",
+            "icon": "ability_hunter_mendpet"
           },
-          "ctrl": null,
-          "alt": null
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 9,
+            "ability": "Trueshot Aura",
+            "icon": "spell_nature_ravenform"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 5,
+            "ability": "Immolation Trap",
+            "icon": "ability_tracking"
+          }
         },
         "X": {
           "bare": {
             "k": "bar",
             "bar": 1,
             "slot": 6,
-            "ability": "Concussive Shot",
-            "icon": "spell_frost_stun"
-          },
-          "shift": {
-            "k": "bar",
-            "bar": 2,
-            "slot": 2,
-            "ability": "Tame Beast",
-            "icon": "ability_hunter_beasttaming"
-          },
-          "ctrl": null,
-          "alt": null
-        },
-        "C": {
-          "bare": {
-            "k": "bar",
-            "bar": 1,
-            "slot": 7,
             "ability": "Raptor Strike",
             "icon": "ability_meleedamage"
           },
           "shift": {
             "k": "bar",
             "bar": 2,
-            "slot": 3,
-            "ability": "Track Humanoids",
+            "slot": 2,
+            "ability": "Aspect of the Monkey",
+            "icon": "ability_hunter_aspectofthemonkey"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 10,
+            "ability": "Track Beasts",
             "icon": "ability_tracking"
           },
-          "ctrl": null,
-          "alt": null
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 6,
+            "ability": "Track Undead",
+            "icon": "ability_tracking"
+          }
+        },
+        "C": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 7,
+            "ability": "Multi-Shot",
+            "icon": "ability_hunter_quickshot"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 3,
+            "ability": "Aspect of the Hawk",
+            "icon": "spell_nature_ravenform"
+          },
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 11,
+            "ability": "Hunter's Mark",
+            "icon": "ability_hunter_snipershot"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 7,
+            "ability": "Disengage",
+            "icon": "ability_tracking"
+          }
         },
         "V": {
           "bare": {
             "k": "bar",
             "bar": 1,
             "slot": 8,
-            "ability": "Aspect of the Hawk",
-            "icon": "spell_nature_ravenform"
+            "ability": "Scorpid Sting",
+            "icon": "ability_hunter_quickshot"
           },
           "shift": {
             "k": "bar",
             "bar": 2,
             "slot": 4,
-            "ability": "Distracting Shot",
-            "icon": "spell_arcane_blast"
+            "ability": "Aspect of the Cheetah",
+            "icon": "spell_nature_ravenform"
           },
-          "ctrl": null,
-          "alt": null
+          "ctrl": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 12,
+            "ability": "Track Humanoids",
+            "icon": "ability_tracking"
+          },
+          "alt": {
+            "k": "bar",
+            "bar": 3,
+            "slot": 8,
+            "ability": "Freezing Trap",
+            "icon": "ability_tracking"
+          }
         },
         "B": {
           "bare": {

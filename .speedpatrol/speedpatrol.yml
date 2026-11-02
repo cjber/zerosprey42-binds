@@ -1,0 +1,38 @@
+version: 1
+
+# Speedpatrol profile for a static app: the benchmarks are the repo's own gate, because there is no
+# request path to time. `speedpatrol init` reads this as an HTTP API and writes a BASE_URL, which is
+# why the file is written by hand.
+project:
+  name: zerosprey42-binds
+  source: .
+app:
+  instructions: instructions.md
+  prepare:
+    - run: bun install --frozen-lockfile
+  setup: []
+  teardown: []
+defaults:
+  iterations: 5
+  warmup: 1
+  timeoutMs: 300000
+  rounds: 2
+benchmarks:
+  - id: gate.unit
+    kind: command
+    critical: true
+    title: "Data validation and unit tests"
+    run: "bun tools/cli.ts validate && bun test"
+    profile: { enabled: false }
+  - id: gate.e2e
+    kind: command
+    critical: true
+    title: "The browser end to end run"
+    run: "bun tools/e2e.ts"
+    iterations: 3
+    profile: { enabled: false }
+agents:
+  analyst: { use: claude, timeoutMinutes: 30 }
+  optimizer: { use: claude, enabled: true, maxPerCycle: 1, minImprovement: 0.05 }
+  github: { enabled: false }
+  patrol: { intervalMinutes: 30, pull: origin/main, cycles: 0 }

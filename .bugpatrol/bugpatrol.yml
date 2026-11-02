@@ -1,0 +1,30 @@
+version: 1
+
+# Bugpatrol profile. There is no server to boot: the app is static files, and what exercises it is a
+# real browser, which is what tools/e2e.ts already drives.
+app:
+  platform: cli
+  source: .
+  setup:
+    - run: bun install --frozen-lockfile
+      timeoutMs: 300000
+  connect:
+    cli:
+      timeoutMs: 60000
+  instructions: .bugpatrol/instructions.md
+  secrets: []
+agents:
+  explorer:
+    use: claude
+    maxSteps: 25
+    budgetUsd: 1
+  judge:
+    use: claude
+  fixer:
+    enabled: false
+    use: claude
+  review:
+    name: harness
+    budgetUsd: 1
+  github:
+    enabled: false

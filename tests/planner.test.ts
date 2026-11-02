@@ -49,12 +49,23 @@ describe("slot plan", () => {
 });
 
 describe("autoPlace", () => {
-  test("places learned abilities in level order, and stops at the level", () => {
+  test("places the rotation before pet actions, and stops at the level", () => {
     const character = newCharacter(board, "Barry Test", "hunter", 6);
     autoPlace(character, hunter.abilities);
     expect(findPlacement(character, "Serpent Sting")).toBe("Q");
     expect(findPlacement(character, "Arcane Shot")).toBe("W");
     expect(findPlacement(character, "Mend Pet")).toBe(null);
+  });
+
+  test("gives the grid to attacks before utility, whatever the level", () => {
+    const abilities = [
+      { name: "Track Undead", level: 1, kind: "utility", icon: "u" },
+      { name: "Aimed Shot", level: 40, kind: "attack", icon: "a" },
+    ];
+    const character = newCharacter(board, "Barry Test", "hunter", 60);
+    autoPlace(character, abilities);
+    expect(findPlacement(character, "Aimed Shot")).toBe("Q");
+    expect(findPlacement(character, "Track Undead")).toBe("W");
   });
 
   test("never takes a utility key", () => {

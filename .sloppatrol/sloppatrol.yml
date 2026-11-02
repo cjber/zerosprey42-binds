@@ -1,0 +1,16 @@
+# Sloppatrol profile for zerosprey42-binds. The checks are the repo's gate; there is no test command
+# detection to rely on, and `sloppatrol init` writes a failing placeholder for a repo like this.
+agent: claude
+prepare:
+  - bun install --frozen-lockfile
+cleanup: []
+checks:
+  - { name: data, run: "bun tools/cli.ts validate" }
+  - { name: unit, run: "bun test", tests: true }
+  - { name: e2e, run: "bun tools/e2e.ts" }
+focus: [lib/**, app.js, tools/cli.ts]
+ignore: [assets/icons/**, assets/board.json, assets/profiles/**]
+guards: { maxFiles: 8, maxLines: 400 }
+agents:
+  refactorer: { maxPerCycle: 1, maxAttempts: 2 }
+github: { enabled: false }

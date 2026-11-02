@@ -148,7 +148,19 @@ function renderBoard() {
       const action = slots[mod.id];
       const chip = document.createElement("div");
       chip.className = "mod" + (action ? " has" : "");
-      chip.textContent = action ? mod.label : "·";
+      const mini = action ? actionIcon(action) : null;
+      if (mini) {
+        const img = document.createElement("img");
+        img.src = mini;
+        img.alt = "";
+        img.onerror = () => {
+          img.remove();
+          chip.textContent = mod.label;
+        };
+        chip.append(img);
+      } else {
+        chip.textContent = action ? mod.label : "·";
+      }
       chip.title = `${mod.id}: ${action ? actionLabel(action, state.profile.macros) : "empty"}`;
       chip.onclick = (event) => {
         event.stopPropagation();
@@ -170,6 +182,7 @@ function fitBoard() {
   const style = getComputedStyle(stage);
   const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
   const available = stage.clientWidth - padding;
+  if (available <= 0) return; // the tab is hidden; fit again when it is shown
   const width = board.offsetWidth || 1;
   const height = board.offsetHeight || 1;
   const scale = Math.min(1, available / width);
@@ -440,6 +453,7 @@ async function boot() {
       for (const id of ["binds", "plan", "macros", "export"]) {
         el(`tab-${id}`).hidden = id !== button.dataset.tab;
       }
+      if (button.dataset.tab === "binds") requestAnimationFrame(fitBoard);
       if (button.dataset.tab === "export") renderExport();
       if (button.dataset.tab === "plan") renderPlan();
       if (button.dataset.tab === "macros") renderMacros();

@@ -1,0 +1,9 @@
+{
+  "gate": {
+    "role": "gate",
+    "state": "failed",
+    "detail": "The check e2e fails on 02337a7605: without a green oracle no refactor can be verified.",
+    "pid": 3320471,
+    "updatedAt": "2026-11-02T17:01:05.557Z"
+  }
+}

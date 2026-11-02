@@ -13,8 +13,10 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - name: Data and logic
+      - name: Data, logic and end to end
         run: bun run check
+      - name: Chrome is available for the e2e run
+        run: google-chrome --version
       - name: Icons are present for every ability
         run: |
           python3 - <<'PY'

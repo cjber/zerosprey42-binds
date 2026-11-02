@@ -1,0 +1,35 @@
+{
+  "id": "20261102T170105540-3cf0",
+  "purpose": "base",
+  "sha": "02337a7605462c7e938e752d55c01d0ec5672b84",
+  "status": "failed",
+  "checksKey": "64607689ec33",
+  "results": [
+    {
+      "name": "data",
+      "command": "bun tools/cli.ts validate",
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 6,
+      "output": "board, classes and profile are consistent"
+    },
+    {
+      "name": "unit",
+      "command": "bun test",
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 7,
+      "output": "bun test v1.4.4 (38afee6c8)\n\n 11 pass\n 0 fail\n 80 expect() calls\nRan 11 tests across 1 file. [4.00ms]"
+    },
+    {
+      "name": "e2e",
+      "command": "bun tools/e2e.ts",
+      "ok": false,
+      "exitCode": 1,
+      "durationMs": 3,
+      "output": "error: Module not found \"tools/e2e.ts\""
+    }
+  ],
+  "startedAt": "2026-11-02T17:01:05.540Z",
+  "finishedAt": "2026-11-02T17:01:05.556Z"
+}
