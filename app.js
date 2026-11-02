@@ -21,7 +21,7 @@ const LAYER_HINT = {
   ctrlshift: "bar 3 slots 9 to 12 and bar 4 slots 1 to 4",
   alt: "mounts, food, potions and other items",
 };
-const MOVEMENT_ICONS = { "↑": "arrow-up-up.png", "←": "arrow-left-up.png", "→": "arrow-right-up.png", "↓": "arrow-down-up.png" };
+const MOVEMENT_ICONS = { "↑": "arrow.png", "←": "arrow.png", "→": "arrow.png", "↓": "arrow.png" };
 const el = (id) => document.getElementById(id);
 const newId = () => Math.random().toString(36).slice(2, 9);
 
@@ -257,10 +257,11 @@ function renderBoard() {
       if (movementIcon) {
         const image = document.createElement("img");
         image.className = "movement-icon";
-        image.src = `assets/wow/${movementIcon}`;
+        image.src = `assets/wow/vehicle/${movementIcon}`;
         image.alt = base.label;
         image.width = 64;
         image.height = 64;
+        image.style.transform = base.glyph === "↑" ? "rotate(-90deg)" : base.glyph === "←" ? "rotate(180deg)" : base.glyph === "↓" ? "rotate(90deg)" : "none";
         glyph.append(image);
       } else {
         glyph.textContent = base.glyph;
@@ -316,7 +317,10 @@ function fitBoard() {
   if (available <= 0) return; // the tab is hidden; fit again when it is shown
   const width = board.offsetWidth || 1;
   const height = board.offsetHeight || 1;
-  const scale = Math.min(1, available / width);
+  // Keep the keyboard readable on narrow screens. The stage scrolls horizontally
+  // instead of shrinking every key below a usable size.
+  const minimumScale = window.matchMedia("(max-width: 900px)").matches ? 0.72 : 0;
+  const scale = Math.min(1, Math.max(minimumScale, available / width));
   board.style.transform = `scale(${scale})`;
   fit.style.width = `${width * scale}px`;
   fit.style.height = `${height * scale}px`;
