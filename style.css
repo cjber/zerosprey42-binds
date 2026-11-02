@@ -76,45 +76,52 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
   border-radius: 10px;
   box-shadow: inset 0 1px 0 #ffffff14, 0 3px 0 #0c0c0d, 0 8px 14px -8px #000;
   color: var(--foreground);
-  padding: 4px 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  padding: 0;
+  overflow: hidden;
   cursor: pointer;
-  transition: border-color 120ms ease, transform 120ms ease;
+  transition: border-color 120ms ease;
 }
 .key:hover { border-color: var(--primary); }
 .key.assigned { border-color: #4a4a52; }
-.key .legend { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.key .legend {
+  position: absolute; top: 3px; left: 5px; z-index: 3;
+  font-size: 9px; color: #dfe8f5; letter-spacing: 0.08em; text-transform: uppercase;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000a;
+}
 
 .key .primary {
-  flex: 1;
-  border-radius: 7px;
-  background: #ffffff05;
-  border: 1px solid #ffffff0a;
+  position: absolute;
+  inset: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  gap: 3px;
-  padding: 3px;
   overflow: hidden;
+  border-radius: inherit;
+  background: #14161a;
 }
-.key .primary img { width: 22px; height: 22px; border-radius: 5px; box-shadow: 0 0 0 1px #0006; flex: none; }
+.key .primary img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .key .primary span {
-  font-size: 8px; line-height: 1.1; text-align: center; color: #c9c9d0; flex: none;
-  width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  position: relative; z-index: 2; width: 100%; padding: 8px 3px 2px;
+  font-size: 8.5px; line-height: 1.1; text-align: center; color: #f2f6fc;
+  background: linear-gradient(180deg, #0b0d10cc 0%, #0b0d10f2 100%);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.key .primary.empty { color: #4d4d55; font-size: 10px; }
+.key .primary.empty {
+  align-items: center; color: #4d4d55; font-size: 10px;
+  background: linear-gradient(180deg, #20232a 0%, #1a1d22 100%);
+}
 
-.key .mods { display: flex; gap: 3px; }
+.key .mods {
+  position: absolute; left: 3px; right: 3px; bottom: 3px; z-index: 3;
+  display: flex; gap: 2px;
+}
 .key .mod {
-  flex: 1; height: 16px; border-radius: 4px; background: #ffffff08; border: 1px solid #ffffff0d;
-  font-size: 9px; color: #6f6f78; display: flex; align-items: center; justify-content: center;
-  overflow: hidden; white-space: nowrap; transition: background 120ms ease;
+  flex: 1; height: 14px; border-radius: 3px; background: #0b0d10a8; border: 1px solid #ffffff12;
+  font-size: 8px; color: #8b95a3; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; white-space: nowrap; transition: background 120ms ease; backdrop-filter: blur(2px);
 }
 .key .mod.has { background: #22303a; border-color: #3d5566; color: #cfe3f2; }
-.key .mod img { width: 14px; height: 14px; border-radius: 2px; display: block; }
+.key .mod img { width: 12px; height: 12px; border-radius: 2px; display: block; }
 .key .mod:hover { background: #ffffff14; }
 .key .mod.has:hover { background: #7ba6a6; }
 
