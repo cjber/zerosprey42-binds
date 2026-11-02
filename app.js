@@ -26,18 +26,44 @@ function actionIcon(action) {
   return null;
 }
 
+const placedCount = (profile) =>
+  (profile?.characters ?? []).reduce(
+    (total, character) =>
+      total +
+      Object.values(character.slots ?? {}).reduce(
+        (count, slots) => count + Object.values(slots).filter(Boolean).length,
+        0,
+      ),
+    0,
+  );
+
+async function shippedProfile() {
+  try {
+    const response = await fetch("assets/profiles/barry.json", { cache: "no-store" });
+    if (!response.ok) return null;
+    const profile = await response.json();
+    return profile?.characters?.length ? profile : null;
+  } catch {
+    return null;
+  }
+}
+
+// A stored profile that binds nothing is never what someone meant to keep: it is the mark of a load
+// that failed once, so the shipped profile wins and the empty one is not saved back.
 async function load() {
   const raw = localStorage.getItem(STORE);
+  let stored = null;
   if (raw) {
     try {
-      const parsed = JSON.parse(raw);
-      if (parsed?.characters?.length) return parsed;
+      stored = JSON.parse(raw);
     } catch {
-      /* fall back to the shipped profile */
+      stored = null;
     }
   }
-  const shipped = await fetch("assets/profiles/barry.json").then((r) => r.json()).catch(() => null);
-  if (shipped?.characters?.length) return shipped;
+  if (stored?.characters?.length && placedCount(stored) > 0) return stored;
+  const shipped = await shippedProfile();
+  if (shipped) return shipped;
+  if (stored?.characters?.length) return stored;
   const character = newCharacter(state.board, "Barry Buckfast", "hunter", 60);
   return { characters: [character], macros: [], active: character.id };
 }
@@ -58,6 +84,19 @@ function renderChars() {
     };
     box.append(pill);
   }
+  const reset = document.createElement("button");
+  reset.className = "add";
+  reset.textContent = "reset";
+  reset.title = "Load the shipped hunter profile";
+  reset.onclick = async () => {
+    const shipped = await shippedProfile();
+    if (!shipped) return alert("The shipped profile could not be loaded.");
+    state.profile = shipped;
+    save();
+    renderAll();
+  };
+  box.append(reset);
+
   const add = document.createElement("button");
   add.className = "add";
   add.textContent = "+ character";

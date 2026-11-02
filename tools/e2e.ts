@@ -101,6 +101,19 @@ async function main() {
   await evaluate("localStorage.clear(); location.reload(); true");
   await sleep(2500);
 
+  // A stored profile that binds nothing is the mark of a failed load: the shipped one must win, and
+  // the empty one must not be saved back.
+  await evaluate(
+    `localStorage.setItem('zerosprey-binds-v4', JSON.stringify({characters:[{id:'x',name:'Barry Buckfast',class:'hunter',level:60,slots:{}}],macros:[],active:'x'})); location.reload(); true`,
+  );
+  await sleep(2500);
+  const recovered = await evaluate(
+    "JSON.stringify({placed: document.querySelectorAll('.key.assigned').length, stored: (JSON.parse(localStorage.getItem('zerosprey-binds-v4')||'{}').characters?.[0]?.slots && Object.values(JSON.parse(localStorage.getItem('zerosprey-binds-v4')).characters[0].slots).reduce((n,s)=>n+Object.values(s).filter(Boolean).length,0)) })",
+  );
+  const recovery = JSON.parse(recovered);
+  check("an empty stored profile is replaced by the shipped one", recovery.placed > 0, recovered);
+  check("the shipped profile is written back", recovery.stored > 0, `stored ${recovery.stored}`);
+
   const keys = await evaluate("document.querySelectorAll('.key').length");
   check("the board renders 42 keys", keys === 42, `got ${keys}`);
 

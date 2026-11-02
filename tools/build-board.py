@@ -34,18 +34,18 @@ ROW_LEGENDS = [
 
 # Column stagger, outer column to inner: the board rises towards the middle on both hands, so the
 # right half uses this reversed. Index 0 is the pinky, 5 the innermost column.
-STAGGER = [0.55, 0.35, 0.15, 0.0, 0.05, 0.2]
+STAGGER = [0.5, 0.3, 0.1, 0.0, 0.15, 0.35]
 GAP = 1.0  # one key between the halves
 
 # Thumbs sit under the inner columns, angled towards the middle, the outer one of each hand at 1.5u.
 # (half, thumb index, width, x, y, rotation) · the wide keys are the two innermost
 THUMBS = [
-    ("left", 0, 1.0, 2.30, 3.30, 10),
-    ("left", 1, 1.0, 3.35, 3.48, 4),
-    ("left", 2, 1.5, 4.40, 3.60, -2),
-    ("right", 0, 1.5, 6.60, 3.60, 2),
-    ("right", 1, 1.0, 8.15, 3.48, -4),
-    ("right", 2, 1.0, 9.20, 3.30, -10),
+    ("left", 0, 1.0, 2.45, 3.10, 8),
+    ("left", 1, 1.0, 3.50, 3.24, 2),
+    ("left", 2, 1.5, 4.55, 3.34, -4),
+    ("right", 0, 1.5, 6.45, 3.34, 4),
+    ("right", 1, 1.0, 7.90, 3.24, -2),
+    ("right", 2, 1.0, 8.95, 3.10, -8),
 ]
 
 
