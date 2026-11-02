@@ -21,6 +21,7 @@ const LAYER_HINT = {
   ctrlshift: "bar 3 slots 9 to 12 and bar 4 slots 1 to 4",
   alt: "mounts, food, potions and other items",
 };
+const MOVEMENT_ICONS = { "↑": "arrow-up-up.png", "←": "arrow-left-up.png", "→": "arrow-right-up.png", "↓": "arrow-down-up.png" };
 const el = (id) => document.getElementById(id);
 const newId = () => Math.random().toString(36).slice(2, 9);
 
@@ -248,7 +249,16 @@ function renderBoard() {
       // Movement keys have no spell icon: draw their arrow big and name them underneath.
       const glyph = document.createElement("div");
       glyph.className = "glyph";
-      glyph.textContent = base.glyph;
+      const movementIcon = MOVEMENT_ICONS[base.glyph];
+      if (movementIcon) {
+        const image = document.createElement("img");
+        image.className = "movement-icon";
+        image.src = `assets/wow/${movementIcon}`;
+        image.alt = base.label;
+        glyph.append(image);
+      } else {
+        glyph.textContent = base.glyph;
+      }
       primary.append(glyph);
       const name = document.createElement("span");
       name.textContent = base.label;
