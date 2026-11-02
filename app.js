@@ -21,7 +21,7 @@ const LAYER_HINT = {
   ctrlshift: "bar 3 slots 9 to 12 and bar 4 slots 1 to 4",
   alt: "mounts, food, potions and other items",
 };
-const MOVEMENT_ICONS = { "↑": "arrow.png", "←": "arrow.png", "→": "arrow.png", "↓": "arrow.png" };
+const MOVEMENT_ICONS = { "↑": "pitch-up.png", "←": "pitch-up.png", "→": "pitch-up.png", "↓": "pitch-down.png" };
 const el = (id) => document.getElementById(id);
 const newId = () => Math.random().toString(36).slice(2, 9);
 
