@@ -119,9 +119,10 @@ if (command === "profile") {
   const character = newCharacter(board, name, klass, level);
   autoPlace(character, classes[klass]?.abilities ?? []);
   // The utility keys every character gets, outside the auto-filled grid.
+  // The owner's own binds: F9 interacts, S walks forward, mouse 3 autoruns. The rest are additions on
+  // keys those binds never used.
   const utility: Array<[string, string, unknown]> = [
-    ["F", "bare", { k: "cmd", binding: "INTERACTTARGET", label: "Interact" }],
-    ["F", "shift", { k: "cmd", binding: "TARGETFOCUS", label: "Target focus" }],
+    ["F9", "bare", { k: "cmd", binding: "INTERACTTARGET", label: "Interact" }],
     ["T", "bare", { k: "cmd", binding: "TARGETNEARESTENEMY", label: "Target nearest" }],
     ["G", "bare", { k: "cmd", binding: "BONUSACTIONBUTTON1", label: "Pet attack" }],
     ["G", "shift", { k: "cmd", binding: "BONUSACTIONBUTTON2", label: "Pet follow" }],
@@ -130,7 +131,9 @@ if (command === "profile") {
     ["Space", "bare", { k: "cmd", binding: "JUMP", label: "Jump" }],
   ];
   for (const [legend, mod, action] of utility) {
+    // F9 is not a board key, so it lives in the character's extra binds rather than a slot.
     if (character.slots[legend]) character.slots[legend][mod] = action;
+    else (character.extra ??= {})[`${mod}:${legend}`] = action;
   }
   const macros = (classes[klass]?.macros ?? []).map((macro) => ({ ...macro }));
   const next = {
