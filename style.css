@@ -146,7 +146,7 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
   align-items: center; color: #4d4d55; font-size: 10px;
   background: linear-gradient(180deg, #20232a 0%, #1a1d22 100%);
 }
-.key .primary.base .movement-icon { width: 86%; height: 86%; object-fit: contain; image-rendering: pixelated; opacity: 1; filter: drop-shadow(0 2px 2px #000); }
+.key .primary.base .movement-icon { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; opacity: 1; filter: drop-shadow(0 2px 2px #000); }
 
 .key .mods {
   position: absolute; left: 3px; right: 3px; bottom: 3px; z-index: 3;

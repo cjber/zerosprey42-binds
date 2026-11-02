@@ -164,6 +164,25 @@ async function main() {
   );
   const names = JSON.parse(labels);
   check("placed keys are named", names.includes("Serpent Sting") || names.includes("Arcane Shot"), labels);
+
+  // The movement arrows are Blizzard vehicle art: forward is the pitch-up tile, and the strafe tiles
+  // are quarter turns of it. The mapping is easy to rotate one step out, so pin the direction.
+  const movement = await evaluate(
+    `JSON.stringify(Object.fromEntries(['S', 'A', 'D'].map((legend) => {
+      const key = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === legend);
+      const icon = key?.querySelector('.movement-icon');
+      return [legend, icon ? { src: icon.getAttribute('src'), transform: icon.style.transform } : null];
+    })))`,
+  );
+  const arrows = JSON.parse(movement);
+  check(
+    "movement keys point the right way",
+    arrows.S?.src === "assets/wow/vehicle/pitch-up.png" && arrows.S?.transform === "none" &&
+      arrows.A?.src === "assets/wow/vehicle/pitch-up.png" && arrows.A?.transform === "rotate(-90deg)" &&
+      arrows.D?.src === "assets/wow/vehicle/pitch-up.png" && arrows.D?.transform === "rotate(90deg)",
+    movement,
+  );
+
   const utilityDisplay = await evaluate(
     `(() => {
       const key = [...document.querySelectorAll('.key')].find((candidate) => candidate.querySelector('.primary span')?.textContent === 'Bags');

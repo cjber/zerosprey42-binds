@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "intents": [
+    {
+      "id": "intent_1_off_viewport_board",
+      "scope": {
+        "kind": "rule-on-screen",
+        "ruleId": "layout/off-viewport",
+        "screenId": "/"
+      },
+      "decision": "intended",
+      "reason": "The board is intentionally wider than a phone and the page tells the user to swipe across it; keys beyond the viewport are reachable by horizontal scroll, not lost. Bugpatrol's off-viewport rule does not account for scroll containers.",
+      "decidedBy": "agent",
+      "decidedAt": "2026-11-02T21:45:12.668041+00:00"
+    }
+  ]
+}

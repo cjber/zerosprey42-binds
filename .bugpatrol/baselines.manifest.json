@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "imageDigest": "unpinned",
+  "entries": {
+    "/::desktop": {
+      "sha256": "e0f81e9bca60edf0b30ee6d9b6474fc33df2c569db49e18d5326d4df6b466bcc",
+      "viewport": "desktop",
+      "bytes": 256890,
+      "capturedAt": "2026-11-02T21:44:44.244Z"
+    },
+    "/::mobile": {
+      "sha256": "5c6b4c7101019fddf0b0426c9994bee1eb9d5f3ca2fd00fbf63878588d6c02aa",
+      "viewport": "mobile",
+      "bytes": 122872,
+      "capturedAt": "2026-11-02T21:44:44.797Z"
+    }
+  }
+}

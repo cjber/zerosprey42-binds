@@ -21,7 +21,14 @@ const LAYER_HINT = {
   ctrlshift: "bar 3 slots 9 to 12 and bar 4 slots 1 to 4",
   alt: "mounts, food, potions and other items",
 };
-const MOVEMENT_ICONS = { "↑": "pitch-up.png", "←": "pitch-up.png", "→": "pitch-up.png", "↓": "pitch-down.png" };
+// Blizzard's vehicle UI only carries a pitch-up and a pitch-down button, so the strafe arrows are
+// quarter turns of the pitch-up tile. The pitch-down texture is the button's down-facing state.
+const MOVEMENT_ICONS = {
+  "↑": { file: "pitch-up.png", rotation: 0 },
+  "←": { file: "pitch-up.png", rotation: -90 },
+  "→": { file: "pitch-up.png", rotation: 90 },
+  "↓": { file: "pitch-down.png", rotation: 0 },
+};
 const el = (id) => document.getElementById(id);
 const newId = () => Math.random().toString(36).slice(2, 9);
 
@@ -257,11 +264,11 @@ function renderBoard() {
       if (movementIcon) {
         const image = document.createElement("img");
         image.className = "movement-icon";
-        image.src = `assets/wow/vehicle/${movementIcon}`;
+        image.src = `assets/wow/vehicle/${movementIcon.file}`;
         image.alt = base.label;
         image.width = 64;
         image.height = 64;
-        image.style.transform = base.glyph === "↑" ? "rotate(-90deg)" : base.glyph === "←" ? "rotate(180deg)" : base.glyph === "↓" ? "rotate(90deg)" : "none";
+        image.style.transform = movementIcon.rotation ? `rotate(${movementIcon.rotation}deg)` : "none";
         glyph.append(image);
       } else {
         glyph.textContent = base.glyph;
