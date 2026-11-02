@@ -138,7 +138,7 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
 }
 .key .primary.no-icon span { display: flex; align-items: center; justify-content: center; min-height: 100%; padding: 10px 5px 24px; background: linear-gradient(180deg, #8c6437 0%, #49331f 100%); font-size: 15px; }
 .key .primary .glyph {
-  position: absolute; inset: 0 0 22px; z-index: 1;
+  position: absolute; inset: 0; z-index: 1;
   display: flex; align-items: center; justify-content: center;
   font-size: 42px; color: #f4e7ce;
 }
@@ -146,7 +146,7 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
   align-items: center; color: #4d4d55; font-size: 10px;
   background: linear-gradient(180deg, #20232a 0%, #1a1d22 100%);
 }
-.key .primary.base .movement-icon { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; opacity: 1; filter: drop-shadow(0 2px 2px #000); }
+.key .primary.base .movement-icon { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; opacity: 1; filter: drop-shadow(0 2px 2px #000); }
 
 .key .mods {
   position: absolute; left: 3px; right: 3px; bottom: 3px; z-index: 3;

@@ -171,15 +171,20 @@ async function main() {
     `JSON.stringify(Object.fromEntries(['S', 'A', 'D'].map((legend) => {
       const key = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === legend);
       const icon = key?.querySelector('.movement-icon');
-      return [legend, icon ? { src: icon.getAttribute('src'), transform: icon.style.transform } : null];
+      if (!icon) return [legend, null];
+      const box = icon.getBoundingClientRect();
+      const primary = key.querySelector('.primary').getBoundingClientRect();
+      const fill = Math.abs(box.width - primary.width) <= 1 && Math.abs(box.height - primary.height) <= 1;
+      return [legend, { src: icon.getAttribute('src'), transform: icon.style.transform, fill }];
     })))`,
   );
   const arrows = JSON.parse(movement);
   check(
-    "movement keys point the right way",
+    "movement keys point the right way and fill the cap",
     arrows.S?.src === "assets/wow/vehicle/pitch-up.png" && arrows.S?.transform === "none" &&
       arrows.A?.src === "assets/wow/vehicle/pitch-up.png" && arrows.A?.transform === "rotate(-90deg)" &&
-      arrows.D?.src === "assets/wow/vehicle/pitch-up.png" && arrows.D?.transform === "rotate(90deg)",
+      arrows.D?.src === "assets/wow/vehicle/pitch-up.png" && arrows.D?.transform === "rotate(90deg)" &&
+      arrows.S?.fill && arrows.A?.fill && arrows.D?.fill,
     movement,
   );
 
