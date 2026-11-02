@@ -88,7 +88,7 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
 .key:hover { border-color: var(--primary); }
 .key .body { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; }
 .key.assigned { border-color: #4a4a52; }
-.key.tilted .legend { display: none; }
+.key.tilted .legend, .key.named .legend { display: none; }
 .key .legend {
   position: absolute; top: 3px; left: 5px; z-index: 3;
   font-size: 9px; color: #dfe8f5; letter-spacing: 0.08em; text-transform: uppercase;

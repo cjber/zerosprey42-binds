@@ -205,9 +205,13 @@ function renderBoard() {
       const name = document.createElement("span");
       name.textContent = actionLabel(slots.bare, state.profile.macros);
       primary.append(name);
+    } else if (!base && key.legend.length > 3) {
+      // Named keys (Super, Lower, Space, Tab) read better in the middle than as an "empty" key with
+      // their name in the corner, and a turned key clips that corner anyway.
+      primary.textContent = key.legend;
+      cap.classList.add("named");
     } else {
-      // A turned key clips its corner legend, so name it in the middle instead.
-      primary.textContent = base ?? (key.rot ? key.legend : "empty");
+      primary.textContent = base ?? "empty";
     }
     primary.title = slots.bare
       ? `${key.legend}: ${actionLabel(slots.bare, state.profile.macros)}`
@@ -578,6 +582,9 @@ async function boot() {
 }
 
 function renderAll() {
+  const boardName = state.board?.name ?? "Zerosprey42";
+  el("board-name").textContent = boardName;
+  document.title = `${boardName} · WoW binds`;
   renderChars();
   renderBoard();
   renderPlan();
