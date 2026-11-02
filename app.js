@@ -1,112 +1,20 @@
-// Zerosprey42 bind planner. No build step, no dependencies: open index.html or serve the folder.
+// Browser shell: DOM only. All planner logic lives in lib/planner.js and is unit tested.
+
+import {
+  MODS, COMMANDS, BARS, SLOT_PLAN, SLOT_ORDER, blankSlots, newCharacter,
+  actionLabel, bindingFor, autoPlace, toBindings, toMacroText, findPlacement,
+} from "./lib/planner.js";
 
 const UNIT = 88;
 const GAP = 6;
-
-const MODS = [
-  { id: "bare", label: "", prefix: "" },
-  { id: "shift", label: "S", prefix: "SHIFT-" },
-  { id: "ctrl", label: "C", prefix: "CTRL-" },
-  { id: "alt", label: "A", prefix: "ALT-" },
-];
-
-// Keys that belong to the utilities and are never auto-filled.
-const RESERVED = new Set(["F", "G", "T", "S", "B", "Space"]);
-
-const AUTO_ORDER = ["Q", "W", "E", "R", "Z", "X", "C", "V"];
-
-// Which bar and slot each (layer, key) drives, matching the fixed bind grid.
-const SLOT_PLAN = (() => {
-  const plan = {};
-  const put = (mod, keys, bar, first) => {
-    keys.forEach((key, index) => {
-      plan[`${mod}:${key}`] = { bar, slot: first + index };
-    });
-  };
-  put("bare", AUTO_ORDER, 1, 1);
-  put("shift", ["Q", "W", "E", "R"], 1, 9);
-  put("shift", ["Z", "X", "C", "V"], 2, 1);
-  put("ctrl", ["Q", "W", "E", "R"], 2, 5);
-  put("ctrl", ["Z", "X", "C", "V"], 2, 9);
-  put("alt", ["Q", "W", "E", "R"], 3, 1);
-  put("alt", ["Z", "X", "C", "V"], 3, 5);
-  return plan;
-})();
-
-const SLOT_ORDER = [
-  "bare:Q", "bare:W", "bare:E", "bare:R", "bare:Z", "bare:X", "bare:C", "bare:V",
-  "shift:Q", "shift:W", "shift:E", "shift:R", "shift:Z", "shift:X", "shift:C", "shift:V",
-  "ctrl:Q", "ctrl:W", "ctrl:E", "ctrl:R", "ctrl:Z", "ctrl:X", "ctrl:C", "ctrl:V",
-  "alt:Q", "alt:W", "alt:E", "alt:R", "alt:Z", "alt:X", "alt:C", "alt:V",
-];
-
-const WOW_KEY = {
-  Tab: "TAB", Space: "SPACE", Enter: "ENTER", Bksp: "BACKSPACE",
-  ";": "SEMICOLON", "'": "APOSTROPHE", ",": "COMMA", ".": "PERIOD", "/": "SLASH",
-};
-
-const BARS = {
-  1: { prefix: "ACTIONBUTTON", label: "bar 1" },
-  2: { prefix: "MULTIACTIONBAR1BUTTON", label: "bar 2" },
-  3: { prefix: "MULTIACTIONBAR2BUTTON", label: "bar 3" },
-};
-
-const COMMANDS = [
-  ["INTERACTTARGET", "Interact"],
-  ["TARGETNEARESTENEMY", "Target nearest"],
-  ["TARGETFOCUS", "Target focus"],
-  ["STOPCASTING", "Stop cast"],
-  ["JUMP", "Jump"],
-  ["TOGGLEBACKPACK", "Bags"],
-  ["TOGGLEAUTORUN", "Autorun"],
-];
+const STORE = "zerosprey-binds-v4";
 
 const state = { board: null, classes: {}, profile: null };
 const el = (id) => document.getElementById(id);
 const newId = () => Math.random().toString(36).slice(2, 9);
 
-function blankSlots() {
-  const slots = {};
-  for (const key of state.board.keys) slots[key.legend] = { bare: null, shift: null, ctrl: null, alt: null };
-  return slots;
-}
-
-function newCharacter(name, klass, level) {
-  return { id: newId(), name, class: klass, level, slots: blankSlots() };
-}
-
-function active() {
-  return state.profile.characters.find((c) => c.id === state.profile.active);
-}
-
-const STORE = "zerosprey-binds-v3";
+const active = () => state.profile.characters.find((c) => c.id === state.profile.active);
 const save = () => localStorage.setItem(STORE, JSON.stringify(state.profile));
-
-function load() {
-  const raw = localStorage.getItem(STORE);
-  if (raw) {
-    try {
-      state.profile = JSON.parse(raw);
-      if (state.profile?.characters?.length) return;
-    } catch {
-      /* fall through to a fresh profile */
-    }
-  }
-  state.profile = { characters: [newCharacter("Barry Buckfast", "hunter", 60)], macros: [], active: null };
-  state.profile.active = state.profile.characters[0].id;
-  save();
-}
-
-// ---------- labels ----------
-
-function actionLabel(action) {
-  if (!action) return "";
-  if (action.k === "bar") return action.ability ?? `${BARS[action.bar].label} ${action.slot}`;
-  if (action.k === "pet") return `pet ${action.slot}`;
-  if (action.k === "cmd") return action.label;
-  if (action.k === "macro") return state.profile.macros.find((m) => m.id === action.id)?.name ?? "macro";
-  return "";
-}
 
 function actionIcon(action) {
   if (!action) return null;
@@ -118,17 +26,23 @@ function actionIcon(action) {
   return null;
 }
 
-function bindingFor(action) {
-  if (!action) return null;
-  if (action.k === "bar") return `${BARS[action.bar].prefix}${action.slot}`;
-  if (action.k === "pet") return `BONUSACTIONBUTTON${action.slot}`;
-  if (action.k === "cmd") return action.binding;
-  return null;
+async function load() {
+  const raw = localStorage.getItem(STORE);
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed?.characters?.length) return parsed;
+    } catch {
+      /* fall back to the shipped profile */
+    }
+  }
+  const shipped = await fetch("assets/profiles/barry.json").then((r) => r.json()).catch(() => null);
+  if (shipped?.characters?.length) return shipped;
+  const character = newCharacter(state.board, "Barry Buckfast", "hunter", 60);
+  return { characters: [character], macros: [], active: character.id };
 }
 
-const wowKey = (legend) => WOW_KEY[legend] ?? legend.toUpperCase();
-
-// ---------- board ----------
+// ---------- characters ----------
 
 function renderChars() {
   const box = el("chars");
@@ -151,7 +65,7 @@ function renderChars() {
     const name = prompt("Name");
     if (!name) return;
     const klass = (prompt("Class", "hunter") || "hunter").toLowerCase();
-    const character = newCharacter(name, klass, 1);
+    const character = newCharacter(state.board, name, klass, 1);
     state.profile.characters.push(character);
     state.profile.active = character.id;
     save();
@@ -174,6 +88,8 @@ function renderChars() {
   label.append(input);
   box.append(label);
 }
+
+// ---------- board ----------
 
 function renderBoard() {
   const board = el("board");
@@ -201,8 +117,8 @@ function renderBoard() {
 
     const primary = document.createElement("div");
     primary.className = "primary" + (slots.bare ? "" : " empty");
-    const icon = actionIcon(slots.bare);
     if (slots.bare) {
+      const icon = actionIcon(slots.bare);
       if (icon) {
         const img = document.createElement("img");
         img.src = icon;
@@ -211,12 +127,14 @@ function renderBoard() {
         primary.append(img);
       }
       const name = document.createElement("span");
-      name.textContent = actionLabel(slots.bare);
+      name.textContent = actionLabel(slots.bare, state.profile.macros);
       primary.append(name);
     } else {
       primary.textContent = "empty";
     }
-    primary.title = slots.bare ? `${key.legend}: ${actionLabel(slots.bare)}` : `${key.legend}: empty`;
+    primary.title = slots.bare
+      ? `${key.legend}: ${actionLabel(slots.bare, state.profile.macros)}`
+      : `${key.legend}: empty`;
     primary.onclick = (event) => {
       event.stopPropagation();
       openPalette(event, key.legend, "bare");
@@ -226,11 +144,11 @@ function renderBoard() {
     const mods = document.createElement("div");
     mods.className = "mods";
     for (const mod of MODS.slice(1)) {
-      const chip = document.createElement("div");
       const action = slots[mod.id];
+      const chip = document.createElement("div");
       chip.className = "mod" + (action ? " has" : "");
       chip.textContent = action ? mod.label : "·";
-      chip.title = action ? `${mod.id}: ${actionLabel(action)}` : `${mod.id}: empty`;
+      chip.title = `${mod.id}: ${action ? actionLabel(action, state.profile.macros) : "empty"}`;
       chip.onclick = (event) => {
         event.stopPropagation();
         openPalette(event, key.legend, mod.id);
@@ -250,15 +168,17 @@ function openPalette(event, legend, modId) {
   const plan = SLOT_PLAN[`${modId}:${legend}`];
   palette.innerHTML = "";
 
-  const title = document.createElement("h3");
-  title.textContent = `${legend} · ${modId === "bare" ? "no modifier" : modId}`;
-  palette.append(title);
+  const heading = (text) => {
+    const node = document.createElement("h3");
+    node.textContent = text;
+    palette.append(node);
+    return node;
+  };
+  heading(`${legend} · ${modId === "bare" ? "no modifier" : modId}`);
 
   const abilities = state.classes[character.class]?.abilities ?? [];
   if (abilities.length) {
-    const heading = document.createElement("h3");
-    heading.textContent = plan ? `spells (this key drives ${BARS[plan.bar].label} ${plan.slot})` : "spells";
-    palette.append(heading);
+    heading(plan ? `spells · this key drives ${BARS[plan.bar].label} ${plan.slot}` : "spells");
     const grid = document.createElement("div");
     grid.className = "grid";
     for (const ability of abilities) {
@@ -274,10 +194,7 @@ function openPalette(event, legend, modId) {
       text.textContent = ability.name;
       button.append(text);
       button.onclick = () => {
-        if (!plan) {
-          alert("That key is a utility key: pick a command or a macro for it instead.");
-          return;
-        }
+        if (!plan) return alert("That key is a utility key: give it a command or a macro.");
         character.slots[legend][modId] = {
           k: "bar", bar: plan.bar, slot: plan.slot, ability: ability.name, icon: ability.icon,
         };
@@ -291,10 +208,8 @@ function openPalette(event, legend, modId) {
     palette.append(grid);
   }
 
-  const slotSection = (bar) => {
-    const heading = document.createElement("h3");
-    heading.textContent = `${BARS[bar].label}`;
-    palette.append(heading);
+  for (const bar of [1, 2, 3]) {
+    heading(BARS[bar].label);
     const grid = document.createElement("div");
     grid.className = "grid";
     for (let slot = 1; slot <= 12; slot += 1) {
@@ -310,12 +225,9 @@ function openPalette(event, legend, modId) {
       grid.append(button);
     }
     palette.append(grid);
-  };
-  for (const bar of [1, 2, 3]) slotSection(bar);
+  }
 
-  const commands = document.createElement("h3");
-  commands.textContent = "commands";
-  palette.append(commands);
+  heading("commands");
   const commandGrid = document.createElement("div");
   commandGrid.className = "grid";
   for (const [binding, label] of COMMANDS) {
@@ -332,9 +244,7 @@ function openPalette(event, legend, modId) {
   palette.append(commandGrid);
 
   if (state.profile.macros.length) {
-    const heading = document.createElement("h3");
-    heading.textContent = "macros";
-    palette.append(heading);
+    heading("macros");
     const grid = document.createElement("div");
     grid.className = "grid";
     for (const macro of state.profile.macros) {
@@ -351,9 +261,7 @@ function openPalette(event, legend, modId) {
     palette.append(grid);
   }
 
-  const clearSection = document.createElement("h3");
-  clearSection.textContent = " ";
-  palette.append(clearSection);
+  heading(" ");
   const clearGrid = document.createElement("div");
   clearGrid.className = "grid";
   const clear = document.createElement("button");
@@ -371,12 +279,13 @@ function openPalette(event, legend, modId) {
 
   palette.hidden = false;
   const rect = event.currentTarget.getBoundingClientRect();
-  const width = 430;
-  const left = Math.min(rect.left + window.scrollX, window.innerWidth - width - 20);
+  const left = Math.min(rect.left + window.scrollX, window.innerWidth - 450);
   const below = rect.bottom + window.scrollY + 8;
-  const tooLow = below + 460 > window.scrollY + window.innerHeight;
   palette.style.left = `${Math.max(12, left)}px`;
-  palette.style.top = tooLow ? `${Math.max(12, rect.top + window.scrollY - 470)}px` : `${below}px`;
+  palette.style.top =
+    below + 460 > window.scrollY + window.innerHeight
+      ? `${Math.max(12, rect.top + window.scrollY - 470)}px`
+      : `${below}px`;
 }
 
 // ---------- level plan ----------
@@ -384,9 +293,8 @@ function openPalette(event, legend, modId) {
 function renderPlan() {
   const character = active();
   const select = el("plan-class");
-  const names = Object.keys(state.classes);
   select.innerHTML = "";
-  for (const name of names) {
+  for (const name of Object.keys(state.classes)) {
     const option = document.createElement("option");
     option.value = name;
     option.textContent = name;
@@ -431,61 +339,17 @@ function renderPlan() {
   }
 }
 
-function findPlacement(character, name) {
-  for (const key of state.board.keys) {
-    const slots = character.slots[key.legend];
-    if (!slots) continue;
-    for (const mod of MODS) {
-      if (slots[mod.id]?.ability === name) {
-        return `${mod.label ? `${mod.label}+` : ""}${key.legend}`;
-      }
-    }
-  }
-  return null;
-}
-
-function autoPlace() {
+function autoPlaceAll() {
   const character = active();
-  const abilities = (state.classes[character.class]?.abilities ?? [])
-    .filter((a) => a.level <= character.level && a.kind !== "passive")
-    .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name));
-
-  const placed = new Set();
-  for (const key of state.board.keys) {
-    for (const action of Object.values(character.slots[key.legend] ?? {})) {
-      if (action?.ability) placed.add(action.ability);
-    }
-  }
-
-  for (const ability of abilities) {
-    if (placed.has(ability.name)) continue;
-    const free = nextFreeSlot(character);
-    if (!free) break;
-    const { legend, mod } = free;
-    const plan = SLOT_PLAN[`${mod}:${legend}`];
-    character.slots[legend][mod] = {
-      k: "bar", bar: plan.bar, slot: plan.slot, ability: ability.name, icon: ability.icon,
-    };
-  }
+  autoPlace(character, state.classes[character.class]?.abilities ?? []);
   save();
   renderBoard();
   renderPlan();
 }
 
-function nextFreeSlot(character) {
-  for (const entry of SLOT_ORDER) {
-    const [mod, legend] = entry.split(":");
-    if (!character.slots[legend]) continue;
-    if (!character.slots[legend][mod]) return { legend, mod };
-  }
-  return null;
-}
-
 function clearPlaces() {
   const character = active();
-  for (const key of state.board.keys) {
-    const slots = character.slots[key.legend];
-    if (!slots) continue;
+  for (const slots of Object.values(character.slots)) {
     for (const mod of MODS) if (slots[mod.id]?.ability) slots[mod.id] = null;
   }
   save();
@@ -534,29 +398,11 @@ function addMacro() {
 // ---------- export ----------
 
 function renderExport() {
-  const character = active();
-  const lines = ["bind S MOVEFORWARD", "bind BUTTON3 STARTAUTORUN", "bind UP NONE"];
-  for (let digit = 1; digit <= 9; digit += 1) lines.push(`bind ${digit} NONE`);
-  lines.push("bind 0 NONE", "bind - NONE", "bind = NONE");
-
-  for (const key of state.board.keys) {
-    const slots = character.slots[key.legend];
-    if (!slots) continue;
-    for (const mod of MODS) {
-      const binding = bindingFor(slots[mod.id]);
-      if (!binding) continue;
-      lines.push(`bind ${mod.prefix}${wowKey(key.legend)} ${binding}`);
-    }
-  }
-  el("out-bindings").textContent = `${lines.join("\n")}\n`;
-
-  const macroText = state.profile.macros
-    .map((macro) => `# ${macro.name}\n# icon: ${macro.icon}\n${macro.body.trim()}\n`)
-    .join("\n");
-  el("out-macros").textContent = macroText || "No macros yet.\n";
+  el("out-bindings").textContent = toBindings(active(), state.board);
+  el("out-macros").textContent = toMacroText(state.profile);
 }
 
-// ---------- wiring ----------
+// ---------- boot ----------
 
 async function boot() {
   const [board, hunter] = await Promise.all([
@@ -565,7 +411,8 @@ async function boot() {
   ]);
   state.board = board;
   state.classes = hunter ? { hunter } : {};
-  load();
+  state.profile = await load();
+  save();
   renderAll();
 
   for (const button of document.querySelectorAll(".tabs button")) {
@@ -581,7 +428,7 @@ async function boot() {
     };
   }
 
-  el("plan-auto").onclick = autoPlace;
+  el("plan-auto").onclick = autoPlaceAll;
   el("plan-clear").onclick = clearPlaces;
   el("macro-add").onclick = addMacro;
 

@@ -1,0 +1,407 @@
+{
+  "characters": [
+    {
+      "id": "hunter-barry-buckfast",
+      "name": "Barry Buckfast",
+      "class": "hunter",
+      "level": 60,
+      "slots": {
+        "Tab": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Q": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 1,
+            "ability": "Track Beasts",
+            "icon": "ability_tracking"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 9,
+            "ability": "Call Pet",
+            "icon": "ability_hunter_beastcall"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "W": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 2,
+            "ability": "Aspect of the Monkey",
+            "icon": "ability_hunter_aspectofthemonkey"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 10,
+            "ability": "Dismiss Pet",
+            "icon": "ability_hunter_beastcall02"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "E": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 3,
+            "ability": "Serpent Sting",
+            "icon": "ability_hunter_quickshot"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 11,
+            "ability": "Feed Pet",
+            "icon": "inv_misc_food_18"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "R": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 4,
+            "ability": "Arcane Shot",
+            "icon": "ability_hunter_aimedshot"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 12,
+            "ability": "Mend Pet",
+            "icon": "ability_hunter_mendpet"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "T": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TARGETNEARESTENEMY",
+            "label": "Target nearest"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Y": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "U": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "I": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "O": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "P": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Bksp": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Ctrl": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "A": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "S": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "D": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "F": {
+          "bare": {
+            "k": "cmd",
+            "binding": "INTERACTTARGET",
+            "label": "Interact"
+          },
+          "shift": {
+            "k": "cmd",
+            "binding": "TARGETFOCUS",
+            "label": "Target focus"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "G": {
+          "bare": {
+            "k": "cmd",
+            "binding": "BONUSACTIONBUTTON1",
+            "label": "Pet attack"
+          },
+          "shift": {
+            "k": "cmd",
+            "binding": "BONUSACTIONBUTTON2",
+            "label": "Pet follow"
+          },
+          "ctrl": {
+            "k": "cmd",
+            "binding": "STOPCASTING",
+            "label": "Stop cast"
+          },
+          "alt": null
+        },
+        "H": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "J": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "K": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "L": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        ";": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "'": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Shift": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Z": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 5,
+            "ability": "Hunter's Mark",
+            "icon": "ability_hunter_snipershot"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 1,
+            "ability": "Revive Pet",
+            "icon": "ability_hunter_beastsoothe"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "X": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 6,
+            "ability": "Concussive Shot",
+            "icon": "spell_frost_stun"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 2,
+            "ability": "Tame Beast",
+            "icon": "ability_hunter_beasttaming"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "C": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 7,
+            "ability": "Raptor Strike",
+            "icon": "ability_meleedamage"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 3,
+            "ability": "Track Humanoids",
+            "icon": "ability_tracking"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "V": {
+          "bare": {
+            "k": "bar",
+            "bar": 1,
+            "slot": 8,
+            "ability": "Aspect of the Hawk",
+            "icon": "spell_nature_ravenform"
+          },
+          "shift": {
+            "k": "bar",
+            "bar": 2,
+            "slot": 4,
+            "ability": "Distracting Shot",
+            "icon": "spell_arcane_blast"
+          },
+          "ctrl": null,
+          "alt": null
+        },
+        "B": {
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEBACKPACK",
+            "label": "Bags"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "N": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "M": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        ",": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        ".": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "/": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Super": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Lower": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Space": {
+          "bare": {
+            "k": "cmd",
+            "binding": "JUMP",
+            "label": "Jump"
+          },
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Enter": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "Raise": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        },
+        "AltGr": {
+          "bare": null,
+          "shift": null,
+          "ctrl": null,
+          "alt": null
+        }
+      }
+    }
+  ],
+  "macros": [
+    {
+      "id": "pet-attack",
+      "name": "Pet Attack",
+      "icon": "ability_hunter_beastcall",
+      "body": "#showtooltip\n/petattack\n/cast Serpent Sting"
+    },
+    {
+      "id": "mend-pet",
+      "name": "Mend Pet",
+      "icon": "ability_hunter_mendpet",
+      "body": "#showtooltip\n/cast [target=pet,exists] Mend Pet"
+    },
+    {
+      "id": "hunters-mark",
+      "name": "Hunter's Mark",
+      "icon": "ability_hunter_snipershot",
+      "body": "#showtooltip\n/cast Hunter's Mark"
+    }
+  ],
+  "active": "hunter-barry-buckfast"
+}

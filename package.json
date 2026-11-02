@@ -1,0 +1,12 @@
+{
+  "name": "zerosprey42-binds",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun tools/dev.ts",
+    "test": "bun test",
+    "validate": "bun tools/cli.ts validate",
+    "check": "bun tools/cli.ts validate && bun test"
+  }
+}

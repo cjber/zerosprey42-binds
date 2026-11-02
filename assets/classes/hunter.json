@@ -78,7 +78,7 @@
       "name": "Track Humanoids",
       "level": 10,
       "kind": "utility",
-      "icon": "ability_hunter_beasttracking"
+      "icon": "ability_tracking"
     },
     {
       "name": "Mend Pet",
@@ -97,6 +97,26 @@
       "level": 12,
       "kind": "utility",
       "icon": "spell_arcane_blast"
+    }
+  ],
+  "macros": [
+    {
+      "id": "pet-attack",
+      "name": "Pet Attack",
+      "icon": "ability_hunter_beastcall",
+      "body": "#showtooltip\n/petattack\n/cast Serpent Sting"
+    },
+    {
+      "id": "mend-pet",
+      "name": "Mend Pet",
+      "icon": "ability_hunter_mendpet",
+      "body": "#showtooltip\n/cast [target=pet,exists] Mend Pet"
+    },
+    {
+      "id": "hunters-mark",
+      "name": "Hunter's Mark",
+      "icon": "ability_hunter_snipershot",
+      "body": "#showtooltip\n/cast Hunter's Mark"
     }
   ]
 }
