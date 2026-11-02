@@ -100,6 +100,7 @@ function renderBoard() {
   board.style.width = `${right}px`;
   board.style.height = `${bottom}px`;
 
+  // The board is laid out at its own scale, then fitted once the keys exist.
   for (const key of state.board.keys) {
     const slots = character.slots[key.legend] ?? { bare: null, shift: null, ctrl: null, alt: null };
     const cap = document.createElement("div");
@@ -158,6 +159,23 @@ function renderBoard() {
     cap.append(mods);
     board.append(cap);
   }
+  fitBoard();
+}
+
+function fitBoard() {
+  const board = el("board");
+  const fit = el("fit");
+  const stage = fit?.parentElement;
+  if (!board || !fit || !stage) return;
+  const style = getComputedStyle(stage);
+  const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+  const available = stage.clientWidth - padding;
+  const width = board.offsetWidth || 1;
+  const height = board.offsetHeight || 1;
+  const scale = Math.min(1, available / width);
+  board.style.transform = `scale(${scale})`;
+  fit.style.width = `${width * scale}px`;
+  fit.style.height = `${height * scale}px`;
 }
 
 // ---------- palette ----------
@@ -446,6 +464,8 @@ async function boot() {
     save();
     renderAll();
   };
+
+  window.addEventListener("resize", fitBoard);
 
   document.addEventListener("click", (event) => {
     const palette = el("palette");

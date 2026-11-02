@@ -60,11 +60,13 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
   border: 1px solid var(--border-soft);
   border-radius: 22px;
   padding: 26px;
-  overflow-x: auto;
+  overflow: hidden;
   box-shadow: inset 0 1px 0 #ffffff08, 0 30px 60px -40px #000;
 }
 
-.board { position: relative; width: 1120px; height: 430px; }
+/* The board keeps its own pixel geometry and is scaled to whatever width is available. */
+.fit { position: relative; }
+.board { position: relative; width: 1120px; height: 430px; transform-origin: top left; }
 
 .key {
   position: absolute;
