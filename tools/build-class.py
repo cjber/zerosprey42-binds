@@ -21,6 +21,10 @@ import sys
 
 CLASSES, SPELLNAME, CLASS, OUT = sys.argv[1:5]
 
+# The wago.tools exports live under a folder named for the client build they were taken from, so the
+# recorded provenance is the build actually read rather than a version typed in by hand.
+SPELLNAME_BUILD = pathlib.Path(SPELLNAME).parent.name
+
 # Checked in this order: the first match wins, so "Track Humanoids" is utility, not a pet action,
 # and "Aspect of the Hawk" is a buff.
 KIND_RULES = [
@@ -150,7 +154,7 @@ def main():
         json.dumps(
             {
                 "class": CLASS,
-                "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.70707)",
+                "source": f"cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, {SPELLNAME_BUILD})",
                 "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
                 "abilities": abilities,
                 "macros": macros,

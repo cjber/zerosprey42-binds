@@ -77,5 +77,14 @@ Patrol run data lands under each product's `runs/` folder and is gitignored.
 ## Where the data comes from
 
 Levels for this client belong in `cjber/tweaks-forever` `Data/ClassSpells.lua` (spell IDs, level, fee,
-from the client and CMaNGOS); the Hunter list here is a seed and needs that source plumbed in, with
-names attached. Board geometry: see the note in `tools/build-board.py`.
+from the client and CMaNGOS), and both class files here are generated from it. Their `source` field names
+the wago.tools build the SpellName and icon exports came from, which is the folder name they sit in:
+
+```sh
+C=~/.cache/wowmock/1.60.1.69913
+python3 tools/build-class.py ~/drive/proj/wow/tweaks-forever/Data/ClassSpells.lua $C/SpellName.csv hunter assets/classes/hunter.json
+python3 tools/build-icons.py $C/SpellMisc.csv $C/ManifestInterfaceData.csv assets/classes/hunter.json
+```
+
+Regenerate in place: `build-class.py` keeps the `macros` array from the file it writes over. Board
+geometry: see the note in `tools/build-board.py`.

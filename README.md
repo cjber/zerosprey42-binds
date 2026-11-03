@@ -42,10 +42,26 @@ fill the same eight grid keys, so a board without them is rejected by `validate`
 `utility`, `pet`, `passive`). Passives are skipped by auto-place. `assets/classes/index.json` lists the
 classes the page loads, so adding a file there is enough to make it selectable.
 
-The Hunter file is a seed. The authoritative list of what this client teaches, and at which level, is
-`Data/ClassSpells.lua` in `cjber/tweaks-forever` (spell IDs, level and fee, from the client and
-CMaNGOS); `tools/build-class.py` attaches SpellName and `tools/build-icons.py` attaches the client's own
-icon by spell ID. The Mage file is generated that way, with its own kind rules for buffs and utility.
+Both files are generated from the client's own data. `Data/ClassSpells.lua` in `cjber/tweaks-forever`
+(spell IDs, level and fee, from the client and CMaNGOS) is the authoritative list of what this client
+teaches and at which level; `tools/build-class.py` attaches SpellName (one entry per ability, since ranks
+share a name and only the first rank needs a slot) and `tools/build-icons.py` attaches the client's own
+icon by spell ID.
+
+The tools read wago.tools exports for one client build, kept together in a folder named for that build:
+the class file's `source` records the folder name, so the provenance cannot drift from the data.
+
+```sh
+C=~/.cache/wowmock/1.60.1.69913
+python3 tools/build-class.py ~/drive/proj/wow/tweaks-forever/Data/ClassSpells.lua \
+  $C/SpellName.csv hunter assets/classes/hunter.json
+python3 tools/build-icons.py $C/SpellMisc.csv $C/ManifestInterfaceData.csv \
+  assets/classes/hunter.json
+python3 tools/fetch-icons.py
+```
+
+The mage takes the same three steps with `mage` in place of `hunter`; its kind rules live in
+`MAGE_KIND_OVERRIDES`.
 
 ## What it cannot do
 

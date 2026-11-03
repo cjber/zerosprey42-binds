@@ -1,6 +1,6 @@
 {
   "class": "mage",
-  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.70707)",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
   "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
   "abilities": [
     {
