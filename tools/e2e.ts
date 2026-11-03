@@ -199,16 +199,25 @@ async function main() {
     movement,
   );
 
-  const utilityDisplay = await evaluate(
-    `(() => {
-      const key = [...document.querySelectorAll('.key')].find((candidate) => candidate.querySelector('.primary span')?.textContent === 'Bags');
-      const spell = [...document.querySelectorAll('.key')].find((candidate) => candidate.querySelector('.primary span')?.textContent === 'Serpent Sting');
-      return JSON.stringify({ utility: key ? getComputedStyle(key.querySelector('.primary span')).display : null, spell: spell ? getComputedStyle(spell.querySelector('.primary span')).display : null });
-    })()`
+  const keyState = JSON.parse(
+    await evaluate(
+      `(() => {
+        const byLabel = (name) => [...document.querySelectorAll('.key')].find((c) => c.querySelector('.primary span')?.textContent === name);
+        const art = [...document.querySelectorAll('.key')].find((c) => c.querySelector('img[src*="panels/"]'));
+        const honor = byLabel('Honor');
+        const spell = byLabel('Serpent Sting');
+        return JSON.stringify({
+          art: Boolean(art),
+          artLabel: art ? getComputedStyle(art.querySelector('.primary span')).display : null,
+          honor: honor ? getComputedStyle(honor.querySelector('.primary span')).display : null,
+          spell: spell ? getComputedStyle(spell.querySelector('.primary span')).display : null,
+        });
+      })()`,
+    ),
   );
-  const utilityState = JSON.parse(utilityDisplay);
-  check("utility binds keep a readable label", utilityState.utility === "flex", utilityDisplay);
-  check("spell names stay hidden until interaction", utilityState.spell === "none", utilityDisplay);
+  check("a panel key shows the client's button art", keyState.art === true && keyState.artLabel === "none", JSON.stringify(keyState));
+  check("a command with no client art keeps its label", keyState.honor === "flex", JSON.stringify(keyState));
+  check("spell names stay hidden until interaction", keyState.spell === "none", JSON.stringify(keyState));
 
   // Assigning a spell through the palette updates the key and the export.
   // Pick the Q key by its legend, not by position: the board order comes from the keyboard itself.

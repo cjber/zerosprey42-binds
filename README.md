@@ -15,7 +15,9 @@ No build step, no dependencies, no backend: plain HTML, CSS and JS, so any stati
   lend their unused modifiers to the last few spells. The interface panels sit on the keys the client
   itself binds them to: P Spellbook, N Talents, L Quest log, O Social, M Map, H Honor, K Skills,
   U Reputation, Esc Game menu, plus Shift+I Pet book, Shift+P Pets, Shift+M Battle map and
-  Shift+Space Score screen. A panel the client leaves unbound gets no key here either.
+  Shift+Space Score screen. A panel the client leaves unbound gets no key here either. Where the
+  client ships button art for a panel, the key shows that art instead of its name (fetched into
+  `assets/wow/panels/` by `python3 tools/fetch-panel-icons.py`); a command without art keeps its name.
 - **Level plan**: pick a class and a level. Each ability lists its level and where it sits. Auto-place
   puts every ability you have learned into the next free slot in a fixed order: the left grid on bare,
   Shift, Ctrl and Ctrl+Shift, then the spare modifiers on T, G, S and B, so a new spell never means

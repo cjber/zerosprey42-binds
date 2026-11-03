@@ -291,3 +291,8 @@ pre {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+/* A panel key shows the client's own button art instead of its name. */
+.key .primary.art { padding: 4px 0 0; }
+.key .primary.art span { display: none; }
+.key .primary.art img { width: 46px; height: 46px; object-fit: contain; image-rendering: auto; }

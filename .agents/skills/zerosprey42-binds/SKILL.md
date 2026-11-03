@@ -23,7 +23,9 @@ plan for everyone or do not change it.
 The interface panels are not spell slots: they sit on the client's own default keys, in `UI_BINDS`
 (P Spellbook, N Talents, L Quest log, O Social, M Map, H Honor, K Skills, U Reputation, Esc Menu, and
 the Shift+ keys for pet book, pets, battle map and score screen). Never invent a key for a panel the
-client leaves unbound; change that one table, not a character's slots.
+client leaves unbound; change that one table, not a character's slots. `COMMAND_ART` names the
+client's button art for a command, cached in `assets/wow/panels/`; a command with no art shows its
+label instead.
 
 ## Common jobs
 
