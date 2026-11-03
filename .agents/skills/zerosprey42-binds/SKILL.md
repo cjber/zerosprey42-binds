@@ -42,5 +42,5 @@ label instead.
 
 ## What this cannot do
 
-It cannot write action bars or create macros in the client. The export is applied by the player or by a
-companion addon using `PickupSpell`/`PlaceAction` and `CreateMacro`.
+It cannot write action bars or create macros in the client. The export is applied by the player, or by
+the companion addon in `addon/BindsApplier/` for the bind lines (`SetBinding`); macros stay manual.

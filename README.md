@@ -69,9 +69,17 @@ The mage takes the same three steps with `mage` in place of `hunter`; its kind r
 
 ## What it cannot do
 
-A web page cannot write action bars or create macros. The export is for you or for a small companion
-addon to apply: `PickupSpell` and `PlaceAction` can place a spell on a bar out of combat, and `CreateMacro`
-can create a macro where the client allows it.
+A web page cannot write action bars or create macros. The export is for you, or for the companion addon
+below: `PickupSpell` and `PlaceAction` can place a spell on a bar out of combat, and `CreateMacro` can
+create a macro where the client allows it.
+
+## Companion addon
+
+`addon/BindsApplier/` is a small in-game addon for the half a page cannot do. Copy it into
+`Interface/AddOns/`, `/reload`, then `/binds` opens a paste box: paste the export's bind lines and press
+Apply. It calls the client's own `SetBinding` for each line and saves the binding set; the status line
+counts what applied and what the client refused. Macros stay manual, because the client wants an icon
+index for each one.
 
 ## The shipped profiles
 

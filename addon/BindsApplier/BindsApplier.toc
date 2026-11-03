@@ -1,0 +1,6 @@
+## Interface: 16001
+## Title: Binds Applier
+## Notes: Applies the bind planner's exported bindings-cache.wtf in game.
+## Author: cjber
+## Version: 0.1.0
+BindsApplier.lua
