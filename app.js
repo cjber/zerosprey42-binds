@@ -3,6 +3,7 @@
 import {
   MODS, COMMANDS, BARS, SLOT_PLAN, SLOT_ORDER, blankSlots, newCharacter, BASE_LABELS,
   actionLabel, bindingFor, autoPlace, toBindings, toMacroText, findPlacement,
+  availableAbilities, placedAbilityNames, placeAbility,
 } from "./lib/planner.js";
 
 const UNIT = 88;
@@ -172,6 +173,7 @@ function renderChars() {
     active().level = Number(input.value) || 1;
     save();
     renderPlan();
+    renderTray();
   };
   label.append(input);
   box.append(label);
@@ -309,6 +311,32 @@ function renderBoard() {
       action ? actionLabel(action, state.profile.macros) : base?.label ?? "empty"
     }`;
     primary.setAttribute("aria-label", primary.title);
+
+    // Drag and drop: a tile from the tray lands on the key under the pointer, filling the slot the
+    // layer on screen would, so a drop and a click do the same thing.
+    const plan = SLOT_PLAN[`${state.layer}:${key.legend}`];
+    cap.dataset.legend = key.legend;
+    cap.dataset.layer = state.layer;
+    if (plan) cap.classList.add("droppable");
+    cap.ondragover = (event) => {
+      if (!plan) return;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
+      cap.classList.add("over");
+    };
+    cap.ondragleave = () => cap.classList.remove("over");
+    cap.ondrop = (event) => {
+      if (!plan) return;
+      event.preventDefault();
+      cap.classList.remove("over");
+      const dropped = (state.classes[character.class]?.abilities ?? [])
+        .find((entry) => entry.name === event.dataTransfer.getData("text/plain"));
+      if (!dropped || !placeAbility(character, key.legend, state.layer, dropped)) return;
+      save();
+      renderBoard();
+      renderPlan();
+      renderTray();
+    };
     cap.onclick = (event) => openPalette(event, key.legend, state.layer);
     body.append(primary);
 
@@ -355,6 +383,74 @@ function fitBoard() {
   fit.style.height = `${height * scale}px`;
 }
 
+// ---------- tray ----------
+
+// Every ability the class teaches sits under the board as an icon, available ones first and used ones
+// after, marked with the key that holds them. Dragging one onto a key moves the spell there: it stops
+// being available and the key shows it. Nothing is ever on two keys, so a drag also swaps a spell.
+function renderTray() {
+  const tray = el("tray");
+  const grid = el("tray-grid");
+  if (!tray || !grid) return;
+  const character = active();
+  const abilities = state.classes[character.class]?.abilities ?? [];
+  tray.hidden = abilities.length === 0;
+  if (!abilities.length) return;
+
+  const rows = abilities
+    .map((ability) => ({ ability, where: findPlacement(character, ability.name) }))
+    .sort((a, b) => Number(Boolean(a.where)) - Number(Boolean(b.where)) || a.ability.level - b.ability.level);
+  const used = rows.filter((row) => row.where).length;
+  el("tray-count").textContent =
+    `${used} of ${rows.length} on the board · ${rows.length - used} available · drag an icon onto a key`;
+
+  grid.innerHTML = "";
+  for (const { ability, where } of rows) {
+    const trainable = ability.level <= character.level;
+    const tile = document.createElement("button");
+    tile.type = "button";
+    tile.className = "tray-tile" + (where ? " used" : "") + (trainable ? "" : " later");
+    tile.dataset.ability = ability.name;
+    tile.draggable = trainable;
+    tile.title = where
+      ? `${ability.name} · on ${where} · drag to move it`
+      : trainable
+        ? `${ability.name} · drag onto a key`
+        : `${ability.name} · trains at ${ability.level}`;
+    if (ability.icon) {
+      const img = document.createElement("img");
+      img.src = `assets/icons/${ability.icon}.jpg`;
+      img.alt = "";
+      img.onerror = () => img.remove();
+      tile.append(img);
+    }
+    const name = document.createElement("span");
+    name.className = "name";
+    name.textContent = ability.name;
+    tile.append(name);
+    const badge = document.createElement("span");
+    badge.className = "badge";
+    badge.textContent = where ?? (trainable ? "" : String(ability.level));
+    if (badge.textContent) tile.append(badge);
+    tile.ondragstart = (event) => {
+      if (!trainable) {
+        event.preventDefault();
+        return;
+      }
+      event.dataTransfer.setData("text/plain", ability.name);
+      event.dataTransfer.effectAllowed = "move";
+      tile.classList.add("dragging");
+      el("board").classList.add("dropping");
+    };
+    tile.ondragend = () => {
+      tile.classList.remove("dragging");
+      el("board").classList.remove("dropping");
+      for (const key of document.querySelectorAll(".key.over")) key.classList.remove("over");
+    };
+    grid.append(tile);
+  }
+}
+
 // ---------- palette ----------
 
 function openPalette(event, legend, modId) {
@@ -394,13 +490,12 @@ function openPalette(event, legend, modId) {
       }
       button.onclick = () => {
         if (!plan) return;
-        character.slots[legend][modId] = {
-          k: "bar", bar: plan.bar, slot: plan.slot, ability: ability.name, icon: ability.icon,
-        };
+        placeAbility(character, legend, modId, ability);
         save();
         palette.hidden = true;
         renderBoard();
         renderPlan();
+        renderTray();
       };
       grid.append(button);
     }
@@ -472,6 +567,7 @@ function openPalette(event, legend, modId) {
     palette.hidden = true;
     renderBoard();
     renderPlan();
+    renderTray();
   };
   clearGrid.append(clear);
   palette.append(clearGrid);
@@ -544,6 +640,7 @@ function autoPlaceAll() {
   save();
   renderBoard();
   renderPlan();
+  renderTray();
 }
 
 function clearPlaces() {
@@ -554,6 +651,7 @@ function clearPlaces() {
   save();
   renderBoard();
   renderPlan();
+  renderTray();
 }
 
 // ---------- macros ----------
@@ -679,6 +777,7 @@ function renderAll() {
   renderChars();
   renderBoard();
   renderPlan();
+  renderTray();
   renderMacros();
   renderExport();
 }

@@ -182,6 +182,38 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
 .key .dot.on { background: #6f9fa8; border-color: #9dc6cf; }
 .key .dot.current { box-shadow: 0 0 0 1.5px #e2f0fa; }
 
+/* Tray: every spell the class teaches, dragged onto a key. */
+.tray { margin-top: 18px; }
+.tray-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.tray-head h2 {
+  margin: 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  font-weight: 500;
+}
+.tray-count { margin: 0; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tray-grid {
+  margin-top: 10px; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px;
+}
+.tray-tile {
+  font: inherit; font-size: 11px; color: var(--foreground); background: var(--card); cursor: grab;
+  border: 1px solid var(--border-soft); border-radius: 9px; padding: 5px 7px; text-align: left;
+  display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 7px;
+}
+.tray-tile:hover { border-color: var(--primary); }
+.tray-tile img { width: 22px; height: 22px; border-radius: 4px; display: block; }
+.tray-tile .name {
+  overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  line-height: 1.25;
+}
+.tray-tile .badge { font-size: 10px; letter-spacing: 0.04em; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tray-tile.used { opacity: 0.62; }
+.tray-tile.later { cursor: not-allowed; opacity: 0.38; }
+.tray-tile.dragging { opacity: 0.35; }
+
+/* While a tile is in the air, the keys that can take it say so, and the one under the pointer says it
+   louder. */
+.board.dropping .key.droppable { outline: 1px dashed #6f9fa8; outline-offset: -3px; }
+.key.over { outline: 2px solid var(--primary); outline-offset: -3px; }
+
 /* Palette */
 .palette {
   position: absolute; z-index: 40; width: 430px; max-height: 460px; overflow: auto;
