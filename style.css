@@ -296,6 +296,11 @@ pre {
 }
 
 /* A panel key shows the client's own button art instead of its name. */
-.key .primary.art { padding: 4px 0 0; }
+.key .primary.art { padding: 0; }
 .key .primary.art span { display: none; }
-.key .primary.art img { width: 46px; height: 46px; object-fit: contain; image-rendering: auto; }
+.key .primary.art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: auto; }
+
+/* A key drags its spell off the board; the tray is where it lands to come back. */
+.key.dragging { opacity: 0.4; }
+.tray.dropping { outline: 1px dashed #6f9fa8; outline-offset: 6px; }
+.tray.over { outline: 2px solid var(--primary); outline-offset: 6px; }

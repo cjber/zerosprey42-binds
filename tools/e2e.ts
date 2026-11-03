@@ -324,6 +324,33 @@ async function main() {
   );
   check("dragging it onto a key takes it out of the tray", drag.keyShows === qBefore && drag.stillInTray === false, JSON.stringify(drag));
 
+  // And a placed spell drags off its key and back into the tray, which is how a key is cleared.
+  const dragOff = JSON.parse(
+    await evaluate(
+      `(() => {
+        const key = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === 'Q');
+        const name = key.querySelector('.primary span')?.textContent;
+        const tray = document.getElementById('tray');
+        const data = new DataTransfer();
+        key.dispatchEvent(new DragEvent('dragstart', { bubbles: true, dataTransfer: data }));
+        tray.dispatchEvent(new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: data }));
+        tray.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: data }));
+        key.dispatchEvent(new DragEvent('dragend', { bubbles: true, dataTransfer: data }));
+        const after = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === 'Q');
+        return JSON.stringify({
+          name,
+          keyShows: after.querySelector('.primary span')?.textContent,
+          backInTray: [...document.querySelectorAll('.tray-tile')].some((t) => t.dataset.ability === name),
+        });
+      })()`,
+    ),
+  );
+  check(
+    "dragging a spell off its key clears the key",
+    dragOff.keyShows !== dragOff.name && dragOff.backInTray === true,
+    JSON.stringify(dragOff),
+  );
+
   // Dropping to level 1 and re-planning keeps only what a level 1 hunter knows.
   await evaluate(
     "(() => { const i = document.querySelector('.chars input'); i.value = '1'; i.dispatchEvent(new Event('change')); return true; })()",

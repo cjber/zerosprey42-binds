@@ -333,6 +333,25 @@ function renderBoard() {
       cap.classList.add("over");
     };
     cap.ondragleave = () => cap.classList.remove("over");
+    // A key holding a spell drags it off: onto another key to move it, onto the tray to clear it.
+    if (action?.k === "bar" && action.ability) {
+      cap.draggable = true;
+      cap.ondragstart = (event) => {
+        event.dataTransfer.setData("text/plain", action.ability);
+        event.dataTransfer.setData("application/x-binds-key", `${state.layer}:${key.legend}`);
+        event.dataTransfer.effectAllowed = "move";
+        cap.classList.add("dragging");
+        el("board").classList.add("dropping");
+        el("tray").classList.add("dropping");
+      };
+      cap.ondragend = () => {
+        cap.classList.remove("dragging");
+        el("board").classList.remove("dropping");
+        el("tray").classList.remove("dropping");
+        el("tray").classList.remove("over");
+        for (const other of document.querySelectorAll(".key.over")) other.classList.remove("over");
+      };
+    }
     cap.ondrop = (event) => {
       if (!plan) return;
       event.preventDefault();
@@ -782,6 +801,28 @@ async function boot() {
       if (button.dataset.tab === "macros") renderMacros();
     };
   }
+
+  const tray = el("tray");
+  tray.ondragover = (event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+    tray.classList.add("over");
+  };
+  tray.ondragleave = () => tray.classList.remove("over");
+  tray.ondrop = (event) => {
+    event.preventDefault();
+    tray.classList.remove("over");
+    const source = event.dataTransfer.getData("application/x-binds-key");
+    if (!source) return; // a tile dragged out of the tray has nowhere to go but a key.
+    const [layer, legend] = source.split(":");
+    const character = active();
+    if (!character.slots[legend]) return;
+    character.slots[legend][layer] = null;
+    save();
+    renderBoard();
+    renderPlan();
+    renderTray();
+  };
 
   el("tray-show-placed").onchange = (event) => {
     state.trayShowPlaced = event.target.checked;
