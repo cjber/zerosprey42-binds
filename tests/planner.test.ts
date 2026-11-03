@@ -3,7 +3,7 @@ import boardsIndex from "../assets/boards/index.json";
 import {
   autoPlace, blankSlots, findPlacement, newCharacter, toBindings, toMacroText, validate,
   validateBoard, SLOT_PLAN, SLOT_ORDER, bindingFor, availableAbilities, placedAbilityNames,
-  placeAbility,
+  placeAbility, applyBindings, parseWtfKey, actionFromBinding,
 } from "../lib/planner.js";
 
 const board = {
@@ -182,6 +182,48 @@ describe("placing a spell from the tray", () => {
     expect(availableAbilities(character, hunter.abilities).map((ability) => ability.name)).toEqual([
       "Arcane Shot", "Mend Pet", "Tame Beast",
     ]);
+  });
+});
+
+describe("reading a bindings-cache.wtf", () => {
+  const grid = {
+    keys: ["Q", "W", "B", "Z", "Bksp", "Esc"].map((legend) => ({ legend, x: 0, y: 0, w: 1, rot: 0 })),
+  };
+  const fresh = () => newCharacter(grid, "Barry Test", "hunter", 60);
+
+  test("a modifier and a bar prefix turn into the key the plan drives", () => {
+    expect(parseWtfKey("CTRL-SHIFT-Q")).toEqual({ mod: "ctrlshift", legend: "Q" });
+    expect(parseWtfKey("BACKSPACE")).toEqual({ mod: "bare", legend: "Bksp" });
+    expect(actionFromBinding("MULTIACTIONBAR1BUTTON3")).toEqual({ k: "bar", bar: 2, slot: 3 });
+    expect(actionFromBinding("BONUSACTIONBUTTON2")).toEqual({ k: "pet", slot: 2 });
+    expect(actionFromBinding("TOGGLEBACKPACK")).toEqual({ k: "cmd", binding: "TOGGLEBACKPACK", label: "Bags" });
+    expect(actionFromBinding("NONE")).toBe(null);
+  });
+
+  test("binds land on the key they name, and an unknown key is reported", () => {
+    const character = fresh();
+    const text = "bind SHIFT-B MULTIACTIONBAR1BUTTON3\nbind BACKSPACE INTERACTTARGET\nbind J UNKNOWNKEY";
+    const result = applyBindings(character, grid, text);
+    expect(result.applied).toBe(2);
+    expect(result.unknownKeys).toEqual(["J"]);
+    expect(character.slots.B.shift).toEqual({ k: "bar", bar: 2, slot: 3 });
+    expect(character.slots.Bksp.bare).toEqual({ k: "cmd", binding: "INTERACTTARGET", label: "Interact" });
+  });
+
+  test("the spell already on a bar slot follows the key that drives it", () => {
+    const character = fresh();
+    character.slots.Q.bare = { k: "bar", bar: 1, slot: 5, ability: "Serpent Sting", icon: "a" };
+    applyBindings(character, grid, "bind W ACTIONBUTTON5");
+    expect(character.slots.W.bare.ability).toBe("Serpent Sting");
+    expect(character.slots.Q.bare).toBe(null);
+  });
+
+  test("a bind takes its slot off whichever key had it", () => {
+    const character = fresh();
+    character.slots.Q.bare = { k: "bar", bar: 1, slot: 2 };
+    applyBindings(character, grid, "bind W ACTIONBUTTON2");
+    expect(character.slots.W.bare).toEqual({ k: "bar", bar: 1, slot: 2 });
+    expect(character.slots.Q.bare).toBe(null);
   });
 });
 
