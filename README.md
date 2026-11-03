@@ -83,15 +83,22 @@ Spell icons are the client's own art names, fetched once into `assets/icons/` by
 ## Deploy
 
 ```sh
-bun run deploy                                   # builds dist/ and deploys the Worker
-python3 tools/attach-domain.py                   # binds.cjber.dev, in the zone's own account
+bun run deploy                                   # builds dist/, deploys the Worker and its route
 ```
 
-The Worker is named `zerosprey42-binds` and serves `dist/` as static assets. Cloudflare only attaches
-a custom domain when the hostname's zone is in the same account as the Worker, so `attach-domain.py`
-reads the zone's account from the API rather than assuming one: the live staging copy is under the
-Nebula account while `cjber.dev` is elsewhere, and the domain step has to run in whichever account
-holds the zone.
+The Worker is named `zerosprey42-binds`, serves `dist/`, and lives in the Cloudflare account that
+owns `cjber.dev`, so the `binds.cjber.dev/*` route in `wrangler.toml` goes up with every deploy.
+
+The hostname also needs one proxied DNS record in that zone, which a deploy cannot create:
+
+```sh
+CLOUDFLARE_API_TOKEN=... python3 tools/attach-domain.py
+```
+
+The token needs `Zone:Read`, `DNS:Edit` and `Workers Scripts:Read`; the `wrangler login` OAuth token
+does not have DNS rights. A Worker custom domain is deliberately not used: `custom_domain = true`
+tries to create that same record during the deploy and fails it after the upload, and the Workers
+custom-domain API rejects the OAuth login.
 
 ## Layout
 

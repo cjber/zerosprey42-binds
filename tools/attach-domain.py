@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Attach binds.cjber.dev to the zerosprey42-binds Worker, in whatever account holds the zone.
+"""Give the planner its hostname: the proxied DNS record that the Worker route needs.
 
-Cloudflare only lets a Worker take a custom domain whose zone sits in the same account as the
-Worker, so this reads the zone's own account from the API instead of assuming one.
+`bun run deploy` installs the `binds.cjber.dev/*` route itself, from wrangler.toml. The one step a
+deploy cannot do is create DNS in a zone it did not make, so this ensures the proxied record exists
+and then checks the page. Run it for a fresh zone, or if the record is ever lost.
 
-usage: python3 tools/attach-domain.py [hostname] [worker]
-Reads CLOUDFLARE_API_TOKEN, or the OAuth token wrangler stored after `wrangler login`.
+Needs an API token, not the wrangler OAuth login (which has read-only zone access):
+  CLOUDFLARE_API_TOKEN=... python3 tools/attach-domain.py [hostname] [worker]
+The token needs Zone:Read, DNS:Edit and Workers Scripts:Read on the zone's account.
+
+usage: CLOUDFLARE_API_TOKEN=... python3 tools/attach-domain.py
 """
 
 import json
-import pathlib
-import re
+import os
 import sys
 import time
 import urllib.error
@@ -23,27 +26,21 @@ API = "https://api.cloudflare.com/client/v4"
 
 
 def token() -> str:
-    import os
-
-    if os.environ.get("CLOUDFLARE_API_TOKEN"):
-        return os.environ["CLOUDFLARE_API_TOKEN"]
-    config = pathlib.Path.home() / ".config" / ".wrangler" / "config" / "default.toml"
-    match = re.search(r'oauth_token\s*=\s*"([^"]+)"', config.read_text())
-    if not match:
-        raise SystemExit("no token: run `npx wrangler login` or set CLOUDFLARE_API_TOKEN")
-    return match.group(1)
+    if not os.environ.get("CLOUDFLARE_API_TOKEN"):
+        raise SystemExit(
+            "no token: set CLOUDFLARE_API_TOKEN (Zone:Read, DNS:Edit, Workers Scripts:Read). "
+            "The wrangler login cannot edit DNS."
+        )
+    return os.environ["CLOUDFLARE_API_TOKEN"]
 
 
-def call(method: str, path: str, body: dict | None = None):
+def call(method: str, path: str, body: dict | None = None) -> dict:
     data = json.dumps(body).encode() if body is not None else None
     request = urllib.request.Request(
         f"{API}{path}",
         data=data,
         method=method,
-        headers={
-            "Authorization": f"Bearer {token()}",
-            "Content-Type": "application/json",
-        },
+        headers={"Authorization": f"Bearer {token()}", "Content-Type": "application/json"},
     )
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
@@ -52,38 +49,39 @@ def call(method: str, path: str, body: dict | None = None):
         return json.loads(error.read())
 
 
-def main():
+def zone() -> dict:
     zones = call("GET", f"/zones?name={ZONE}")
     if not zones.get("success") or not zones.get("result"):
-        raise SystemExit(f"{ZONE} is not in this token's account: {zones.get('errors')}")
-    zone = zones["result"][0]
-    account = zone["account"]["id"]
-    print(f"zone {ZONE} ({zone['id']}) is in account {account} ({zone['account']['name']})")
+        raise SystemExit(f"{ZONE} is not visible to this token: {zones.get('errors')}")
+    return zones["result"][0]
 
-    existing = call("GET", f"/accounts/{account}/workers/domains")
-    for entry in existing.get("result", []):
-        if entry.get("hostname") == HOST:
-            print(f"{HOST} is already attached to {entry.get('service')} ({entry.get('environment')})")
-            return check()
 
-    created = call(
-        "POST",
-        f"/accounts/{account}/workers/domains",
-        {"zone_id": zone["id"], "hostname": HOST, "service": WORKER, "environment": "production"},
-    )
-    if not created.get("success"):
-        raise SystemExit(f"attach failed: {created.get('errors')}")
-    print(f"attached {HOST} to {WORKER}: {json.dumps(created['result'])[:200]}")
+def worker_hostname(account: str) -> str:
+    subdomain = call("GET", f"/accounts/{account}/workers/subdomain")
+    name = (subdomain.get("result") or {}).get("subdomain")
+    if not name:
+        raise SystemExit(f"no workers.dev subdomain for {account}: {subdomain.get('errors')}")
+    return f"{WORKER}.{name}.workers.dev"
 
-    for attempt in range(30):
-        status = call("GET", f"/accounts/{account}/workers/domains")
-        for entry in status.get("result", []):
-            if entry.get("hostname") == HOST:
-                print(f"  state: {entry.get('status', entry.get('certificate_status', 'pending'))}")
-        if check(quiet=True):
-            break
-        time.sleep(10)
-    check()
+
+def ensure_record(zone_id: str, target: str) -> None:
+    records = call("GET", f"/zones/{zone_id}/dns_records?name={HOST}")
+    existing = records.get("result") or []
+    body = {"type": "CNAME", "name": HOST, "content": target, "proxied": True, "ttl": 1}
+    if not existing:
+        created = call("POST", f"/zones/{zone_id}/dns_records", body)
+        if not created.get("success"):
+            raise SystemExit(f"could not create the {HOST} record: {created.get('errors')}")
+        print(f"created proxied CNAME {HOST} -> {target}")
+        return
+    record = existing[0]
+    if record["content"] == target and record["proxied"]:
+        print(f"{HOST} already points at {target} (proxied)")
+        return
+    updated = call("PATCH", f"/zones/{zone_id}/dns_records/{record['id']}", body)
+    if not updated.get("success"):
+        raise SystemExit(f"could not update the {HOST} record: {updated.get('errors')}")
+    print(f"updated {HOST} -> {target} (proxied)")
 
 
 def check(quiet: bool = False) -> bool:
@@ -98,6 +96,20 @@ def check(quiet: bool = False) -> bool:
         if not quiet:
             print(f"https://{HOST}/ -> {error}")
         return False
+
+
+def main() -> None:
+    found = zone()
+    account = found["account"]["id"]
+    print(f"zone {ZONE} ({found['id']}) is in account {account} ({found['account']['name']})")
+    ensure_record(found["id"], worker_hostname(account))
+
+    for _ in range(12):
+        if check(quiet=True):
+            break
+        time.sleep(5)
+    if not check():
+        raise SystemExit("the record exists, but the host is not answering yet: give DNS a minute")
 
 
 main()

@@ -2,7 +2,21 @@
 name = "zerosprey42-binds"
 compatibility_date = "2026-11-01"
 
-# The custom domain is attached by tools/go-live.py in the account that owns cjber.dev. Leaving it
-# out of this file keeps `wrangler deploy` from trying to create DNS records that already exist.
+# Pinned so a stale account cache in node_modules/.cache/wrangler cannot send the deploy to the
+# Nebula account that holds an old staging copy instead of the account that owns cjber.dev.
+account_id = "7534012e1cadd09ca79a60ebc4131216"
+
+# The Worker lives in the account that owns cjber.dev, so a deploy also installs the host's route.
+# A plain route only registers the pattern; `custom_domain = true` would try to create a DNS record
+# that already exists and fail the deploy after uploading, which is why the record is made once by
+# tools/attach-domain.py instead.
+routes = [
+  { pattern = "binds.cjber.dev/*", zone_name = "cjber.dev" }
+]
+
+# Keep the workers.dev hostname: it is what the proxied DNS record points at, and a fallback to
+# check the deployment when the custom host is being fiddled with.
+workers_dev = true
+
 [assets]
 directory = "./dist"
