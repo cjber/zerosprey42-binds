@@ -206,6 +206,9 @@ code { background: var(--card); padding: 1px 5px; border-radius: 4px; color: var
 }
 .tray-tile .badge { font-size: 10px; letter-spacing: 0.04em; color: var(--muted); font-variant-numeric: tabular-nums; }
 .tray-tile.used { opacity: 0.62; }
+.tray-filter { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); cursor: pointer; }
+.tray-filter input { accent-color: var(--primary); }
+.tray-empty { grid-column: 1 / -1; margin: 0; padding: 10px 2px; font-size: 11px; color: var(--muted); }
 .tray-tile.later { cursor: not-allowed; opacity: 0.38; }
 .tray-tile.dragging { opacity: 0.35; }
 

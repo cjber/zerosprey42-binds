@@ -10,7 +10,10 @@ const UNIT = 88;
 const GAP = 12;
 const STORE = "zerosprey-binds-v6";
 
-const state = { board: null, boards: [], boardId: "zerosprey42", layer: "bare", classes: {}, profile: null };
+const state = {
+  board: null, boards: [], boardId: "zerosprey42", layer: "bare", classes: {}, profile: null,
+  trayShowPlaced: false,
+};
 
 // One layer on screen at a time. The bar plan is per layer, so the tabs double as a reminder of where
 // each layer's slots live.
@@ -390,9 +393,9 @@ function fitBoard() {
 
 // ---------- tray ----------
 
-// Every ability the class teaches sits under the board as an icon, available ones first and used ones
-// after, marked with the key that holds them. Dragging one onto a key moves the spell there: it stops
-// being available and the key shows it. Nothing is ever on two keys, so a drag also swaps a spell.
+// The spells under the board. By default only the ones that are not on the board are here, so a spell is
+// in exactly one place: above on its key, or below waiting to be placed. The filter can show the placed
+// ones too, marked with the key that holds them, which is how a spell is dragged from one key to another.
 function renderTray() {
   const tray = el("tray");
   const grid = el("tray-grid");
@@ -402,14 +405,23 @@ function renderTray() {
   tray.hidden = abilities.length === 0;
   if (!abilities.length) return;
 
-  const rows = abilities
-    .map((ability) => ({ ability, where: findPlacement(character, ability.name) }))
-    .sort((a, b) => Number(Boolean(a.where)) - Number(Boolean(b.where)) || a.ability.level - b.ability.level);
-  const used = rows.filter((row) => row.where).length;
-  el("tray-count").textContent =
-    `${used} of ${rows.length} on the board · ${rows.length - used} available · drag an icon onto a key`;
+  const available = availableAbilities(character, abilities);
+  const rows = state.trayShowPlaced
+    ? abilities
+      .map((ability) => ({ ability, where: findPlacement(character, ability.name) }))
+      .sort((a, b) => Number(Boolean(a.where)) - Number(Boolean(b.where)) || a.ability.level - b.ability.level)
+    : available.map((ability) => ({ ability, where: null }));
+  el("tray-count").textContent = `${abilities.length - available.length} on the board · ${available.length} available`;
 
   grid.innerHTML = "";
+  if (!rows.length) {
+    const done = document.createElement("p");
+    done.className = "tray-empty";
+    done.textContent = "Every spell is on the board. Clear a key, or show placed, to move one.";
+    grid.append(done);
+    return;
+  }
+
   for (const { ability, where } of rows) {
     const trainable = ability.level <= character.level;
     const tile = document.createElement("button");
@@ -770,6 +782,11 @@ async function boot() {
       if (button.dataset.tab === "macros") renderMacros();
     };
   }
+
+  el("tray-show-placed").onchange = (event) => {
+    state.trayShowPlaced = event.target.checked;
+    renderTray();
+  };
 
   el("plan-auto").onclick = autoPlaceAll;
   el("plan-clear").onclick = clearPlaces;
