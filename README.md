@@ -12,8 +12,10 @@ No build step, no dependencies, no backend: plain HTML, CSS and JS, so any stati
   key shows that layer's ability with a full name; five dots under each key show which other layers hold
   something, and the tab badges count each layer. Alt is kept for mounts, food, potions and other items,
   so auto-place never puts a spell there. G, T, S, B and Space keep their bare press as a utility key and
-  lend their unused modifiers to the last few spells. The right-hand keys carry the client's own UI
-  panels: H Honor, K Professions, P Spellbook, L Quest log, and the rest of the standard binds.
+  lend their unused modifiers to the last few spells. The interface panels sit on the keys the client
+  itself binds them to: P Spellbook, N Talents, L Quest log, O Social, M Map, H Honor, K Skills,
+  U Reputation, Esc Game menu, plus Shift+I Pet book, Shift+P Pets, Shift+M Battle map and
+  Shift+Space Score screen. A panel the client leaves unbound gets no key here either.
 - **Level plan**: pick a class and a level. Each ability lists its level and where it sits. Auto-place
   puts every ability you have learned into the next free slot in a fixed order: the left grid on bare,
   Shift, Ctrl and Ctrl+Shift, then the spare modifiers on T, G, S and B, so a new spell never means
@@ -76,8 +78,8 @@ the client teaches on a key, and Alladys, a level 60 mage with the full trainer 
 spell layers on the eight grid keys plus ten spare layers on T, G, S and B; the mage fills the same grid
 and spare slots. Attacks fill the bare and Shift layers first, then pet actions, buffs and the situational
 spells, so the rotation is on the keys the hand already knows. Alt stays empty for mounts, food and other
-items. The right-hand keys carry the client's UI panels for both. F9 interacts, S walks forward, mouse 3
-autoruns, as before.
+items. Both characters carry the client's interface panels on its own default keys. F9 interacts, S
+walks forward, mouse 3 autoruns, as before.
 
 ## Tested
 

@@ -39,12 +39,12 @@
           }
         },
         "I": {
-          "bare": {
+          "bare": null,
+          "shift": {
             "k": "cmd",
             "binding": "TOGGLEPETBOOK",
-            "label": "Pet"
+            "label": "Pet book"
           },
-          "shift": null,
           "ctrl": null,
           "alt": null
         },
@@ -113,8 +113,8 @@
         "U": {
           "bare": {
             "k": "cmd",
-            "binding": "TOGGLEWHOTAB",
-            "label": "Who"
+            "binding": "TOGGLECHARACTER2",
+            "label": "Reputation"
           },
           "shift": null,
           "ctrl": null,
@@ -124,7 +124,7 @@
           "bare": {
             "k": "cmd",
             "binding": "TOGGLESOCIAL",
-            "label": "Friends"
+            "label": "Social"
           },
           "shift": null,
           "ctrl": null,
@@ -160,11 +160,7 @@
           }
         },
         "Y": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLERAIDTAB",
-            "label": "Raid"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -215,8 +211,8 @@
         "K": {
           "bare": {
             "k": "cmd",
-            "binding": "TOGGLEPROFESSIONBOOK",
-            "label": "Profs"
+            "binding": "TOGGLECHARACTER1",
+            "label": "Skills"
           },
           "shift": null,
           "ctrl": null,
@@ -228,16 +224,16 @@
             "binding": "TOGGLESPELLBOOK",
             "label": "Spells"
           },
-          "shift": null,
+          "shift": {
+            "k": "cmd",
+            "binding": "TOGGLECHARACTER3",
+            "label": "Pets"
+          },
           "ctrl": null,
           "alt": null
         },
         "Bksp": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEGAMEMENU",
-            "label": "Menu"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -299,11 +295,7 @@
           }
         },
         "J": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEGUILDTAB",
-            "label": "Guild"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -354,7 +346,11 @@
           "alt": null
         },
         "Esc": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEGAMEMENU",
+            "label": "Menu"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -397,31 +393,19 @@
           }
         },
         "<": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEBATTLEFIELDMINIMAP",
-            "label": "BGs"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         ";": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLECHARACTER0",
-            "label": "Char"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         "'": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLECHATTAB",
-            "label": "Chat"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -469,16 +453,16 @@
             "binding": "TOGGLEWORLDMAP",
             "label": "Map"
           },
-          "shift": null,
+          "shift": {
+            "k": "cmd",
+            "binding": "TOGGLEBATTLEFIELDMINIMAP",
+            "label": "BGs"
+          },
           "ctrl": null,
           "alt": null
         },
         ">": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEMINIMAP",
-            "label": "Minimap"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -589,7 +573,11 @@
             "binding": "JUMP",
             "label": "Jump"
           },
-          "shift": null,
+          "shift": {
+            "k": "cmd",
+            "binding": "TOGGLEWORLDSTATESCORES",
+            "label": "Score"
+          },
           "ctrl": null,
           "alt": null
         },
@@ -658,12 +646,12 @@
           }
         },
         "I": {
-          "bare": {
+          "bare": null,
+          "shift": {
             "k": "cmd",
             "binding": "TOGGLEPETBOOK",
-            "label": "Pet"
+            "label": "Pet book"
           },
-          "shift": null,
           "ctrl": null,
           "alt": null
         },
@@ -732,8 +720,8 @@
         "U": {
           "bare": {
             "k": "cmd",
-            "binding": "TOGGLEWHOTAB",
-            "label": "Who"
+            "binding": "TOGGLECHARACTER2",
+            "label": "Reputation"
           },
           "shift": null,
           "ctrl": null,
@@ -743,7 +731,7 @@
           "bare": {
             "k": "cmd",
             "binding": "TOGGLESOCIAL",
-            "label": "Friends"
+            "label": "Social"
           },
           "shift": null,
           "ctrl": null,
@@ -772,11 +760,7 @@
           "alt": null
         },
         "Y": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLERAIDTAB",
-            "label": "Raid"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -827,8 +811,8 @@
         "K": {
           "bare": {
             "k": "cmd",
-            "binding": "TOGGLEPROFESSIONBOOK",
-            "label": "Profs"
+            "binding": "TOGGLECHARACTER1",
+            "label": "Skills"
           },
           "shift": null,
           "ctrl": null,
@@ -840,16 +824,16 @@
             "binding": "TOGGLESPELLBOOK",
             "label": "Spells"
           },
-          "shift": null,
+          "shift": {
+            "k": "cmd",
+            "binding": "TOGGLECHARACTER3",
+            "label": "Pets"
+          },
           "ctrl": null,
           "alt": null
         },
         "Bksp": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEGAMEMENU",
-            "label": "Menu"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -892,11 +876,7 @@
           }
         },
         "J": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEGUILDTAB",
-            "label": "Guild"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -940,7 +920,11 @@
           "alt": null
         },
         "Esc": {
-          "bare": null,
+          "bare": {
+            "k": "cmd",
+            "binding": "TOGGLEGAMEMENU",
+            "label": "Menu"
+          },
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -983,31 +967,19 @@
           }
         },
         "<": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEBATTLEFIELDMINIMAP",
-            "label": "BGs"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         ";": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLECHARACTER0",
-            "label": "Char"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
         },
         "'": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLECHATTAB",
-            "label": "Chat"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -1055,16 +1027,16 @@
             "binding": "TOGGLEWORLDMAP",
             "label": "Map"
           },
-          "shift": null,
+          "shift": {
+            "k": "cmd",
+            "binding": "TOGGLEBATTLEFIELDMINIMAP",
+            "label": "BGs"
+          },
           "ctrl": null,
           "alt": null
         },
         ">": {
-          "bare": {
-            "k": "cmd",
-            "binding": "TOGGLEMINIMAP",
-            "label": "Minimap"
-          },
+          "bare": null,
           "shift": null,
           "ctrl": null,
           "alt": null
@@ -1156,7 +1128,11 @@
             "binding": "JUMP",
             "label": "Jump"
           },
-          "shift": null,
+          "shift": {
+            "k": "cmd",
+            "binding": "TOGGLEWORLDSTATESCORES",
+            "label": "Score"
+          },
           "ctrl": null,
           "alt": null
         },
