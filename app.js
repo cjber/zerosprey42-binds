@@ -3,7 +3,7 @@
 import {
   MODS, COMMANDS, BARS, SLOT_PLAN, SLOT_ORDER, blankSlots, newCharacter, BASE_LABELS,
   actionLabel, bindingFor, autoPlace, toBindings, toMacroText, findPlacement, COMMAND_ART,
-  availableAbilities, placedAbilityNames, placeAbility,
+  availableAbilities, placedAbilityNames, placeAbility, applyBindings,
 } from "./lib/planner.js";
 
 const UNIT = 88;
@@ -755,6 +755,22 @@ async function boot() {
     link.download = "zerosprey-binds.json";
     link.click();
   };
+  el("io-bindings").onchange = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const result = applyBindings(active(), state.board, await file.text());
+    save();
+    renderBoard();
+    renderPlan();
+    renderTray();
+    renderExport();
+    const skipped = result.unknownKeys.length
+      ? `, ${result.unknownKeys.length} key(s) not on this board`
+      : "";
+    el("io-status").textContent = `${result.applied} bind(s) read onto ${active().name}${skipped}.`;
+    event.target.value = "";
+  };
+
   el("io-file").onchange = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;

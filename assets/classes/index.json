@@ -1,3 +1,13 @@
 {
-  "classes": ["hunter", "mage"]
+  "classes": [
+    "hunter",
+    "mage",
+    "warrior",
+    "paladin",
+    "rogue",
+    "priest",
+    "shaman",
+    "warlock",
+    "druid"
+  ]
 }

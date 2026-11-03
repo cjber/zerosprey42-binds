@@ -1,0 +1,260 @@
+{
+  "class": "warlock",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Immolate",
+      "level": 1,
+      "kind": "attack",
+      "icon": "spell_fire_immolation",
+      "spellId": 348
+    },
+    {
+      "name": "Corruption",
+      "level": 4,
+      "kind": "attack",
+      "icon": "spell_shadow_abominationexplosion",
+      "spellId": 172
+    },
+    {
+      "name": "Curse of Weakness",
+      "level": 4,
+      "kind": "utility",
+      "icon": "spell_shadow_curseofmannoroth",
+      "spellId": 702
+    },
+    {
+      "name": "Life Tap",
+      "level": 6,
+      "kind": "utility",
+      "icon": "spell_shadow_burningspirit",
+      "spellId": 1454
+    },
+    {
+      "name": "Bane of Agony",
+      "level": 8,
+      "kind": "attack",
+      "icon": "spell_shadow_curseofsargeras",
+      "spellId": 980
+    },
+    {
+      "name": "Fear",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_shadow_possession",
+      "spellId": 5782
+    },
+    {
+      "name": "Create Healthstone",
+      "level": 10,
+      "kind": "utility",
+      "icon": "inv_stone_04",
+      "spellId": 6201
+    },
+    {
+      "name": "Drain Soul",
+      "level": 10,
+      "kind": "attack",
+      "icon": "spell_shadow_haunting",
+      "spellId": 1120
+    },
+    {
+      "name": "Health Funnel",
+      "level": 12,
+      "kind": "utility",
+      "icon": "spell_shadow_lifedrain",
+      "spellId": 755
+    },
+    {
+      "name": "Shadow Bolt",
+      "level": 12,
+      "kind": "attack",
+      "icon": "spell_shadow_shadowbolt",
+      "spellId": 705
+    },
+    {
+      "name": "Curse of Recklessness",
+      "level": 14,
+      "kind": "utility",
+      "icon": "spell_shadow_unholystrength",
+      "spellId": 704
+    },
+    {
+      "name": "Drain Life",
+      "level": 14,
+      "kind": "attack",
+      "icon": "spell_shadow_lifedrain02",
+      "spellId": 689
+    },
+    {
+      "name": "Unending Breath",
+      "level": 16,
+      "kind": "buff",
+      "icon": "spell_shadow_demonbreath",
+      "spellId": 5697
+    },
+    {
+      "name": "Create Soulstone",
+      "level": 18,
+      "kind": "utility",
+      "icon": "spell_shadow_soulgem",
+      "spellId": 693
+    },
+    {
+      "name": "Searing Pain",
+      "level": 18,
+      "kind": "attack",
+      "icon": "spell_fire_soulburn",
+      "spellId": 5676
+    },
+    {
+      "name": "Demon Armor",
+      "level": 20,
+      "kind": "buff",
+      "icon": "spell_shadow_ragingscream",
+      "spellId": 706
+    },
+    {
+      "name": "Rain of Fire",
+      "level": 20,
+      "kind": "attack",
+      "icon": "spell_shadow_rainoffire",
+      "spellId": 5740
+    },
+    {
+      "name": "Ritual of Summoning",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_shadow_twilight",
+      "spellId": 698
+    },
+    {
+      "name": "Eye of Kilrogg",
+      "level": 22,
+      "kind": "utility",
+      "icon": "spell_shadow_evileye",
+      "spellId": 126
+    },
+    {
+      "name": "Drain Mana",
+      "level": 24,
+      "kind": "attack",
+      "icon": "spell_shadow_siphonmana",
+      "spellId": 5138
+    },
+    {
+      "name": "Sense Demons",
+      "level": 24,
+      "kind": "utility",
+      "icon": "spell_shadow_metamorphosis",
+      "spellId": 5500
+    },
+    {
+      "name": "Curse of Tongues",
+      "level": 26,
+      "kind": "utility",
+      "icon": "spell_shadow_curseoftounges",
+      "spellId": 1714
+    },
+    {
+      "name": "Detect Invisibility",
+      "level": 26,
+      "kind": "buff",
+      "icon": "spell_shadow_detectlesserinvisibility",
+      "spellId": 132
+    },
+    {
+      "name": "Banish",
+      "level": 28,
+      "kind": "utility",
+      "icon": "spell_shadow_cripple",
+      "spellId": 710
+    },
+    {
+      "name": "Create Firestone",
+      "level": 28,
+      "kind": "utility",
+      "icon": "inv_misc_gem_bloodstone_02",
+      "spellId": 6366
+    },
+    {
+      "name": "Hellfire",
+      "level": 30,
+      "kind": "attack",
+      "icon": "spell_fire_incinerate",
+      "spellId": 1949
+    },
+    {
+      "name": "Subjugate Demon",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_shadow_enslavedemon",
+      "spellId": 1098
+    },
+    {
+      "name": "Shadow Ward",
+      "level": 32,
+      "kind": "buff",
+      "icon": "spell_shadow_antishadow",
+      "spellId": 6229
+    },
+    {
+      "name": "Shadowburn",
+      "level": 32,
+      "kind": "attack",
+      "icon": "spell_shadow_scourgebuild",
+      "spellId": 18868
+    },
+    {
+      "name": "Create Spellstone",
+      "level": 36,
+      "kind": "utility",
+      "icon": "inv_misc_gem_sapphire_01",
+      "spellId": 2362
+    },
+    {
+      "name": "Howl of Terror",
+      "level": 40,
+      "kind": "utility",
+      "icon": "spell_shadow_deathscream",
+      "spellId": 5484
+    },
+    {
+      "name": "Death Coil",
+      "level": 42,
+      "kind": "attack",
+      "icon": "spell_shadow_deathcoil",
+      "spellId": 6789
+    },
+    {
+      "name": "Siphon Life",
+      "level": 48,
+      "kind": "attack",
+      "icon": "spell_shadow_requiem",
+      "spellId": 18880
+    },
+    {
+      "name": "Soul Fire",
+      "level": 48,
+      "kind": "attack",
+      "icon": "spell_fire_fireball02",
+      "spellId": 6353
+    },
+    {
+      "name": "Conflagrate",
+      "level": 54,
+      "kind": "attack",
+      "icon": "spell_fire_fireball",
+      "spellId": 18931
+    },
+    {
+      "name": "Bane of Doom",
+      "level": 60,
+      "kind": "attack",
+      "icon": "spell_shadow_auraofdarkness",
+      "spellId": 603
+    }
+  ],
+  "macros": []
+}

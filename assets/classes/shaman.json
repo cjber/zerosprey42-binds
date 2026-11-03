@@ -1,0 +1,316 @@
+{
+  "class": "shaman",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Rockbiter Weapon",
+      "level": 1,
+      "kind": "buff",
+      "icon": "spell_nature_rockbiter",
+      "spellId": 8017
+    },
+    {
+      "name": "Earth Shock",
+      "level": 4,
+      "kind": "attack",
+      "icon": "spell_nature_earthshock",
+      "spellId": 8042
+    },
+    {
+      "name": "Earthbind Totem",
+      "level": 6,
+      "kind": "utility",
+      "icon": "spell_nature_strengthofearthtotem02",
+      "spellId": 2484
+    },
+    {
+      "name": "Lightning Shield",
+      "level": 8,
+      "kind": "buff",
+      "icon": "spell_nature_lightningshield",
+      "spellId": 324
+    },
+    {
+      "name": "Stoneclaw Totem",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_nature_stoneclawtotem",
+      "spellId": 5730
+    },
+    {
+      "name": "Flame Shock",
+      "level": 10,
+      "kind": "attack",
+      "icon": "spell_fire_flameshock",
+      "spellId": 8050
+    },
+    {
+      "name": "Flametongue Weapon",
+      "level": 10,
+      "kind": "buff",
+      "icon": "spell_fire_flametounge",
+      "spellId": 8024
+    },
+    {
+      "name": "Strength of Earth Totem",
+      "level": 10,
+      "kind": "buff",
+      "icon": "spell_nature_earthbindtotem",
+      "spellId": 8075
+    },
+    {
+      "name": "Ancestral Spirit",
+      "level": 12,
+      "kind": "utility",
+      "icon": "spell_nature_regenerate",
+      "spellId": 2008
+    },
+    {
+      "name": "Healing Wave",
+      "level": 12,
+      "kind": "utility",
+      "icon": "spell_nature_magicimmunity",
+      "spellId": 547
+    },
+    {
+      "name": "Purge",
+      "level": 12,
+      "kind": "utility",
+      "icon": "spell_nature_purge",
+      "spellId": 370
+    },
+    {
+      "name": "Cure Disease",
+      "level": 14,
+      "kind": "utility",
+      "icon": "spell_nature_removedisease",
+      "spellId": 2870
+    },
+    {
+      "name": "Lightning Bolt",
+      "level": 14,
+      "kind": "attack",
+      "icon": "spell_nature_lightning",
+      "spellId": 548
+    },
+    {
+      "name": "Cure Poison",
+      "level": 16,
+      "kind": "utility",
+      "icon": "spell_nature_nullifypoison",
+      "spellId": 526
+    },
+    {
+      "name": "Tremor Totem",
+      "level": 18,
+      "kind": "utility",
+      "icon": "spell_nature_tremortotem",
+      "spellId": 8143
+    },
+    {
+      "name": "Frost Shock",
+      "level": 20,
+      "kind": "attack",
+      "icon": "spell_frost_frostshock",
+      "spellId": 8056
+    },
+    {
+      "name": "Frostbrand Weapon",
+      "level": 20,
+      "kind": "buff",
+      "icon": "spell_frost_frostbrand",
+      "spellId": 8033
+    },
+    {
+      "name": "Ghost Wolf",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_nature_spiritwolf",
+      "spellId": 2645
+    },
+    {
+      "name": "Lesser Healing Wave",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_nature_healingwavelesser",
+      "spellId": 8004
+    },
+    {
+      "name": "Poison Cleansing Totem",
+      "level": 22,
+      "kind": "utility",
+      "icon": "spell_nature_poisoncleansingtotem",
+      "spellId": 8166
+    },
+    {
+      "name": "Water Breathing",
+      "level": 22,
+      "kind": "buff",
+      "icon": "spell_shadow_demonbreath",
+      "spellId": 131
+    },
+    {
+      "name": "Frost Resistance Totem",
+      "level": 24,
+      "kind": "buff",
+      "icon": "spell_frostresistancetotem_01",
+      "spellId": 8181
+    },
+    {
+      "name": "Stoneskin Totem",
+      "level": 24,
+      "kind": "buff",
+      "icon": "spell_nature_stoneskintotem",
+      "spellId": 8155
+    },
+    {
+      "name": "Far Sight",
+      "level": 26,
+      "kind": "utility",
+      "icon": "spell_nature_farsight",
+      "spellId": 6196
+    },
+    {
+      "name": "Magma Totem",
+      "level": 26,
+      "kind": "pet",
+      "icon": "spell_fire_selfdestruct",
+      "spellId": 8190
+    },
+    {
+      "name": "Mana Spring Totem",
+      "level": 26,
+      "kind": "buff",
+      "icon": "spell_nature_manaregentotem",
+      "spellId": 5675
+    },
+    {
+      "name": "Fire Resistance Totem",
+      "level": 28,
+      "kind": "buff",
+      "icon": "spell_fireresistancetotem_01",
+      "spellId": 8184
+    },
+    {
+      "name": "Flametongue Totem",
+      "level": 28,
+      "kind": "buff",
+      "icon": "spell_nature_guardianward",
+      "spellId": 8227
+    },
+    {
+      "name": "Water Walking",
+      "level": 28,
+      "kind": "buff",
+      "icon": "spell_frost_windwalkon",
+      "spellId": 546
+    },
+    {
+      "name": "Astral Recall",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_nature_astralrecal",
+      "spellId": 556
+    },
+    {
+      "name": "Grounding Totem",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_nature_groundingtotem",
+      "spellId": 8177
+    },
+    {
+      "name": "Nature Resistance Totem",
+      "level": 30,
+      "kind": "buff",
+      "icon": "spell_nature_natureresistancetotem",
+      "spellId": 10595
+    },
+    {
+      "name": "Reincarnation",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_nature_reincarnation",
+      "spellId": 20608
+    },
+    {
+      "name": "Searing Totem",
+      "level": 30,
+      "kind": "pet",
+      "icon": "spell_fire_searingtotem",
+      "spellId": 6364
+    },
+    {
+      "name": "Windfury Weapon",
+      "level": 30,
+      "kind": "buff",
+      "icon": "spell_nature_cyclone",
+      "spellId": 8232
+    },
+    {
+      "name": "Chain Lightning",
+      "level": 32,
+      "kind": "attack",
+      "icon": "spell_nature_chainlightning",
+      "spellId": 421
+    },
+    {
+      "name": "Windfury Totem",
+      "level": 32,
+      "kind": "buff",
+      "icon": "spell_nature_windfury",
+      "spellId": 8512
+    },
+    {
+      "name": "Sentry Totem",
+      "level": 34,
+      "kind": "utility",
+      "icon": "spell_nature_removecurse",
+      "spellId": 6495
+    },
+    {
+      "name": "Windwall Totem",
+      "level": 36,
+      "kind": "buff",
+      "icon": "spell_nature_earthbind",
+      "spellId": 15107
+    },
+    {
+      "name": "Disease Cleansing Totem",
+      "level": 38,
+      "kind": "utility",
+      "icon": "spell_nature_diseasecleansingtotem",
+      "spellId": 8170
+    },
+    {
+      "name": "Chain Heal",
+      "level": 40,
+      "kind": "utility",
+      "icon": "spell_nature_healingwavegreater",
+      "spellId": 1064
+    },
+    {
+      "name": "Healing Stream Totem",
+      "level": 40,
+      "kind": "utility",
+      "icon": "inv_spear_04",
+      "spellId": 6377
+    },
+    {
+      "name": "Grace of Air Totem",
+      "level": 42,
+      "kind": "buff",
+      "icon": "spell_nature_invisibilitytotem",
+      "spellId": 8835
+    },
+    {
+      "name": "Mana Tide Totem",
+      "level": 58,
+      "kind": "buff",
+      "icon": "spell_frost_summonwaterelemental",
+      "spellId": 17359
+    }
+  ],
+  "macros": []
+}

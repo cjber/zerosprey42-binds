@@ -1,0 +1,176 @@
+{
+  "class": "rogue",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Stealth",
+      "level": 1,
+      "kind": "utility",
+      "icon": "ability_stealth",
+      "spellId": 1784
+    },
+    {
+      "name": "Backstab",
+      "level": 4,
+      "kind": "attack",
+      "icon": "ability_backstab",
+      "spellId": 53
+    },
+    {
+      "name": "Pick Pocket",
+      "level": 4,
+      "kind": "utility",
+      "icon": "inv_misc_bag_11",
+      "spellId": 921
+    },
+    {
+      "name": "Gouge",
+      "level": 6,
+      "kind": "utility",
+      "icon": "ability_gouge",
+      "spellId": 1776
+    },
+    {
+      "name": "Evasion",
+      "level": 8,
+      "kind": "buff",
+      "icon": "spell_shadow_shadowward",
+      "spellId": 5277
+    },
+    {
+      "name": "Sap",
+      "level": 10,
+      "kind": "utility",
+      "icon": "ability_sap",
+      "spellId": 6770
+    },
+    {
+      "name": "Slice and Dice",
+      "level": 10,
+      "kind": "buff",
+      "icon": "ability_rogue_slicedice",
+      "spellId": 5171
+    },
+    {
+      "name": "Sprint",
+      "level": 10,
+      "kind": "utility",
+      "icon": "ability_rogue_sprint",
+      "spellId": 2983
+    },
+    {
+      "name": "Kick",
+      "level": 12,
+      "kind": "utility",
+      "icon": "ability_kick",
+      "spellId": 1766
+    },
+    {
+      "name": "Expose Armor",
+      "level": 14,
+      "kind": "utility",
+      "icon": "ability_warrior_riposte",
+      "spellId": 8647
+    },
+    {
+      "name": "Garrote",
+      "level": 14,
+      "kind": "attack",
+      "icon": "ability_rogue_garrote",
+      "spellId": 703
+    },
+    {
+      "name": "Sinister Strike",
+      "level": 14,
+      "kind": "attack",
+      "icon": "spell_shadow_ritualofsacrifice",
+      "spellId": 1758
+    },
+    {
+      "name": "Eviscerate",
+      "level": 16,
+      "kind": "attack",
+      "icon": "ability_rogue_eviscerate",
+      "spellId": 6761
+    },
+    {
+      "name": "Feint",
+      "level": 16,
+      "kind": "utility",
+      "icon": "ability_rogue_feint",
+      "spellId": 1966
+    },
+    {
+      "name": "Ambush",
+      "level": 18,
+      "kind": "attack",
+      "icon": "ability_rogue_ambush",
+      "spellId": 8676
+    },
+    {
+      "name": "Rupture",
+      "level": 20,
+      "kind": "attack",
+      "icon": "ability_rogue_rupture",
+      "spellId": 1943
+    },
+    {
+      "name": "Distract",
+      "level": 22,
+      "kind": "utility",
+      "icon": "ability_rogue_distract",
+      "spellId": 1725
+    },
+    {
+      "name": "Vanish",
+      "level": 22,
+      "kind": "utility",
+      "icon": "ability_vanish",
+      "spellId": 1856
+    },
+    {
+      "name": "Detect Traps",
+      "level": 24,
+      "kind": "utility",
+      "icon": "ability_spy",
+      "spellId": 2836
+    },
+    {
+      "name": "Cheap Shot",
+      "level": 26,
+      "kind": "utility",
+      "icon": "ability_cheapshot",
+      "spellId": 1833
+    },
+    {
+      "name": "Disarm Trap",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_shadow_grimward",
+      "spellId": 1842
+    },
+    {
+      "name": "Kidney Shot",
+      "level": 30,
+      "kind": "utility",
+      "icon": "ability_rogue_kidneyshot",
+      "spellId": 408
+    },
+    {
+      "name": "Blind",
+      "level": 34,
+      "kind": "utility",
+      "icon": "spell_shadow_mindsteal",
+      "spellId": 2094
+    },
+    {
+      "name": "Safe Fall",
+      "level": 40,
+      "kind": "buff",
+      "icon": "inv_feather_01",
+      "spellId": 1860
+    }
+  ],
+  "macros": []
+}
