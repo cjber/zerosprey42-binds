@@ -2,7 +2,7 @@
 
 import {
   MODS, COMMANDS, BARS, SLOT_PLAN, SLOT_ORDER, blankSlots, newCharacter, BASE_LABELS,
-  actionLabel, bindingFor, autoPlace, toBindings, toMacroText, findPlacement,
+  actionLabel, bindingFor, autoPlace, toBindings, toMacroText, findPlacement, COMMAND_ART,
   availableAbilities, placedAbilityNames, placeAbility,
 } from "./lib/planner.js";
 
@@ -47,6 +47,10 @@ const save = () => localStorage.setItem(STORE, JSON.stringify(state.profile));
 
 function actionIcon(action) {
   if (!action) return null;
+  if (action.k === "cmd") {
+    const art = COMMAND_ART[action.binding];
+    if (art) return `assets/wow/panels/${art}.png`;
+  }
   if (action.icon) return `assets/icons/${action.icon}.jpg`;
   if (action.k === "macro") {
     const macro = state.profile.macros.find((m) => m.id === action.id);
@@ -264,7 +268,8 @@ function renderBoard() {
     const primary = document.createElement("div");
     const base = state.layer === "bare" ? BASE_LABELS[key.legend] : null;
     const icon = actionIcon(action);
-    primary.className = "primary" + (action ? (icon ? "" : " no-icon") : base ? " base" : " empty");
+    primary.className =
+      "primary" + (action ? (icon ? (action.k === "cmd" ? " art" : "") : " no-icon") : base ? " base" : " empty");
     if (action) {
       if (icon) {
         const img = document.createElement("img");
