@@ -38,15 +38,16 @@
             <div class="tray-head">
               <h2>Spells</h2>
               <p class="tray-count" id="tray-count"></p>
+              <label class="tray-filter"><input type="checkbox" id="tray-show-placed" /> show placed</label>
             </div>
             <div class="tray-grid" id="tray-grid"></div>
           </section>
 
           <p class="hint">
-            Drag a spell from the tray onto a key, or pick a layer and click a key. The tray lists every
-            spell the class teaches: the ones already bound show the key that holds them, and dragging a
-            spell that is bound moves it, so nothing sits on two keys. The five dots under each key show
-            which layers have something on it, with the selected layer ringed. Alt is kept for mounts,
+            Drag a spell from the tray onto a key, or pick a layer and click a key. The tray holds only the
+            spells that are not on the board: dropping one on a key moves it there and it leaves the tray,
+            so nothing sits on two keys. Clear a key to send its spell back. The five dots under each key
+            show which layers have something on it, with the selected layer ringed. Alt is kept for mounts,
             food, potions and other items, so no spell is put there. G, T, S, B and Space stay utility
             keys, and the interface panels sit on the client's own default keys: P Spellbook, N Talents,
             L Quest log, O Social, M Map, H Honor, K Skills, U Reputation and Esc, with Shift+I, Shift+P,
