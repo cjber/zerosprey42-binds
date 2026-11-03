@@ -233,6 +233,50 @@ async function main() {
   );
   check("the export carries the key's bar slot", bindLine === "bind Q ACTIONBUTTON1", String(bindLine));
 
+  // The tray under the board lists every spell the class teaches: the ones already bound carry their
+  // key, and dragging one onto a key moves it, so the spell it displaced comes back as available.
+  const trayBefore = JSON.parse(
+    await evaluate(
+      `JSON.stringify({
+        tiles: document.querySelectorAll('.tray-tile').length,
+        used: document.querySelectorAll('.tray-tile.used').length,
+        count: document.getElementById('tray-count')?.textContent ?? '',
+      })`,
+    ),
+  );
+  check("the tray lists every spell at once", trayBefore.tiles >= 30, JSON.stringify(trayBefore));
+  check("the tray marks the spells already on the board", trayBefore.used > 0, JSON.stringify(trayBefore));
+
+  const drag = JSON.parse(
+    await evaluate(
+      `(() => {
+        const key = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === 'Q');
+        const displaced = key.querySelector('.primary span')?.textContent;
+        const tile = [...document.querySelectorAll('.tray-tile.used')]
+          .find((candidate) => candidate.querySelector('.badge')?.textContent !== 'Q');
+        const name = tile.dataset.ability;
+        const data = new DataTransfer();
+        tile.dispatchEvent(new DragEvent('dragstart', { bubbles: true, dataTransfer: data }));
+        key.dispatchEvent(new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: data }));
+        key.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: data }));
+        tile.dispatchEvent(new DragEvent('dragend', { bubbles: true, dataTransfer: data }));
+        const after = [...document.querySelectorAll('.key')].find((k) => k.querySelector('.legend')?.textContent === 'Q');
+        const moved = [...document.querySelectorAll('.tray-tile')].find((t) => t.dataset.ability === name);
+        const freed = [...document.querySelectorAll('.tray-tile')].find((t) => t.dataset.ability === displaced);
+        return JSON.stringify({
+          name,
+          displaced,
+          keyShows: after.querySelector('.primary span')?.textContent,
+          badge: moved.querySelector('.badge')?.textContent,
+          displacedAvailable: !freed.classList.contains('used'),
+        });
+      })()`,
+    ),
+  );
+  check("dragging a spell moves it onto the key", drag.keyShows === drag.name, JSON.stringify(drag));
+  check("the tray shows the key that holds that spell", drag.badge === "Q", JSON.stringify(drag));
+  check("the spell it displaced returns to the tray", drag.displacedAvailable === true, JSON.stringify(drag));
+
   // Dropping to level 1 and re-planning keeps only what a level 1 hunter knows.
   await evaluate(
     "(() => { const i = document.querySelector('.chars input'); i.value = '1'; i.dispatchEvent(new Event('change')); return true; })()",

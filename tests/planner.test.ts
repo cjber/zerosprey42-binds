@@ -2,7 +2,8 @@ import { describe, expect, test } from "bun:test";
 import boardsIndex from "../assets/boards/index.json";
 import {
   autoPlace, blankSlots, findPlacement, newCharacter, toBindings, toMacroText, validate,
-  validateBoard, SLOT_PLAN, SLOT_ORDER, bindingFor,
+  validateBoard, SLOT_PLAN, SLOT_ORDER, bindingFor, availableAbilities, placedAbilityNames,
+  placeAbility,
 } from "../lib/planner.js";
 
 const board = {
@@ -155,6 +156,32 @@ describe("validate", () => {
     character.slots.W.bare = { k: "bar", bar: 1, slot: 1 };
     const problems = validate(board, { hunter }, { characters: [character], macros: [] });
     expect(problems.some((problem) => problem.includes("bound twice"))).toBe(true);
+  });
+});
+
+describe("placing a spell from the tray", () => {
+  test("a spell sits on one key, so a second drop moves it", () => {
+    const character = newCharacter(board, "Barry Test", "hunter", 60);
+    expect(placeAbility(character, "Q", "bare", hunter.abilities[0])).toBe(true);
+    expect(findPlacement(character, "Serpent Sting")).toBe("Q");
+    expect(placeAbility(character, "W", "bare", hunter.abilities[0])).toBe(true);
+    expect(findPlacement(character, "Serpent Sting")).toBe("W");
+    expect(character.slots.Q.bare).toBe(null);
+  });
+
+  test("a key with no bar slot refuses the drop", () => {
+    const character = newCharacter(board, "Barry Test", "hunter", 60);
+    expect(placeAbility(character, "H", "bare", hunter.abilities[0])).toBe(false);
+    expect(character.slots.H.bare.binding).toBe("TOGGLECHARACTER4");
+  });
+
+  test("the board holds what the tray does not", () => {
+    const character = newCharacter(board, "Barry Test", "hunter", 60);
+    placeAbility(character, "Q", "bare", hunter.abilities[0]);
+    expect([...placedAbilityNames(character)]).toEqual(["Serpent Sting"]);
+    expect(availableAbilities(character, hunter.abilities).map((ability) => ability.name)).toEqual([
+      "Arcane Shot", "Mend Pet", "Tame Beast",
+    ]);
   });
 });
 
