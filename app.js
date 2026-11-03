@@ -601,7 +601,34 @@ function renderPlan() {
     option.selected = name === character.class;
     select.append(option);
   }
-  el("plan-level").value = character.level;
+  const levelInput = el("plan-level");
+  levelInput.value = character.level;
+  levelInput.onchange = () => {
+    character.level = Number(levelInput.value) || 1;
+    save();
+    renderChars();
+    renderBoard();
+    renderPlan();
+    renderTray();
+    renderExport();
+  };
+  select.onchange = () => {
+    if (select.value === character.class) return;
+    if (!confirm(`Change ${character.name} to ${select.value}? The spells on their keys are cleared.`)) {
+      renderPlan();
+      return;
+    }
+    // A character's spells belong to its class; the commands and the key layout stay.
+    character.class = select.value;
+    for (const slots of Object.values(character.slots)) {
+      for (const mod of MODS) if (slots[mod.id]?.k === "bar") slots[mod.id] = null;
+    }
+    save();
+    renderBoard();
+    renderPlan();
+    renderTray();
+    renderExport();
+  };
 
   const list = el("plan-list");
   list.innerHTML = "";
