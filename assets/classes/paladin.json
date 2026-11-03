@@ -1,0 +1,309 @@
+{
+  "class": "paladin",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Devotion Aura",
+      "level": 1,
+      "kind": "buff",
+      "icon": "spell_holy_devotionaura",
+      "spellId": 465
+    },
+    {
+      "name": "Blessing of Might",
+      "level": 4,
+      "kind": "buff",
+      "icon": "spell_holy_fistofjustice",
+      "spellId": 19740
+    },
+    {
+      "name": "Judgement",
+      "level": 4,
+      "kind": "attack",
+      "icon": "spell_holy_righteousfury",
+      "spellId": 20271
+    },
+    {
+      "name": "Seal of Righteousness",
+      "level": 4,
+      "kind": "buff",
+      "icon": "ability_thunderbolt",
+      "spellId": 21084
+    },
+    {
+      "name": "Divine Protection",
+      "level": 6,
+      "kind": "buff",
+      "icon": "spell_holy_restoration",
+      "spellId": 498
+    },
+    {
+      "name": "Seal of the Crusader",
+      "level": 6,
+      "kind": "buff",
+      "icon": "spell_holy_holysmite",
+      "spellId": 21082
+    },
+    {
+      "name": "Hammer of Justice",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_holy_sealofmight",
+      "spellId": 853
+    },
+    {
+      "name": "Purify",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_holy_purify",
+      "spellId": 1152
+    },
+    {
+      "name": "Blessing of Protection",
+      "level": 10,
+      "kind": "buff",
+      "icon": "spell_holy_sealofprotection",
+      "spellId": 1022
+    },
+    {
+      "name": "Lay on Hands",
+      "level": 10,
+      "kind": "utility",
+      "icon": "spell_holy_layonhands",
+      "spellId": 633
+    },
+    {
+      "name": "Blessing of Wisdom",
+      "level": 14,
+      "kind": "buff",
+      "icon": "spell_holy_sealofwisdom",
+      "spellId": 19742
+    },
+    {
+      "name": "Holy Light",
+      "level": 14,
+      "kind": "utility",
+      "icon": "spell_holy_holybolt",
+      "spellId": 647
+    },
+    {
+      "name": "Retribution Aura",
+      "level": 16,
+      "kind": "buff",
+      "icon": "spell_holy_auraoflight",
+      "spellId": 7294
+    },
+    {
+      "name": "Righteous Fury",
+      "level": 16,
+      "kind": "buff",
+      "icon": "spell_holy_sealoffury",
+      "spellId": 25780
+    },
+    {
+      "name": "Blessing of Freedom",
+      "level": 18,
+      "kind": "buff",
+      "icon": "spell_holy_sealofvalor",
+      "spellId": 1044
+    },
+    {
+      "name": "Exorcism",
+      "level": 20,
+      "kind": "attack",
+      "icon": "spell_holy_excorcism_02",
+      "spellId": 879
+    },
+    {
+      "name": "Flash of Light",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_holy_flashheal",
+      "spellId": 19750
+    },
+    {
+      "name": "Concentration Aura",
+      "level": 22,
+      "kind": "buff",
+      "icon": "spell_holy_mindsooth",
+      "spellId": 19746
+    },
+    {
+      "name": "Seal of Justice",
+      "level": 22,
+      "kind": "buff",
+      "icon": "spell_holy_sealofwrath",
+      "spellId": 20164
+    },
+    {
+      "name": "Turn Undead",
+      "level": 24,
+      "kind": "utility",
+      "icon": "spell_holy_turnundead",
+      "spellId": 2878
+    },
+    {
+      "name": "Blessing of Salvation",
+      "level": 26,
+      "kind": "buff",
+      "icon": "spell_holy_sealofsalvation",
+      "spellId": 1038
+    },
+    {
+      "name": "Shadow Resistance Aura",
+      "level": 28,
+      "kind": "buff",
+      "icon": "spell_shadow_sealofkings",
+      "spellId": 19876
+    },
+    {
+      "name": "Divine Intervention",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_nature_timestop",
+      "spellId": 19752
+    },
+    {
+      "name": "Seal of Light",
+      "level": 30,
+      "kind": "buff",
+      "icon": "spell_holy_healingaura",
+      "spellId": 20165
+    },
+    {
+      "name": "Frost Resistance Aura",
+      "level": 32,
+      "kind": "buff",
+      "icon": "spell_frost_wizardmark",
+      "spellId": 19888
+    },
+    {
+      "name": "Divine Shield",
+      "level": 34,
+      "kind": "buff",
+      "icon": "spell_holy_divineintervention",
+      "spellId": 642
+    },
+    {
+      "name": "Fire Resistance Aura",
+      "level": 36,
+      "kind": "buff",
+      "icon": "spell_fire_sealoffire",
+      "spellId": 19891
+    },
+    {
+      "name": "Redemption",
+      "level": 36,
+      "kind": "utility",
+      "icon": "spell_holy_resurrection",
+      "spellId": 10324
+    },
+    {
+      "name": "Seal of Wisdom",
+      "level": 38,
+      "kind": "buff",
+      "icon": "spell_holy_righteousnessaura",
+      "spellId": 20166
+    },
+    {
+      "name": "Blessing of Light",
+      "level": 40,
+      "kind": "buff",
+      "icon": "spell_holy_prayerofhealing02",
+      "spellId": 19977
+    },
+    {
+      "name": "Consecration",
+      "level": 40,
+      "kind": "attack",
+      "icon": "spell_holy_innerfire",
+      "spellId": 20922
+    },
+    {
+      "name": "Seal of Command",
+      "level": 40,
+      "kind": "buff",
+      "icon": "ability_warrior_innerrage",
+      "spellId": 20918
+    },
+    {
+      "name": "Cleanse",
+      "level": 42,
+      "kind": "utility",
+      "icon": "spell_holy_renew",
+      "spellId": 4987
+    },
+    {
+      "name": "Hammer of Wrath",
+      "level": 44,
+      "kind": "attack",
+      "icon": "ability_thunderclap",
+      "spellId": 24275
+    },
+    {
+      "name": "Blessing of Sacrifice",
+      "level": 46,
+      "kind": "buff",
+      "icon": "spell_holy_sealofsacrifice",
+      "spellId": 6940
+    },
+    {
+      "name": "Holy Wrath",
+      "level": 50,
+      "kind": "attack",
+      "icon": "spell_holy_excorcism",
+      "spellId": 2812
+    },
+    {
+      "name": "Greater Blessing of Might",
+      "level": 52,
+      "kind": "buff",
+      "icon": "spell_holy_greaterblessingofkings",
+      "spellId": 25782
+    },
+    {
+      "name": "Greater Blessing of Wisdom",
+      "level": 54,
+      "kind": "buff",
+      "icon": "spell_holy_greaterblessingofwisdom",
+      "spellId": 25894
+    },
+    {
+      "name": "Holy Shock",
+      "level": 56,
+      "kind": "attack",
+      "icon": "spell_holy_searinglight",
+      "spellId": 20930
+    },
+    {
+      "name": "Greater Blessing of Kings",
+      "level": 60,
+      "kind": "buff",
+      "icon": "spell_magic_greaterblessingofkings",
+      "spellId": 25898
+    },
+    {
+      "name": "Greater Blessing of Light",
+      "level": 60,
+      "kind": "buff",
+      "icon": "spell_holy_greaterblessingoflight",
+      "spellId": 25890
+    },
+    {
+      "name": "Greater Blessing of Salvation",
+      "level": 60,
+      "kind": "buff",
+      "icon": "spell_holy_greaterblessingofsalvation",
+      "spellId": 25895
+    },
+    {
+      "name": "Holy Shield",
+      "level": 60,
+      "kind": "buff",
+      "icon": "spell_holy_blessingofprotection",
+      "spellId": 20928
+    }
+  ],
+  "macros": []
+}

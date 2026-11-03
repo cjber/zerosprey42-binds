@@ -1,0 +1,232 @@
+{
+  "class": "priest",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Power Word: Fortitude",
+      "level": 1,
+      "kind": "buff",
+      "icon": "spell_holy_wordfortitude",
+      "spellId": 1243
+    },
+    {
+      "name": "Shadow Word: Pain",
+      "level": 4,
+      "kind": "attack",
+      "icon": "spell_shadow_shadowwordpain",
+      "spellId": 589
+    },
+    {
+      "name": "Power Word: Shield",
+      "level": 6,
+      "kind": "buff",
+      "icon": "spell_holy_powerwordshield",
+      "spellId": 17
+    },
+    {
+      "name": "Fade",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_magic_lesserinvisibilty",
+      "spellId": 586
+    },
+    {
+      "name": "Renew",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_holy_renew",
+      "spellId": 139
+    },
+    {
+      "name": "Lesser Heal",
+      "level": 10,
+      "kind": "utility",
+      "icon": "spell_holy_lesserheal",
+      "spellId": 2053
+    },
+    {
+      "name": "Mind Blast",
+      "level": 10,
+      "kind": "attack",
+      "icon": "spell_shadow_unholyfrenzy",
+      "spellId": 8092
+    },
+    {
+      "name": "Resurrection",
+      "level": 10,
+      "kind": "utility",
+      "icon": "spell_holy_resurrection",
+      "spellId": 2006
+    },
+    {
+      "name": "Inner Fire",
+      "level": 12,
+      "kind": "buff",
+      "icon": "spell_holy_innerfire",
+      "spellId": 588
+    },
+    {
+      "name": "Cure Disease",
+      "level": 14,
+      "kind": "utility",
+      "icon": "spell_holy_nullifydisease",
+      "spellId": 528
+    },
+    {
+      "name": "Psychic Scream",
+      "level": 14,
+      "kind": "utility",
+      "icon": "spell_shadow_psychicscream",
+      "spellId": 8122
+    },
+    {
+      "name": "Smite",
+      "level": 14,
+      "kind": "attack",
+      "icon": "spell_holy_holysmite",
+      "spellId": 598
+    },
+    {
+      "name": "Heal",
+      "level": 16,
+      "kind": "utility",
+      "icon": "spell_holy_heal",
+      "spellId": 2054
+    },
+    {
+      "name": "Dispel Magic",
+      "level": 18,
+      "kind": "utility",
+      "icon": "spell_holy_dispelmagic",
+      "spellId": 527
+    },
+    {
+      "name": "Flash Heal",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_holy_flashheal",
+      "spellId": 2061
+    },
+    {
+      "name": "Holy Fire",
+      "level": 20,
+      "kind": "attack",
+      "icon": "spell_holy_searinglight",
+      "spellId": 14914
+    },
+    {
+      "name": "Mind Soothe",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_holy_mindsooth",
+      "spellId": 453
+    },
+    {
+      "name": "Shackle Undead",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_nature_slow",
+      "spellId": 9484
+    },
+    {
+      "name": "Mind Vision",
+      "level": 22,
+      "kind": "utility",
+      "icon": "spell_holy_mindvision",
+      "spellId": 2096
+    },
+    {
+      "name": "Mana Burn",
+      "level": 24,
+      "kind": "attack",
+      "icon": "spell_shadow_manaburn",
+      "spellId": 8129
+    },
+    {
+      "name": "Mind Control",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_shadow_shadowworddominate",
+      "spellId": 605
+    },
+    {
+      "name": "Prayer of Healing",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_holy_prayerofhealing02",
+      "spellId": 596
+    },
+    {
+      "name": "Shadow Protection",
+      "level": 30,
+      "kind": "buff",
+      "icon": "spell_shadow_antishadow",
+      "spellId": 976
+    },
+    {
+      "name": "Abolish Disease",
+      "level": 32,
+      "kind": "utility",
+      "icon": "spell_nature_nullifydisease",
+      "spellId": 552
+    },
+    {
+      "name": "Levitate",
+      "level": 34,
+      "kind": "buff",
+      "icon": "spell_holy_layonhands",
+      "spellId": 1706
+    },
+    {
+      "name": "Devouring Plague",
+      "level": 36,
+      "kind": "attack",
+      "icon": "spell_shadow_devouringplague",
+      "spellId": 19277
+    },
+    {
+      "name": "Holy Nova",
+      "level": 36,
+      "kind": "attack",
+      "icon": "spell_holy_holynova",
+      "spellId": 15431
+    },
+    {
+      "name": "Mind Flay",
+      "level": 36,
+      "kind": "attack",
+      "icon": "spell_shadow_siphonmana",
+      "spellId": 17312
+    },
+    {
+      "name": "Greater Heal",
+      "level": 40,
+      "kind": "utility",
+      "icon": "spell_holy_greaterheal",
+      "spellId": 2060
+    },
+    {
+      "name": "Divine Spirit",
+      "level": 50,
+      "kind": "buff",
+      "icon": "spell_holy_divinespirit",
+      "spellId": 14819
+    },
+    {
+      "name": "Lightwell",
+      "level": 60,
+      "kind": "utility",
+      "icon": "spell_holy_summonlightwell",
+      "spellId": 27871
+    },
+    {
+      "name": "Prayer of Spirit",
+      "level": 60,
+      "kind": "buff",
+      "icon": "spell_holy_prayerofspirit",
+      "spellId": 27681
+    }
+  ],
+  "macros": []
+}

@@ -101,7 +101,93 @@ KIND_ICON = {
 }
 
 
+# Every ability that is not an attack, per class, so only a rotation spell falls through to the keyword
+# rules. These are the client's own trainer lists: a heal, a buff or a totem has no keyword that tells it
+# apart from a strike, so naming them here is the honest way to classify them.
+CLASS_KINDS = {
+    "warrior": {
+        "Battle Shout": "buff", "Charge": "utility", "Hamstring": "utility", "Bloodrage": "utility",
+        "Shield Bash": "utility", "Demoralizing Shout": "buff", "Mocking Blow": "utility",
+        "Shield Block": "buff", "Disarm": "utility", "Intimidating Shout": "utility",
+        "Retaliation": "buff", "Sunder Armor": "utility", "Challenging Shout": "utility",
+        "Shield Wall": "buff", "Berserker Rage": "buff", "Pummel": "utility", "Intercept": "utility",
+        "Recklessness": "buff",
+    },
+    "paladin": {
+        "Devotion Aura": "buff", "Blessing of Might": "buff", "Judgement": "attack",
+        "Seal of Righteousness": "buff", "Divine Protection": "buff", "Holy Light": "utility",
+        "Seal of the Crusader": "buff", "Hammer of Justice": "utility", "Purify": "utility",
+        "Blessing of Protection": "buff", "Lay on Hands": "utility", "Blessing of Wisdom": "buff",
+        "Retribution Aura": "buff", "Righteous Fury": "buff", "Blessing of Freedom": "buff",
+        "Flash of Light": "utility", "Concentration Aura": "buff", "Seal of Justice": "buff",
+        "Redemption": "utility", "Turn Undead": "utility", "Blessing of Salvation": "buff",
+        "Shadow Resistance Aura": "buff", "Divine Intervention": "utility", "Seal of Command": "buff",
+        "Seal of Light": "buff", "Frost Resistance Aura": "buff", "Divine Shield": "buff",
+        "Fire Resistance Aura": "buff", "Seal of Wisdom": "buff", "Blessing of Light": "buff",
+        "Cleanse": "utility", "Blessing of Sacrifice": "buff", "Holy Shock": "attack",
+        "Holy Shield": "buff", "Greater Blessing of Might": "buff",
+        "Greater Blessing of Wisdom": "buff", "Greater Blessing of Kings": "buff",
+        "Greater Blessing of Light": "buff", "Greater Blessing of Salvation": "buff",
+    },
+    "rogue": {
+        "Stealth": "utility", "Pick Pocket": "utility", "Gouge": "utility", "Evasion": "buff",
+        "Sap": "utility", "Slice and Dice": "buff", "Sprint": "utility", "Kick": "utility",
+        "Expose Armor": "utility", "Feint": "utility", "Distract": "utility", "Vanish": "utility",
+        "Detect Traps": "utility", "Cheap Shot": "utility", "Disarm Trap": "utility",
+        "Kidney Shot": "utility", "Blind": "utility", "Safe Fall": "buff",
+    },
+    "priest": {
+        "Power Word: Fortitude": "buff", "Lesser Heal": "utility", "Power Word: Shield": "buff",
+        "Fade": "utility", "Renew": "utility", "Resurrection": "utility", "Inner Fire": "buff",
+        "Cure Disease": "utility", "Psychic Scream": "utility", "Heal": "utility", "Dispel Magic": "utility", "Flash Heal": "utility", "Mind Soothe": "utility", "Shackle Undead": "utility", "Mind Vision": "utility", "Mind Control": "utility",
+        "Prayer of Healing": "utility", "Shadow Protection": "buff", "Abolish Disease": "utility",
+        "Levitate": "buff", "Divine Spirit": "buff", "Greater Heal": "utility", "Lightwell": "utility",
+        "Prayer of Spirit": "buff",
+    },
+    "shaman": {
+        "Rockbiter Weapon": "buff", "Earthbind Totem": "utility", "Healing Wave": "utility",
+        "Lightning Shield": "buff", "Stoneclaw Totem": "utility", "Flametongue Weapon": "buff",
+        "Strength of Earth Totem": "buff", "Ancestral Spirit": "utility", "Purge": "utility",
+        "Cure Disease": "utility", "Stoneskin Totem": "buff", "Cure Poison": "utility",
+        "Tremor Totem": "utility", "Frostbrand Weapon": "buff", "Ghost Wolf": "utility",
+        "Lesser Healing Wave": "utility", "Searing Totem": "pet", "Poison Cleansing Totem": "utility",
+        "Water Breathing": "buff", "Frost Resistance Totem": "buff", "Far Sight": "utility",
+        "Magma Totem": "pet", "Mana Spring Totem": "buff", "Fire Resistance Totem": "buff",
+        "Flametongue Totem": "buff", "Water Walking": "buff", "Astral Recall": "utility",
+        "Grounding Totem": "utility", "Healing Stream Totem": "utility",
+        "Nature Resistance Totem": "buff", "Reincarnation": "utility", "Windfury Weapon": "buff",
+        "Windfury Totem": "buff", "Sentry Totem": "utility", "Windwall Totem": "buff",
+        "Disease Cleansing Totem": "utility", "Chain Heal": "utility", "Grace of Air Totem": "buff",
+        "Mana Tide Totem": "buff",
+    },
+    "warlock": {
+        "Curse of Weakness": "utility", "Life Tap": "utility", "Fear": "utility",
+        "Create Healthstone": "utility", "Health Funnel": "utility",
+        "Curse of Recklessness": "utility", "Unending Breath": "buff", "Create Soulstone": "utility",
+        "Demon Armor": "buff", "Ritual of Summoning": "utility", "Eye of Kilrogg": "utility",
+        "Sense Demons": "utility", "Curse of Tongues": "utility", "Detect Invisibility": "buff",
+        "Banish": "utility", "Create Firestone": "utility", "Subjugate Demon": "utility",
+        "Shadow Ward": "buff", "Create Spellstone": "utility", "Howl of Terror": "utility",
+        "Gray Wolf": "utility",
+    },
+    "druid": {
+        "Mark of the Wild": "buff", "Rejuvenation": "utility", "Thorns": "buff",
+        "Entangling Roots": "utility", "Healing Touch": "utility", "Demoralizing Roar": "buff",
+        "Enrage": "utility", "Regrowth": "utility", "Bash": "utility", "Faerie Fire": "utility",
+        "Hibernate": "utility", "Nature's Grasp": "buff", "Cat Form": "utility", "Prowl": "utility",
+        "Rebirth": "utility", "Soothe Animal": "utility", "Remove Curse": "utility",
+        "Tiger's Fury": "buff", "Abolish Poison": "utility", "Dash": "utility",
+        "Challenging Roar": "utility", "Cower": "utility", "Tranquility": "utility",
+        "Travel Form": "utility", "Track Humanoids": "utility", "Frenzied Regeneration": "buff",
+        "Pounce": "utility", "Dire Bear Form": "utility", "Feline Grace": "passive",
+        "Innervate": "utility", "Barkskin": "buff",
+    },
+}
+
+
 def kind_for(name: str, klass: str) -> str:
+    if name in CLASS_KINDS.get(klass, {}):
+        return CLASS_KINDS[klass][name]
     overrides = MAGE_KIND_OVERRIDES if klass == "mage" else KIND_OVERRIDES
     if name in overrides:
         return overrides[name]

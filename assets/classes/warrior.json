@@ -1,0 +1,218 @@
+{
+  "class": "warrior",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Battle Shout",
+      "level": 1,
+      "kind": "buff",
+      "icon": "ability_warrior_battleshout",
+      "spellId": 6673
+    },
+    {
+      "name": "Charge",
+      "level": 4,
+      "kind": "utility",
+      "icon": "ability_warrior_charge",
+      "spellId": 100
+    },
+    {
+      "name": "Rend",
+      "level": 4,
+      "kind": "attack",
+      "icon": "ability_gouge",
+      "spellId": 772
+    },
+    {
+      "name": "Thunder Clap",
+      "level": 6,
+      "kind": "attack",
+      "icon": "spell_nature_thunderclap",
+      "spellId": 6343
+    },
+    {
+      "name": "Hamstring",
+      "level": 8,
+      "kind": "utility",
+      "icon": "ability_shockwave",
+      "spellId": 1715
+    },
+    {
+      "name": "Bloodrage",
+      "level": 10,
+      "kind": "utility",
+      "icon": "ability_racial_bloodrage",
+      "spellId": 2687
+    },
+    {
+      "name": "Overpower",
+      "level": 12,
+      "kind": "attack",
+      "icon": "ability_meleedamage",
+      "spellId": 7384
+    },
+    {
+      "name": "Shield Bash",
+      "level": 12,
+      "kind": "utility",
+      "icon": "ability_warrior_shieldbash",
+      "spellId": 72
+    },
+    {
+      "name": "Demoralizing Shout",
+      "level": 14,
+      "kind": "buff",
+      "icon": "ability_warrior_warcry",
+      "spellId": 1160
+    },
+    {
+      "name": "Revenge",
+      "level": 14,
+      "kind": "attack",
+      "icon": "ability_warrior_revenge",
+      "spellId": 6572
+    },
+    {
+      "name": "Heroic Strike",
+      "level": 16,
+      "kind": "attack",
+      "icon": "ability_rogue_ambush",
+      "spellId": 285
+    },
+    {
+      "name": "Mocking Blow",
+      "level": 16,
+      "kind": "utility",
+      "icon": "ability_warrior_punishingblow",
+      "spellId": 694
+    },
+    {
+      "name": "Shield Block",
+      "level": 16,
+      "kind": "buff",
+      "icon": "ability_defend",
+      "spellId": 2565
+    },
+    {
+      "name": "Disarm",
+      "level": 18,
+      "kind": "utility",
+      "icon": "ability_warrior_disarm",
+      "spellId": 676
+    },
+    {
+      "name": "Cleave",
+      "level": 20,
+      "kind": "attack",
+      "icon": "ability_warrior_cleave",
+      "spellId": 845
+    },
+    {
+      "name": "Intimidating Shout",
+      "level": 20,
+      "kind": "utility",
+      "icon": "ability_golemthunderclap",
+      "spellId": 5246
+    },
+    {
+      "name": "Retaliation",
+      "level": 20,
+      "kind": "buff",
+      "icon": "ability_warrior_challange",
+      "spellId": 20230
+    },
+    {
+      "name": "Execute",
+      "level": 24,
+      "kind": "attack",
+      "icon": "inv_sword_48",
+      "spellId": 5308
+    },
+    {
+      "name": "Challenging Shout",
+      "level": 26,
+      "kind": "utility",
+      "icon": "ability_bullrush",
+      "spellId": 1161
+    },
+    {
+      "name": "Shield Wall",
+      "level": 28,
+      "kind": "buff",
+      "icon": "ability_warrior_shieldwall",
+      "spellId": 871
+    },
+    {
+      "name": "Berserker Rage",
+      "level": 32,
+      "kind": "buff",
+      "icon": "spell_nature_ancestralguardian",
+      "spellId": 18499
+    },
+    {
+      "name": "Sunder Armor",
+      "level": 34,
+      "kind": "utility",
+      "icon": "ability_warrior_sunder",
+      "spellId": 8380
+    },
+    {
+      "name": "Whirlwind",
+      "level": 36,
+      "kind": "attack",
+      "icon": "ability_whirlwind",
+      "spellId": 1680
+    },
+    {
+      "name": "Pummel",
+      "level": 38,
+      "kind": "utility",
+      "icon": "inv_gauntlets_04",
+      "spellId": 6552
+    },
+    {
+      "name": "Slam",
+      "level": 38,
+      "kind": "attack",
+      "icon": "ability_warrior_decisivestrike",
+      "spellId": 8820
+    },
+    {
+      "name": "Recklessness",
+      "level": 50,
+      "kind": "buff",
+      "icon": "ability_criticalstrike",
+      "spellId": 1719
+    },
+    {
+      "name": "Intercept",
+      "level": 52,
+      "kind": "utility",
+      "icon": "ability_rogue_sprint",
+      "spellId": 20617
+    },
+    {
+      "name": "Bloodthirst",
+      "level": 54,
+      "kind": "attack",
+      "icon": "spell_nature_bloodlust",
+      "spellId": 23893
+    },
+    {
+      "name": "Mortal Strike",
+      "level": 54,
+      "kind": "attack",
+      "icon": "ability_warrior_savageblow",
+      "spellId": 21552
+    },
+    {
+      "name": "Shield Slam",
+      "level": 54,
+      "kind": "attack",
+      "icon": "inv_shield_05",
+      "spellId": 23924
+    }
+  ],
+  "macros": []
+}

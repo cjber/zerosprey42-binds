@@ -1,0 +1,316 @@
+{
+  "class": "druid",
+  "source": "cjber/tweaks-forever Data/ClassSpells.lua + SpellName (wago.tools, 1.60.1.69913)",
+  "note": "one entry per ability, at the level its first rank is trained; ranks share a name",
+  "abilities": [
+    {
+      "name": "Mark of the Wild",
+      "level": 1,
+      "kind": "buff",
+      "icon": "spell_nature_regeneration",
+      "spellId": 1126
+    },
+    {
+      "name": "Moonfire",
+      "level": 4,
+      "kind": "attack",
+      "icon": "spell_nature_starfall",
+      "spellId": 8921
+    },
+    {
+      "name": "Rejuvenation",
+      "level": 4,
+      "kind": "utility",
+      "icon": "spell_nature_rejuvenation",
+      "spellId": 774
+    },
+    {
+      "name": "Thorns",
+      "level": 6,
+      "kind": "buff",
+      "icon": "spell_nature_thorns",
+      "spellId": 467
+    },
+    {
+      "name": "Entangling Roots",
+      "level": 8,
+      "kind": "utility",
+      "icon": "spell_nature_stranglevines",
+      "spellId": 339
+    },
+    {
+      "name": "Demoralizing Roar",
+      "level": 10,
+      "kind": "buff",
+      "icon": "ability_druid_demoralizingroar",
+      "spellId": 99
+    },
+    {
+      "name": "Enrage",
+      "level": 12,
+      "kind": "utility",
+      "icon": "ability_druid_enrage",
+      "spellId": 5229
+    },
+    {
+      "name": "Regrowth",
+      "level": 12,
+      "kind": "utility",
+      "icon": "spell_nature_resistnature",
+      "spellId": 8936
+    },
+    {
+      "name": "Bash",
+      "level": 14,
+      "kind": "utility",
+      "icon": "ability_druid_bash",
+      "spellId": 5211
+    },
+    {
+      "name": "Healing Touch",
+      "level": 14,
+      "kind": "utility",
+      "icon": "spell_nature_healingtouch",
+      "spellId": 5187
+    },
+    {
+      "name": "Wrath",
+      "level": 14,
+      "kind": "attack",
+      "icon": "spell_nature_abolishmagic",
+      "spellId": 5178
+    },
+    {
+      "name": "Swipe",
+      "level": 16,
+      "kind": "attack",
+      "icon": "inv_misc_monsterclaw_03",
+      "spellId": 779
+    },
+    {
+      "name": "Faerie Fire",
+      "level": 18,
+      "kind": "utility",
+      "icon": "spell_nature_faeriefire",
+      "spellId": 770
+    },
+    {
+      "name": "Hibernate",
+      "level": 18,
+      "kind": "utility",
+      "icon": "spell_nature_sleep",
+      "spellId": 2637
+    },
+    {
+      "name": "Cat Form",
+      "level": 20,
+      "kind": "utility",
+      "icon": "ability_druid_catform",
+      "spellId": 768
+    },
+    {
+      "name": "Claw",
+      "level": 20,
+      "kind": "pet",
+      "icon": "ability_druid_rake",
+      "spellId": 1082
+    },
+    {
+      "name": "Prowl",
+      "level": 20,
+      "kind": "utility",
+      "icon": "ability_ambush",
+      "spellId": 5215
+    },
+    {
+      "name": "Rebirth",
+      "level": 20,
+      "kind": "utility",
+      "icon": "spell_nature_reincarnation",
+      "spellId": 20484
+    },
+    {
+      "name": "Rip",
+      "level": 20,
+      "kind": "attack",
+      "icon": "ability_ghoulfrenzy",
+      "spellId": 1079
+    },
+    {
+      "name": "Starfire",
+      "level": 20,
+      "kind": "attack",
+      "icon": "spell_arcane_starfire",
+      "spellId": 2912
+    },
+    {
+      "name": "Shred",
+      "level": 22,
+      "kind": "attack",
+      "icon": "spell_shadow_vampiricaura",
+      "spellId": 5221
+    },
+    {
+      "name": "Soothe Animal",
+      "level": 22,
+      "kind": "utility",
+      "icon": "ability_hunter_beastsoothe",
+      "spellId": 2908
+    },
+    {
+      "name": "Rake",
+      "level": 24,
+      "kind": "attack",
+      "icon": "ability_druid_disembowel",
+      "spellId": 1822
+    },
+    {
+      "name": "Remove Curse",
+      "level": 24,
+      "kind": "utility",
+      "icon": "spell_holy_removecurse",
+      "spellId": 2782
+    },
+    {
+      "name": "Tiger's Fury",
+      "level": 24,
+      "kind": "buff",
+      "icon": "ability_mount_jungletiger",
+      "spellId": 5217
+    },
+    {
+      "name": "Abolish Poison",
+      "level": 26,
+      "kind": "utility",
+      "icon": "spell_nature_nullifypoison_02",
+      "spellId": 2893
+    },
+    {
+      "name": "Dash",
+      "level": 26,
+      "kind": "utility",
+      "icon": "ability_druid_dash",
+      "spellId": 1850
+    },
+    {
+      "name": "Maul",
+      "level": 26,
+      "kind": "attack",
+      "icon": "ability_druid_maul",
+      "spellId": 6809
+    },
+    {
+      "name": "Challenging Roar",
+      "level": 28,
+      "kind": "utility",
+      "icon": "ability_druid_challangingroar",
+      "spellId": 5209
+    },
+    {
+      "name": "Cower",
+      "level": 28,
+      "kind": "utility",
+      "icon": "ability_druid_cower",
+      "spellId": 8998
+    },
+    {
+      "name": "Nature's Grasp",
+      "level": 28,
+      "kind": "buff",
+      "icon": "spell_nature_natureswrath",
+      "spellId": 16811
+    },
+    {
+      "name": "Tranquility",
+      "level": 30,
+      "kind": "utility",
+      "icon": "spell_nature_tranquility",
+      "spellId": 740
+    },
+    {
+      "name": "Travel Form",
+      "level": 30,
+      "kind": "utility",
+      "icon": "ability_druid_travelform",
+      "spellId": 783
+    },
+    {
+      "name": "Ferocious Bite",
+      "level": 32,
+      "kind": "pet",
+      "icon": "ability_druid_ferociousbite",
+      "spellId": 22568
+    },
+    {
+      "name": "Ravage",
+      "level": 32,
+      "kind": "attack",
+      "icon": "ability_druid_ravage",
+      "spellId": 6785
+    },
+    {
+      "name": "Track Humanoids",
+      "level": 32,
+      "kind": "utility",
+      "icon": "ability_tracking",
+      "spellId": 5225
+    },
+    {
+      "name": "Frenzied Regeneration",
+      "level": 36,
+      "kind": "buff",
+      "icon": "ability_bullrush",
+      "spellId": 22842
+    },
+    {
+      "name": "Pounce",
+      "level": 36,
+      "kind": "utility",
+      "icon": "ability_druid_supriseattack",
+      "spellId": 9005
+    },
+    {
+      "name": "Dire Bear Form",
+      "level": 40,
+      "kind": "utility",
+      "icon": "ability_racial_bearform",
+      "spellId": 9634
+    },
+    {
+      "name": "Feline Grace",
+      "level": 40,
+      "kind": "passive",
+      "icon": "inv_feather_01",
+      "spellId": 20719
+    },
+    {
+      "name": "Hurricane",
+      "level": 40,
+      "kind": "attack",
+      "icon": "spell_nature_cyclone",
+      "spellId": 16914
+    },
+    {
+      "name": "Innervate",
+      "level": 40,
+      "kind": "utility",
+      "icon": "spell_nature_lightning",
+      "spellId": 29166
+    },
+    {
+      "name": "Insect Swarm",
+      "level": 40,
+      "kind": "attack",
+      "icon": "spell_nature_insectswarm",
+      "spellId": 24975
+    },
+    {
+      "name": "Barkskin",
+      "level": 44,
+      "kind": "buff",
+      "icon": "spell_nature_stoneclawtotem",
+      "spellId": 22812
+    }
+  ],
+  "macros": []
+}
