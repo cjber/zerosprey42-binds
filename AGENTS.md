@@ -88,3 +88,7 @@ python3 tools/build-icons.py $C/SpellMisc.csv $C/ManifestInterfaceData.csv asset
 
 Regenerate in place: `build-class.py` keeps the `macros` array from the file it writes over. Board
 geometry: see the note in `tools/build-board.py`.
+
+## Standards
+
+- `repo-standards`: the RS-* requirements every cjber repo meets (repo, Actions and security settings, rulesets, CI hardening, community files), a skill in cjber/skills whose `audit.py` checks this repo
