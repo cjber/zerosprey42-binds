@@ -33,20 +33,33 @@ const chrome = spawn(
     "--window-size=1400,1000",
     "about:blank",
   ],
-  { stdio: "ignore" },
+  { stdio: ["ignore", "ignore", "pipe"] },
 );
+// Chrome's stderr and exit, so a crash fails at once with its reason instead of waiting out the deadline.
+let chromeLog = "";
+let chromeExit: string | null = null;
+chrome.stderr?.on("data", (chunk) => {
+  chromeLog = (chromeLog + chunk).slice(-4000);
+});
+chrome.on("exit", (code, signal) => {
+  chromeExit = `code ${code ?? "none"}, signal ${signal ?? "none"}`;
+});
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Waits until Chrome writes its DevTools port or exits. A cold CI runner can take well over ten seconds to
+// start Chrome, so the deadline is only a backstop for a Chrome that neither starts nor exits.
 async function waitPort(path: string) {
-  for (let attempt = 0; attempt < 100; attempt += 1) {
+  const deadline = Date.now() + 60_000;
+  while (Date.now() < deadline) {
     if (existsSync(path)) {
       const [port, browser] = readFileSync(path, "utf8").split("\n");
       if (port && browser) return { port, browser };
     }
+    if (chromeExit) throw new Error(`chrome exited before it was ready (${chromeExit}):\n${chromeLog}`);
     await sleep(100);
   }
-  throw new Error(`devtools port file never appeared: ${path}`);
+  throw new Error(`chrome wrote no devtools port within 60 s: ${path}\n${chromeLog}`);
 }
 
 async function main() {
