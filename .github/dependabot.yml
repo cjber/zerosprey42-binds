@@ -9,3 +9,13 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    cooldown:
+      default-days: 1
+    groups:
+      dependencies:
+        patterns: ["*"]
