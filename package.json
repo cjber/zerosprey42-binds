@@ -14,6 +14,6 @@
     "build": "bun tools/build-site.ts"
   },
   "devDependencies": {
-    "wrangler": "^4.156.2"
+    "wrangler": "^4.160.1"
   }
 }
