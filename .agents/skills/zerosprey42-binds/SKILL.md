@@ -11,7 +11,7 @@ this skill is the short version an agent needs before touching it.
 ## Before you change anything
 
 ```sh
-bun run check     # data validation and unit tests; must be green before and after
+bun run gate      # data validation and unit tests; must be green before and after
 ```
 
 ## The one rule that matters
